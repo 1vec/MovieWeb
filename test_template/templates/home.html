@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %} {% endblock %}</h1>
+{% endblock %}
+
+
+{% block content %}
+		<!--about-us start -->
+		<section id="home" class="about-us">
+			<div class="container">
+				<div class="about-us-content">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="single-about-us">
+								<div class="about-us-txt">
+									<h2>
+										Explore the Beauty of the Movie's World 
+
+									</h2>
+									<div class="about-btn">
+										<button  class="about-view">
+										<a href="file:///C:/Users/WIN10-64/Desktop/login/login.html">
+											Explore Now
+										</button>
+									</div><!--/.about-btn-->
+								</div><!--/.about-us-txt-->
+							</div><!--/.single-about-us-->
+						</div><!--/.col-->
+						<div class="col-sm-0">
+							<div class="single-about-us">
+								
+							</div><!--/.single-about-us-->
+						</div><!--/.col-->
+					</div><!--/.row-->
+				</div><!--/.about-us-content-->
+			</div><!--/.container-->
+
+		</section><!--/.about-us-->
+		<!--about-us end -->
+{% endblock %}
+
+
+{% block css_style %}
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style_home.css') }}">
+{% endblock %}
