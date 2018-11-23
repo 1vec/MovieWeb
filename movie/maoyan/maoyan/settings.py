@@ -14,6 +14,10 @@ BOT_NAME = 'maoyan'
 SPIDER_MODULES = ['maoyan.spiders']
 NEWSPIDER_MODULE = 'maoyan.spiders'
 
+FEED_EXPORTERS = {
+    'sqlite3': 'maoyan.exporters.Sqlite3ItemExporter',
+}
+
 HTTPERROR_ALLOWED_CODES = [403, 404]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -91,3 +95,4 @@ DOWNLOADER_MIDDLEWARES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
