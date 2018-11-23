@@ -297,7 +297,7 @@ html,body{
     justify-content: center;
     align-items: center;
 	position: relative;
-	background: url(../../assets/images/home/banner.jpg)no-repeat;
+	background: url(../images/home/banner.jpg)no-repeat;
 	background-size: cover;
 	background-position: center;
 	min-height: 100px;
@@ -792,7 +792,7 @@ html,body{
 .discount-offer {
     padding: 120px 0;
     position: relative;
-    background: url(../../assets/images/home/offer-timer.jpg)no-repeat center fixed;
+    background: url(../images/home/offer-timer.jpg)no-repeat center fixed;
     background-size: cover;
     z-index: 1;
 }
