@@ -14,8 +14,11 @@ BOT_NAME = 'maoyan'
 SPIDER_MODULES = ['maoyan.spiders']
 NEWSPIDER_MODULE = 'maoyan.spiders'
 
-FEED_EXPORTERS = {
-    'sqlite3': 'maoyan.exporters.Sqlite3ItemExporter',
+# sqlite 配置
+SQLITE_DB_NAME = 'scrapy.db'
+
+ITEM_PIPELINES = {
+   'maoyan.pipelines.SQLitePipeline': 400,
 }
 
 HTTPERROR_ALLOWED_CODES = [403, 404]
@@ -32,7 +35,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16

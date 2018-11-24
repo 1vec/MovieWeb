@@ -5,6 +5,7 @@ from maoyan.items import MaoyanItem
 year_list = ['11','12','13','14']
 year_flag = 0
 
+
 class MaoyanSpiderSpider(scrapy.Spider):
     global year_flag
     global year_list
