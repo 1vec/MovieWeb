@@ -103,8 +103,9 @@ class MaoyanDownloaderMiddleware(object):
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
 
+
 class my_useragent(object):
-    def process_request(selfself,request,spider):
+    def process_request(self, request, spider):
         USER_AGENT_LIST = [
             'MSIE (MSIE 6.0; X11; Linux; i686) Opera 7.23',
             'Opera/9.20 (Macintosh; Intel Mac OS X; U; en)',
