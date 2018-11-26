@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from maoyan.items import MaoyanItem
+import time, random
+#import re
+#import woff2otf
+#from fontTools.ttLib import TTFont
 
 year_list = ['11','12','13','14']
 year_flag = 0
@@ -29,28 +33,53 @@ class MaoyanSpiderSpider(scrapy.Spider):
         pass
 
     def sub_page(self, response):
+        time.sleep(random.random()*3)
         movie_item = MaoyanItem()
+        #电影名称
         movie_item['name'] = response.xpath("//h3[@class='name']/text()").extract_first()
-        movie_item['date'] = str(response.xpath("//ul/li[@class='ellipsis'][contains(text(),'上映')]/text()").extract_first()).replace('国内上映','')
-
+        #上映日期
+        movie_item['date'] = str(response.xpath("//ul/li[@class='ellipsis'][contains(text(),'上映')]/text()").extract_first()).replace('大陆上映','')
+        #导演与演员
+        director_path = "//div[@class='celebrity-group']/div[@class='celebrity-type'][contains(text(),'导演')][not(contains(text(),'副导演'))]/../ul/li/div[@class='info']/a[1]/text()"
+        movie_item['director'] = str(response.xpath(director_path).extract_first()).replace(' ','').replace('\n','').replace('\\n','')
+        actor_path = "//div[@class='celebrity-group']/div[@class='celebrity-type'][contains(text(),'演员')]/../ul/li/div[@class='info']/a[1]/text()"
+        items = response.xpath(actor_path).extract()
+        actors = []
+        flag = 0
+        for item in items:
+            if flag > 10:
+                break
+            item = str(item).replace('\\n','').replace(' ','').replace('\n','')
+            if item not in actors and item != ',':
+                actors.append(item)
+                flag = flag + 1
+        seperation = ','
+        movie_item['actors'] = seperation.join(actors)
+        """
+        #评分数据
         score = response.xpath("//div[@class='movie-index-content score normal-score']/span/span[@class='stonefont']/text()").extract_first()
         if score:
             movie_item['score'] = score
         else:
             movie_item = '无’'
 
-        #money = int(response.xpath("//div[@class='movie-index-content box']/span[@class='stonefont']/text()").extract_first())
+        money = response.xpath("//div[@class='movie-index-content box']/span[@class='stonefont']/text()").extract_first()
         unit = response.xpath("//div[@class='movie-index-content box']/span[@class='unit']/text()").extract_first()
-        """
+
         if money:
             if unit == '亿':
-                money = money * 100000000
+                money = int(money) * 100000000
             elif unit == '万':
-                money = money * 10000
+                money = int(money) * 10000
             movie_item['box_office'] = money
         else:
             movie_item['box_office'] = '无'
-        """
+"""
         yield movie_item
         #people_part = response.xpath("//div[@class='mod-title']/a[@class='more']/@href")
         pass
+
+"""
+def createTmpDic(response):
+    font  =
+"""
