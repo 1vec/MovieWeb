@@ -40,12 +40,12 @@ class SQLitePipeline(object):
     def insert_db(self, item):
         values = (
             item['name'],
-            #item['type'],
+            item['type'],
             item['actors'],
             item['director'],
-            #item['box_office'],
+            item['box_office'],
             item['date'],
-            #item['score'],
+            item['score'],
         )
 
         sql = 'INSERT INTO movies VALUES(?,?,?,?)'
@@ -54,5 +54,5 @@ class SQLitePipeline(object):
 
     #创建表
     def create_table(self):
-        table = "CREATE TABLE movies('name' TEXT, 'date' TEXT, 'actors' TEXT, 'director' TEXT)"
+        table = "CREATE TABLE movies('name' TEXT, 'type' TEXT, 'actors' TEXT, 'director' TEXT, 'box_office' TEXT, 'date' TEXT, 'score' TEXT)"
         self.db_cur.execute(table)

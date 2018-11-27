@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import scrapy
+import re
 from maoyan.items import MaoyanItem
 import time, random
-#import re
-#import woff2otf
-#from fontTools.ttLib import TTFont
+from maoyan.number_decode import getNumber
+
 
 year_list = ['11','12','13','14']
 year_flag = 0
@@ -34,6 +34,7 @@ class MaoyanSpiderSpider(scrapy.Spider):
 
     def sub_page(self, response):
         time.sleep(random.random()*3)
+        print(re.search(r"url\('(?P<font>.+?woff)'", response.text).group('font'))
         movie_item = MaoyanItem()
         #电影名称
         movie_item['name'] = response.xpath("//h3[@class='name']/text()").extract_first()
@@ -55,31 +56,39 @@ class MaoyanSpiderSpider(scrapy.Spider):
                 flag = flag + 1
         seperation = ','
         movie_item['actors'] = seperation.join(actors)
-        """
+
+        #电影类型
+        movie_type = str(response.xpath("//div[@class='movie-brief-container']/ul/li[1]/text()").extract_first())
+        if movie_type and '分钟' not in movie_type:
+            movie_item['type'] = movie_type
+        #字符解码文件url
+        url = re.search(r"url\('(?P<font>.+?woff)'", response.text).group('font')
         #评分数据
         score = response.xpath("//div[@class='movie-index-content score normal-score']/span/span[@class='stonefont']/text()").extract_first()
-        if score:
-            movie_item['score'] = score
-        else:
-            movie_item = '无’'
 
         money = response.xpath("//div[@class='movie-index-content box']/span[@class='stonefont']/text()").extract_first()
         unit = response.xpath("//div[@class='movie-index-content box']/span[@class='unit']/text()").extract_first()
 
-        if money:
+        decode = getNumber(url, [score, money])
+        score_decode = decode[0]
+        money_decode = decode[1]
+
+        if score_decode:
+            movie_item['score'] = score_decode
+        else:
+            movie_item = None
+
+        if money_decode:
             if unit == '亿':
-                money = int(money) * 100000000
+                money = money_decode * 100000000
             elif unit == '万':
-                money = int(money) * 10000
+                money = money_decode * 10000
             movie_item['box_office'] = money
         else:
-            movie_item['box_office'] = '无'
-"""
+            movie_item['box_office'] = None
+
         yield movie_item
         #people_part = response.xpath("//div[@class='mod-title']/a[@class='more']/@href")
+        
         pass
 
-"""
-def createTmpDic(response):
-    font  =
-"""
