@@ -66,7 +66,7 @@ class MaoyanSpiderSpider(scrapy.Spider):
         url = re.search(r"url\('(?P<font>.+?woff)'", response.text).group('font')
         #评分数据
         score = response.xpath("//div[@class='movie-index-content score normal-score']/span/span[@class='stonefont']/text()").extract_first()
-
+        #票房数据
         money = response.xpath("//div[@class='movie-index-content box']/span[@class='stonefont']/text()").extract_first()
         unit = response.xpath("//div[@class='movie-index-content box']/span[@class='unit']/text()").extract_first()
 
