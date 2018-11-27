@@ -34,7 +34,7 @@ class MaoyanSpiderSpider(scrapy.Spider):
 
     def sub_page(self, response):
         time.sleep(random.random()*3)
-        print(re.search(r"url\('(?P<font>.+?woff)'", response.text).group('font'))
+        #print(re.search(r"url\('(?P<font>.+?woff)'", response.text).group('font'))
         movie_item = MaoyanItem()
         #电影名称
         movie_item['name'] = response.xpath("//h3[@class='name']/text()").extract_first()
@@ -61,6 +61,7 @@ class MaoyanSpiderSpider(scrapy.Spider):
         movie_type = str(response.xpath("//div[@class='movie-brief-container']/ul/li[1]/text()").extract_first())
         if movie_type and '分钟' not in movie_type:
             movie_item['type'] = movie_type
+
         #字符解码文件url
         url = re.search(r"url\('(?P<font>.+?woff)'", response.text).group('font')
         #评分数据
@@ -91,4 +92,5 @@ class MaoyanSpiderSpider(scrapy.Spider):
         #people_part = response.xpath("//div[@class='mod-title']/a[@class='more']/@href")
         
         pass
+
 

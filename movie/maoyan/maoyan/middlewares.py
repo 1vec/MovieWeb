@@ -121,3 +121,4 @@ class my_useragent(object):
         ]
         agent = random.choice(USER_AGENT_LIST)
         request.headers['User_Agent'] = agent
+        print("Using user agent:" + str(request.headers["User_Agent"]))
