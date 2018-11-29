@@ -10,9 +10,9 @@
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 	<!--font-family-->
-	<link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet" />
+	<!--<link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet" />-->
 
-	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+	<!--<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet" />-->
 
 	<!-- TITLE OF SITE -->
 	<title>{% block title %}{% endblock %}MovieNest</title>
@@ -73,7 +73,7 @@
 			<div class="row">
 				<div class="col-sm-2">
 					<div class="logo">
-						<a href="{{ url_for('home') }}">
+						<a href="{{ url_for('analysis.home') }}">
 							Movie<span>Nest</span>
 						</a>
 					</div><!-- /.logo-->
@@ -89,13 +89,20 @@
 						</div><!-- /.navbar-header-->
 						<div class="collapse navbar-collapse">
 							<ul class="nav navbar-nav navbar-right">
-								<li><a href="{{ url_for('home') }}">home</a></li>
-								<li><a href="{{ url_for('rating')}}">Rating</a></li>
-								<li><a href="{{ url_for('box_office') }}">Box-Office </a></li>
-								<li>
-									<button class="book-btn" onclick="window.location.href='http://www.baidu.com'">book now
-									</button>
-								</li><!--/.project-btn-->
+								<li><a href="{{ url_for('analysis.home') }}">home</a></li>
+								<li><a href="{{ url_for('analysis.rating')}}">Rating</a></li>
+								<li><a href="{{ url_for('analysis.box_office') }}">Box-Office </a></li>
+                                {% if g.user %}
+                                    <li>
+                                        <button class="book-btn" onclick="window.location.href='{{ url_for('auth.logout') }}'">Log out
+                                        </button>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <button class="book-btn" onclick="window.location.href='{{ url_for('auth.login') }}'">Log in
+                                        </button>
+                                    </li><!--/.project-btn-->
+                                {% endif %}
 							</ul>
 						</div><!-- /.navbar-collapse -->
 					</div><!-- /.main-menu-->
@@ -121,7 +128,7 @@
 				<div class="col-sm-3">
 					<div class="single-footer-item">
 						<div class="footer-logo">
-							<a href="{{ url_for('home') }}">
+							<a href="{{ url_for('analysis.home') }}">
 								Movie<span>Nest</span>
 							</a>
 							<p>
@@ -135,9 +142,9 @@
 					<div class="single-footer-item">
 						<h2>link</h2>
 						<div class="single-footer-txt">
-							<p><a href="{{ url_for('home') }}">Home</a></p>
-							<p><a href="{{ url_for('rating') }}">Rating</a></p>
-							<p><a href="{{ url_for('box_office') }}">Box-Office</a></p>
+							<p><a href="{{ url_for('analysis.home') }}">Home</a></p>
+							<p><a href="{{ url_for('analysis.rating') }}">Rating</a></p>
+							<p><a href="{{ url_for('analysis.box_office') }}">Box-Office</a></p>
 						</div><!--/.single-footer-txt-->
 					</div><!--/.single-footer-item-->
 

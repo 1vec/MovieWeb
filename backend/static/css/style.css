@@ -300,7 +300,7 @@ html,body{
 	background: url(../images/home/banner.jpg)no-repeat;
 	background-size: cover;
 	background-position: center;
-	min-height: 100px;
+	min-height: 1000px;
 }
 .about-us:before{
 	position: absolute;
@@ -373,7 +373,7 @@ html,body{
 		4. 	Travel-box
 --------------------------------------*/
 .single-travel-boxes {
-    margin-top: 1px;
+    margin-top: -125px;
     background: #fff;
 }
 .tab-para p {
@@ -1045,7 +1045,7 @@ html,body{
 --------------------------------------*/
 .special-offer{
     position: relative;
-    background: url(../../assets/images/offer/offer-banner.jpg)no-repeat center;
+    background: url(../images/offer/offer-banner.jpg)no-repeat center;
     background-size: cover;
     z-index: 1;
 }
@@ -1278,7 +1278,7 @@ html,body{
 .subscribe {
     position: relative;
     padding: 120px 0;
-    background: url(../../assets/images/home/subscribe-banner.jpg)no-repeat center fixed;
+    background: url(../images/home/subscribe-banner.jpg)no-repeat center fixed;
     background-size: cover;
     z-index: 1;
 }

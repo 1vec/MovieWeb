@@ -19,8 +19,7 @@
 
 									</h2>
 									<div class="about-btn">
-										<button  class="about-view">
-										<a href="file:///C:/Users/WIN10-64/Desktop/login/login.html">
+										<button  class="about-view" onclick="window.location.href='{{ url_for('auth.login') }}'">
 											Explore Now
 										</button>
 									</div><!--/.about-btn-->
@@ -42,5 +41,5 @@
 
 
 {% block css_style %}
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/style_home.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 {% endblock %}
