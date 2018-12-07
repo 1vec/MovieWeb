@@ -1,0 +1,10 @@
+@import url("https://unpkg.com/element-ui@2.4.11/lib/theme-chalk/index.css");
+.el-header {
+  background-color: #B3C0D1;
+  color: #333;
+  line-height: 60px;
+}
+
+.el-aside {
+  color: #333;
+}
