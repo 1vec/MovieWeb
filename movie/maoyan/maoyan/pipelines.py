@@ -24,7 +24,10 @@ class SQLitePipeline(object):
 
         self.db_conn = sqlite3.connect(db_name)
         self.db_cur = self.db_conn.cursor()
-        self.create_table()
+        try:
+            self.create_table()
+        except:
+            print("Table exists.Continuing to add data.")
 
     #关闭数据库
     def close_spider(self, spider):
@@ -48,7 +51,7 @@ class SQLitePipeline(object):
             item['score'],
         )
 
-        sql = 'INSERT INTO movies VALUES(?,?,?,?)'
+        sql = 'INSERT INTO movies VALUES(?,?,?,?,?,?,?)'
         self.db_cur.execute(sql, values)
         self.db_conn.commit()
 
@@ -56,3 +59,8 @@ class SQLitePipeline(object):
     def create_table(self):
         table = "CREATE TABLE movies('name' TEXT, 'type' TEXT, 'actors' TEXT, 'director' TEXT, 'box_office' TEXT, 'date' TEXT, 'score' TEXT)"
         self.db_cur.execute(table)
+
+    def read_table_data(self, table_name):
+        order = 'SELECT '+ table_name + ';'
+        self.db_cur.execute(order)
+

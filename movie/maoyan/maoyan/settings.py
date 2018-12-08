@@ -22,6 +22,7 @@ ITEM_PIPELINES = {
 }
 
 HTTPERROR_ALLOWED_CODES = [403, 404]
+RETRY_HTTP_CODES = [500, 502, 503, 504, 400, 403, 404, 408, 401, 301]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'maoyan (+http://www.yourdomain.com)'
@@ -63,6 +64,7 @@ COOKIES_ENABLED = False
 DOWNLOADER_MIDDLEWARES = {
     #'maoyan.middlewares.MaoyanDownloaderMiddleware': 543,
     'maoyan.middlewares.my_useragent': 543,
+    'maoyan.middlewares.my_proxy':544,
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
 }
 

@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+
+<!--[if IE 8]><html class="ie8"><![endif]-->
+<!--[if IE 9]><html class="ie9"><![endif]-->
+<!--[if gt IE 9]><!--><html><!--<![endif]-->
+<head>
+  <title>经典影片 - 猫眼电影 - 一网打尽好电影</title>
+  
+  <link rel="dns-prefetch" href="//p0.meituan.net"  />
+  <link rel="dns-prefetch" href="//p1.meituan.net"  />
+  <link rel="dns-prefetch" href="//ms0.meituan.net" />
+  <link rel="dns-prefetch" href="//ms1.meituan.net" />
+  <link rel="dns-prefetch" href="//analytics.meituan.com" />
+  <link rel="dns-prefetch" href="//report.meituan.com" />
+  <link rel="dns-prefetch" href="//frep.meituan.com" />
+
+  
+  <meta charset="utf-8">
+  <meta name="keywords" content="青田,正在热映,即将上映,经典电影">
+  <meta name="description" content="国内观众优选的在线购票平台，用户流行的观影决策平台。">
+  <meta http-equiv="cleartype" content="yes" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="renderer" content="webkit" />
+
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="format-detection" content="email=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <script>"use strict";!function(){var i=0<arguments.length&&void 0!==arguments[0]?arguments[0]:"_Owl_",n=window;n[i]||(n[i]={isRunning:!1,isReady:!1,preTasks:[],dataSet:[],use:function(i,t){this.isReady&&n.Owl&&n.Owl[i](t),this.preTasks.push({api:i,data:[t]})},add:function(i){this.dataSet.push(i)},run:function(){var t=this;if(!this.isRunning){this.isRunning=!0;var i=n.onerror;n.onerror=function(){this.isReady||this.add({type:"jsError",data:arguments}),i&&i.apply(n,arguments)}.bind(this),(n.addEventListener||n.attachEvent)("error",function(i){t.isReady||t.add({type:"resError",data:[i]})},!0)}}},n[i].run())}();</script>
+  <script>
+  cid = "c_rhr5i1n";
+  ci = 922;
+val = {"subnavId":3};    window.system = {};
+
+  window.openPlatform = '';
+  window.openPlatformSub = '';
+
+  </script>
+  <link rel="stylesheet" href="//ms0.meituan.net/mywww/common.4b838ec3.css"/>
+<link rel="stylesheet" href="//ms0.meituan.net/mywww/movie-list.22f5a22a.css"/>
+  <script crossorigin="anonymous" src="//ms0.meituan.net/mywww/stat.74891044.js"></script>
+  <script>if(window.devicePixelRatio >= 2) { document.write('<link rel="stylesheet" href="//ms0.meituan.net/mywww/image-2x.8ba7074d.css"/>') }</script>
+  <style>
+    @font-face {
+      font-family: stonefont;
+      src: url('//vfile.meituan.net/colorstone/f4abd62db6b5a7fad8de372ca21cad3d3168.eot');
+      src: url('//vfile.meituan.net/colorstone/f4abd62db6b5a7fad8de372ca21cad3d3168.eot?#iefix') format('embedded-opentype'),
+           url('//vfile.meituan.net/colorstone/d1094efb027a7eda2db06e1f9909e8952080.woff') format('woff');
+    }
+
+    .stonefont {
+      font-family: stonefont;
+    }
+  </style>
+</head>
+<body>
+
+
+<div class="header">
+  <div class="header-inner">
+        <a href="/" class="logo" data-act="icon-click"></a>
+        <div class="city-container" data-val="{currentcityid:922 }">
+            <div class="city-selected">
+                <div class="city-name">
+                  青田
+                  <span class="caret"></span>
+                </div>
+            </div>
+            <div class="city-list" data-val="{ localcityid: 922 }">
+                <div class="city-list-header">定位城市：<a class="js-geo-city">青田</a></div>
+                
+            </div>
+        </div>
+
+
+        <div class="nav">
+            <ul class="navbar">
+                <li><a href="/" data-act="home-click"  >首页</a></li>
+                <li><a href="/films" data-act="movies-click"  class="active" >电影</a></li>
+                <li><a href="/cinemas" data-act="cinemas-click" >影院</a></li> 
+                
+                <li><a href="/board" data-act="board-click" >榜单</a></li>
+                <li><a href="/news" data-act="hotNews-click" >热点</a></li>
+            </ul>
+        </div>
+
+        <div class="user-info">
+            <div class="user-avatar J-login">
+              <img src="https://p0.meituan.net/movie/7dd82a16316ab32c8359debdb04396ef2897.png">
+              <span class="caret"></span>
+              <ul class="user-menu">
+                <li><a href="javascript:void 0">登录</a></li>
+              </ul>
+            </div>
+        </div>
+
+        <form action="/query" target="_blank" class="search-form" data-actform="search-click">
+            <input name="kw" class="search" type="search" maxlength="32" placeholder="找影视剧、影人、影院" autocomplete="off">
+            <input class="submit" type="submit" value="">
+        </form>
+
+        <div class="app-download">
+          <a href="/app" target="_blank">
+            <span class="iphone-icon"></span>
+            <span class="apptext">APP下载</span>
+            <span class="caret"></span>
+            <div class="download-icon">
+                <p class="down-title">扫码下载APP</p>
+                <p class='down-content'>选座更优惠</p>
+            </div>
+          </a>
+        </div>
+  </div>
+</div>
+<div class="header-placeholder"></div>
+
+<div class="subnav">
+  <ul class="navbar">
+    <li>
+      <a data-act="subnav-click" data-val="{subnavClick:1}"
+          href="?showType=1"
+      >正在热映</a>
+    </li>
+    <li>
+      <a data-act="subnav-click" data-val="{subnavClick:2}"
+          href="?showType=2"
+      >即将上映</a>
+    </li>
+    <li>
+      <a data-act="subnav-click" data-val="{subnavClick:3}"
+          data-state-val="{subnavId:3}"
+          class="active" href="javascript:void(0);"
+      >经典影片</a>
+    </li>
+  </ul>
+</div>
+
+
+    <div class="container" id="app" class="page-movie/list" >
+
+
+<div class="movies-channel">
+  <div class="tags-panel">
+    <ul class="tags-lines">
+      <li class="tags-line" data-val="{tagTypeName:'cat'}">
+        <div class="tags-title">类型 :</div>
+        <ul class="tags">
+          <li class="active" data-state-val="{ catTagName:'全部'}" >
+            <a data-act="tag-click" data-val="{TagName:'全部'}"
+                href="javascript:void(0);" style="cursor: default"
+            >全部</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'爱情'}"
+                href="?showType=3&amp;yearId=10&amp;catId=3"
+            >爱情</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'喜剧'}"
+                href="?showType=3&amp;yearId=10&amp;catId=2"
+            >喜剧</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'动画'}"
+                href="?showType=3&amp;yearId=10&amp;catId=4"
+            >动画</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'剧情'}"
+                href="?showType=3&amp;yearId=10&amp;catId=1"
+            >剧情</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'恐怖'}"
+                href="?showType=3&amp;yearId=10&amp;catId=6"
+            >恐怖</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'惊悚'}"
+                href="?showType=3&amp;yearId=10&amp;catId=7"
+            >惊悚</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'科幻'}"
+                href="?showType=3&amp;yearId=10&amp;catId=10"
+            >科幻</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'动作'}"
+                href="?showType=3&amp;yearId=10&amp;catId=5"
+            >动作</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'悬疑'}"
+                href="?showType=3&amp;yearId=10&amp;catId=8"
+            >悬疑</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'犯罪'}"
+                href="?showType=3&amp;yearId=10&amp;catId=11"
+            >犯罪</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'冒险'}"
+                href="?showType=3&amp;yearId=10&amp;catId=9"
+            >冒险</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'战争'}"
+                href="?showType=3&amp;yearId=10&amp;catId=12"
+            >战争</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'奇幻'}"
+                href="?showType=3&amp;yearId=10&amp;catId=14"
+            >奇幻</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'运动'}"
+                href="?showType=3&amp;yearId=10&amp;catId=15"
+            >运动</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'家庭'}"
+                href="?showType=3&amp;yearId=10&amp;catId=16"
+            >家庭</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'古装'}"
+                href="?showType=3&amp;yearId=10&amp;catId=17"
+            >古装</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'武侠'}"
+                href="?showType=3&amp;yearId=10&amp;catId=18"
+            >武侠</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'西部'}"
+                href="?showType=3&amp;yearId=10&amp;catId=19"
+            >西部</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'历史'}"
+                href="?showType=3&amp;yearId=10&amp;catId=20"
+            >历史</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'传记'}"
+                href="?showType=3&amp;yearId=10&amp;catId=21"
+            >传记</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'歌舞'}"
+                href="?showType=3&amp;yearId=10&amp;catId=23"
+            >歌舞</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'黑色电影'}"
+                href="?showType=3&amp;yearId=10&amp;catId=24"
+            >黑色电影</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'短片'}"
+                href="?showType=3&amp;yearId=10&amp;catId=25"
+            >短片</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'纪录片'}"
+                href="?showType=3&amp;yearId=10&amp;catId=13"
+            >纪录片</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'其他'}"
+                href="?showType=3&amp;yearId=10&amp;catId=100"
+            >其他</a>
+          </li>
+        </ul>
+      </li>
+      <li class="tags-line tags-line-border" data-val="{tagTypeName:'source'}">
+        <div class="tags-title">区域 :</div>
+        <ul class="tags">
+          <li class="active" data-state-val="{ sourceTagName:'全部'}" >
+            <a data-act="tag-click" data-val="{TagName:'全部'}"
+                href="javascript:void(0);" style="cursor: default"
+            >全部</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'大陆'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=2"
+            >大陆</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'美国'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=3"
+            >美国</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'韩国'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=7"
+            >韩国</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'日本'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=6"
+            >日本</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'中国香港'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=10"
+            >中国香港</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'中国台湾'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=13"
+            >中国台湾</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'泰国'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=9"
+            >泰国</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'印度'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=8"
+            >印度</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'法国'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=4"
+            >法国</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'英国'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=5"
+            >英国</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'俄罗斯'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=14"
+            >俄罗斯</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'意大利'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=16"
+            >意大利</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'西班牙'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=17"
+            >西班牙</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'德国'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=11"
+            >德国</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'波兰'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=19"
+            >波兰</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'澳大利亚'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=20"
+            >澳大利亚</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'伊朗'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=21"
+            >伊朗</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'其他'}"
+                href="?showType=3&amp;yearId=10&amp;sourceId=100"
+            >其他</a>
+          </li>
+        </ul>
+      </li>
+      <li class="tags-line tags-line-border" data-val="{tagTypeName:'year'}">
+        <div class="tags-title">年代 :</div>
+        <ul class="tags">
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'全部'}"
+                href="?showType=3"
+            >全部</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'2018以后'}"
+                href="?showType=3&amp;yearId=14"
+            >2018以后</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'2018'}"
+                href="?showType=3&amp;yearId=13"
+            >2018</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'2017'}"
+                href="?showType=3&amp;yearId=12"
+            >2017</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'2016'}"
+                href="?showType=3&amp;yearId=11"
+            >2016</a>
+          </li>
+          <li class="active"  data-state-val="{ yearTagName:'2015'}">
+            <a data-act="tag-click" data-val="{TagName:'2015'}"
+                href="javascript:void(0);" style="cursor: default"
+            >2015</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'2014'}"
+                href="?showType=3&amp;yearId=9"
+            >2014</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'2013'}"
+                href="?showType=3&amp;yearId=8"
+            >2013</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'2012'}"
+                href="?showType=3&amp;yearId=7"
+            >2012</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'2011'}"
+                href="?showType=3&amp;yearId=6"
+            >2011</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'2000-2010'}"
+                href="?showType=3&amp;yearId=5"
+            >2000-2010</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'90年代'}"
+                href="?showType=3&amp;yearId=4"
+            >90年代</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'80年代'}"
+                href="?showType=3&amp;yearId=3"
+            >80年代</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'70年代'}"
+                href="?showType=3&amp;yearId=2"
+            >70年代</a>
+          </li>
+          <li >
+            <a data-act="tag-click" data-val="{TagName:'更早'}"
+                href="?showType=3&amp;yearId=1"
+            >更早</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="movies-panel">
+    <div class="movies-sorter">
+      <div class="cat-sorter">
+        <ul>
+          <li>
+            <span class="sort-control-group" data-act='sort-click' data-val="{tagId: 1 }"
+                  style="cursor: default"
+            >
+              <span class="sort-control sort-radio sort-radio-checked"></span>
+              <span class="sort-control-label">按热门排序</span>
+            </span>
+          </li>
+          <li>
+            <span class="sort-control-group" data-act='sort-click' data-val="{tagId: 2 }"
+                  data-href="?showType=3&amp;yearId=10&amp;sortId=2"
+                  onclick="location.href=this.getAttribute('data-href')"
+            >
+              <span class="sort-control sort-radio"></span>
+              <span class="sort-control-label">按时间排序</span>
+            </span>
+          </li>
+          <li>
+            <span class="sort-control-group" data-act='sort-click' data-val="{tagId: 3 }"
+                  data-href="?showType=3&amp;yearId=10&amp;sortId=3"
+                  onclick="location.href=this.getAttribute('data-href')"
+            >
+              <span class="sort-control sort-radio"></span>
+              <span class="sort-control-label">按评价排序</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="play-sorter">
+        <span class="sort-control-group" data-act='isplay-click' data-val="{isplay:1}"
+          data-href="?showType=3&amp;yearId=10&amp;isPlay=1"
+          onclick="location.href=this.getAttribute('data-href')">
+          <span class="sort-control sort-checkbox"></span>
+          <span class="sort-control-label">可播放</span>
+        </span>
+      </div>
+    </div>
+    <div class="movies-list">
+    
+    <dl class="movie-list">
+  <dd>
+    <div class="movie-item">
+      <a href="/films/78429" target="_blank" data-act="movie-click" data-val="{movieid:78429}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p1.meituan.net/movie/d1243f414fa7f8dfc2af7b902bd6872e364781.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="imax3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="复仇者联盟2：奥创纪元">
+      <a href="/films/78429" target="_blank" data-act="movies-click" data-val="{movieId:78429}">复仇者联盟2：奥创纪元</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">8.</i><i class="fraction">6</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/78405" target="_blank" data-act="movie-click" data-val="{movieid:78405}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p1.meituan.net/movie/b22bc4b0cf71916e6c2f4c335c3a66a0300236.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="imax3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="速度与激情7">
+      <a href="/films/78405" target="_blank" data-act="movies-click" data-val="{movieId:78405}">速度与激情7</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">6</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/78304" target="_blank" data-act="movie-click" data-val="{movieid:78304}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p1.meituan.net/movie/0fec3a88133e569ca0067e12f7ad0b80987252.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="m3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="战狼">
+      <a href="/films/78304" target="_blank" data-act="movies-click" data-val="{movieId:78304}">战狼</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">3</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/246082" target="_blank" data-act="movie-click" data-val="{movieid:246082}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/04fd9542cb749fc824190933feacc5b0294181.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="夏洛特烦恼">
+      <a href="/films/246082" target="_blank" data-act="movies-click" data-val="{movieId:246082}">夏洛特烦恼</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">3</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/75090" target="_blank" data-act="movie-click" data-val="{movieid:75090}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/84a2f5c28b4cb1df4f47fc3fa4ebda13323763.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="imax2d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="碟中谍5：神秘国度">
+      <a href="/films/75090" target="_blank" data-act="movies-click" data-val="{movieId:75090}">碟中谍5：神秘国度</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">0</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/247300" target="_blank" data-act="movie-click" data-val="{movieid:247300}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p1.meituan.net/movie/89cf48e116145fdc926d62f75a829d511032238.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="唐人街探案">
+      <a href="/films/247300" target="_blank" data-act="movies-click" data-val="{movieId:247300}">唐人街探案</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">0</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/247535" target="_blank" data-act="movie-click" data-val="{movieid:247535}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/63bee28db4fae342f3565be1c14a7640125600.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="功夫">
+      <a href="/films/247535" target="_blank" data-act="movies-click" data-val="{movieId:247535}">功夫</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">1</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/78392" target="_blank" data-act="movie-click" data-val="{movieid:78392}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p1.meituan.net/movie/ae5f44822ce97ce0fb03d4c97c24d6de320705.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="imax3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="蚁人">
+      <a href="/films/78392" target="_blank" data-act="movies-click" data-val="{movieId:78392}">蚁人</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">8.</i><i class="fraction">9</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/248327" target="_blank" data-act="movie-click" data-val="{movieid:248327}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p1.meituan.net/movie/8e8c605b892c879b9ec5990a2dc615c9265314.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="m3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="霸王别姬(京剧)">
+      <a href="/films/248327" target="_blank" data-act="movies-click" data-val="{movieId:248327}">霸王别姬(京剧)</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">8.</i><i class="fraction">3</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/78701" target="_blank" data-act="movie-click" data-val="{movieid:78701}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/88b1fd4da863290aab46aa089b466cea159750.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="imax3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="寻龙诀">
+      <a href="/films/78701" target="_blank" data-act="movies-click" data-val="{movieId:78701}">寻龙诀</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">1</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/246397" target="_blank" data-act="movie-click" data-val="{movieid:246397}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p1.meituan.net/movie/35774e005440262ba02b6d950a59e072310576.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="m3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="西游记之大圣归来">
+      <a href="/films/246397" target="_blank" data-act="movies-click" data-val="{movieId:246397}">西游记之大圣归来</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">3</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/78602" target="_blank" data-act="movie-click" data-val="{movieid:78602}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/478f6e1511115d0118cc3473d0ca2f22199051.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="imax3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="侏罗纪世界">
+      <a href="/films/78602" target="_blank" data-act="movies-click" data-val="{movieId:78602}">侏罗纪世界</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">1</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/905" target="_blank" data-act="movie-click" data-val="{movieid:905}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/7b03a29ff76639b8b8449f6d23fbb931301654.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="m3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="一代宗师3D">
+      <a href="/films/905" target="_blank" data-act="movies-click" data-val="{movieId:905}">一代宗师3D</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">8.</i><i class="fraction">2</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/246057" target="_blank" data-act="movie-click" data-val="{movieid:246057}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p1.meituan.net/movie/859fb8f55bc71cdadd154e888ac644e7310617.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="烈日灼心">
+      <a href="/films/246057" target="_blank" data-act="movies-click" data-val="{movieId:246057}">烈日灼心</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">8.</i><i class="fraction">9</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/246211" target="_blank" data-act="movie-click" data-val="{movieid:246211}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/05a8011cbe22ce1caa299539f459fd1d187078.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="老炮儿">
+      <a href="/films/246211" target="_blank" data-act="movies-click" data-val="{movieId:246211}">老炮儿</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">1</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/246088" target="_blank" data-act="movie-click" data-val="{movieid:246088}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/2f906342e6cb89abe68a333e7959a7ae308828.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="m3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="九层妖塔">
+      <a href="/films/246088" target="_blank" data-act="movies-click" data-val="{movieId:246088}">九层妖塔</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">5.</i><i class="fraction">7</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/79232" target="_blank" data-act="movie-click" data-val="{movieid:79232}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p1.meituan.net/movie/7d633fc3c0b4603b214ab762a1e0f470361756.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="imax3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="超能陆战队">
+      <a href="/films/79232" target="_blank" data-act="movies-click" data-val="{movieId:79232}">超能陆战队</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">5</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/246909" target="_blank" data-act="movie-click" data-val="{movieid:246909}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/048e8354f7af936be9b50370a6f976cf243066.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="m3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="杀破狼2">
+      <a href="/films/246909" target="_blank" data-act="movies-click" data-val="{movieId:246909}">杀破狼2</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">0</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/246260" target="_blank" data-act="movie-click" data-val="{movieid:246260}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/fa4384396148c22b07947ffcb8fc63c52139738.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="m3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="熊出没之雪岭熊风">
+      <a href="/films/246260" target="_blank" data-act="movies-click" data-val="{movieId:246260}">熊出没之雪岭熊风</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">2</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/78605" target="_blank" data-act="movie-click" data-val="{movieid:78605}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/640c310afb07dbb0004d5a0016bf30b3602570.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="imax3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="头脑特工队">
+      <a href="/films/78605" target="_blank" data-act="movies-click" data-val="{movieId:78605}">头脑特工队</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">0</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/245876" target="_blank" data-act="movie-click" data-val="{movieid:245876}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p1.meituan.net/movie/42c19969e515b7bb183ab069dc36d2f2337593.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="重返20岁">
+      <a href="/films/245876" target="_blank" data-act="movies-click" data-val="{movieId:245876}">重返20岁</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">2</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/78684" target="_blank" data-act="movie-click" data-val="{movieid:78684}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/019966c21f3d4e7ea81b27034e37b4db224898.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="imax3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="小黄人大眼萌">
+      <a href="/films/78684" target="_blank" data-act="movies-click" data-val="{movieId:78684}">小黄人大眼萌</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">8.</i><i class="fraction">9</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/246083" target="_blank" data-act="movie-click" data-val="{movieid:246083}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/07ff76fad57b70b4f863152cb8772dc27607409.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="imax3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="捉妖记">
+      <a href="/films/246083" target="_blank" data-act="movies-click" data-val="{movieId:246083}">捉妖记</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">1</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/246024" target="_blank" data-act="movie-click" data-val="{movieid:246024}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/a0fdf5e4d1d3228581e70faf74554699301873.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="m3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="海绵宝宝">
+      <a href="/films/246024" target="_blank" data-act="movies-click" data-val="{movieId:246024}">海绵宝宝</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">8.</i><i class="fraction">5</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/248944" target="_blank" data-act="movie-click" data-val="{movieid:248944}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p1.meituan.net/movie/dd48fda2aeb88dd86f2534b77bebc1b11024122.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="前任2：备胎反击战">
+      <a href="/films/248944" target="_blank" data-act="movies-click" data-val="{movieId:248944}">前任2：备胎反击战</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">8.</i><i class="fraction">3</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/246577" target="_blank" data-act="movie-click" data-val="{movieid:246577}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p1.meituan.net/movie/fc9a5e0297340745571f4c1bd4e0b9da415941.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="imax2d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="港囧">
+      <a href="/films/246577" target="_blank" data-act="movies-click" data-val="{movieId:246577}">港囧</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">8.</i><i class="fraction">4</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/247096" target="_blank" data-act="movie-click" data-val="{movieid:247096}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/2ae67474b7896b59627f22108bcd70b4374209.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="我的个神啊">
+      <a href="/films/247096" target="_blank" data-act="movies-click" data-val="{movieId:247096}">我的个神啊</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">0</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/246369" target="_blank" data-act="movie-click" data-val="{movieid:246369}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/973f792a7b52d0a0bbc1b9c569395324353650.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"><i class="imax3d"></i></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="火星救援">
+      <a href="/films/246369" target="_blank" data-act="movies-click" data-val="{movieId:246369}">火星救援</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">0</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/246210" target="_blank" data-act="movie-click" data-val="{movieid:246210}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/ca49a984656dc2d39bada121184403ba275535.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="左耳">
+      <a href="/films/246210" target="_blank" data-act="movies-click" data-val="{movieId:246210}">左耳</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">7.</i><i class="fraction">9</i></div>
+  
+  <dd>
+    <div class="movie-item">
+      <a href="/films/341569" target="_blank" data-act="movie-click" data-val="{movieid:341569}">
+      <div class="movie-poster">
+        <img class="poster-default" src="//ms0.meituan.net/mywww/image/loading_2.e3d934bf.png" />
+        <img data-src="https://p0.meituan.net/movie/618d5286b37acacb50ca82f6689632f7398261.jpg@160w_220h_1e_1c" />
+      </div>
+      </a>
+      <div class="movie-ver"></div>
+    </div>
+    <div class="channel-detail movie-item-title" title="我的少女时代">
+      <a href="/films/341569" target="_blank" data-act="movies-click" data-val="{movieId:341569}">我的少女时代</a>
+    </div>
+<div class="channel-detail channel-detail-orange"><i class="integer">9.</i><i class="fraction">2</i></div>
+  
+</dl>
+
+
+    </div>
+    <div class="movies-pager">
+      
+  
+  <ul class="list-pager">
+
+
+
+  
+      <li class="active">
+    <a class="page_1"
+      href="javascript:void(0);" style="cursor: default"
+  >1</a>
+
+</li>
+  <li >
+    <a class="page_2"
+      href="?showType=3&amp;yearId=10&amp;offset=30"
+  >2</a>
+
+</li>
+  <li >
+    <a class="page_3"
+      href="?showType=3&amp;yearId=10&amp;offset=60"
+  >3</a>
+
+</li>
+  <li >
+    <a class="page_4"
+      href="?showType=3&amp;yearId=10&amp;offset=90"
+  >4</a>
+
+</li>
+  <li >
+    <a class="page_5"
+      href="?showType=3&amp;yearId=10&amp;offset=120"
+  >5</a>
+
+</li>
+
+    <li class="sep">...</li>
+      <li >
+    <a class="page_45"
+      href="?showType=3&amp;yearId=10&amp;offset=1320"
+  >45</a>
+
+</li>
+
+  
+
+<li>  <a class="page_2"
+      href="?showType=3&amp;yearId=10&amp;offset=30"
+  >下一页</a>
+</li>
+</ul>
+
+
+    </div>
+  </div>
+</div>
+
+    </div>
+
+<div class="footer">
+    <p class="friendly-links">
+      商务合作邮箱：v@maoyan.com
+      客服电话：10105335
+      违法和不良信息举报电话：4006018900
+      <br/>
+      投诉举报邮箱：tousujubao@meituan.com
+      舞弊线索举报邮箱：wubijubao@maoyan.com
+    </p>
+    <p class="friendly-links">
+        友情链接 :
+        <a href="http://www.meituan.com" data-query="utm_source=wwwmaoyan" target="_blank">美团网</a>
+        <span></span>
+        <a href="http://i.meituan.com/client" data-query="utm_source=wwwmaoyan" target="_blank">美团下载</a>
+        <span></span>
+        <a href="https://www.huanxi.com" data-query="utm_source=maoyan_pc" target="_blank">欢喜首映</a>
+    </p>
+    <p>
+        &copy;2016
+        猫眼电影 maoyan.com
+        <a href="https://tsm.miit.gov.cn/pages/EnterpriseSearchList_Portal.aspx?type=0&keyword=京ICP证160733号&pageNo=1" target="_blank">京ICP证160733号</a>
+        <a href="http://www.miibeian.gov.cn" target="_blank">京ICP备16022489号-1</a>
+        <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010102003232" target="_blank">京公网安备 11010102003232号</a>
+        <a href="/about/licence" target="_blank">网络文化经营许可证</a>
+        <a href="http://www.meituan.com/about/rules" target="_blank">电子公告服务规则</a>
+    </p>
+    <p>北京猫眼文化传媒有限公司</p>
+</div>
+
+    <script crossorigin="anonymous" src="//www.dpfile.com/app/owl/static/owl_1.7.11.js"></script>
+    <script>
+      Owl.start({
+        project: 'com.sankuai.movie.fe.mywww', 
+        pageUrl: location.href.split('?')[0].replace(/\/\d+/g, '/:id'),
+        devMode: false
+      })
+      // 单独自定义上报下img加载错误
+      window.addEventListener('error', function(e) {
+        var node = e.target || e.srcElement
+        try {
+          var msg = node.src || node.href
+          var nodeName = node.nodeName
+          if (nodeName && nodeName.toLowerCase() === 'img') {
+            Owl.addError(msg, {level: 'warn', category: 'resourceError'})
+          }
+        } catch(err) {
+          console.error(err)
+        }
+      }, true)
+    </script>
+    <!--[if IE 8]><script crossorigin="anonymous" src="//ms0.meituan.net/mywww/es5-shim.bbad933f.js"></script><![endif]-->
+    <!--[if IE 8]><script crossorigin="anonymous" src="//ms0.meituan.net/mywww/es5-sham.d6ea26f4.js"></script><![endif]-->
+    <script crossorigin="anonymous" src="//ms0.meituan.net/mywww/common.1a4cea09.js"></script>
+<script crossorigin="anonymous" src="//ms0.meituan.net/mywww/movie-list.c3b8c778.js"></script>
+</body>
+</html>
