@@ -7,7 +7,7 @@ from maoyan.num_decode import getNumber
 import pandas as pd
 import sqlite3
 
-year_list = ['13']#['11','12','13']
+year_list = ['11','12','13']
 year_flag = 0
 page = 0
 movie_scraped = []
@@ -27,7 +27,7 @@ class MaoyanSpiderSpider(scrapy.Spider):
     global movie_scraped
     name = 'maoyan_spider'
     allowed_domains = ['maoyan.com/films']
-    start_urls = ['https://maoyan.com/films?showType=3&yearId=12&sortId=3']
+    start_urls = ['https://maoyan.com/films?showType=3&yearId=10&sortId=3']
 
     def parse(self, response):
         global year_flag
@@ -37,6 +37,9 @@ class MaoyanSpiderSpider(scrapy.Spider):
         movie_list = response.xpath("//div[@class='channel-detail movie-item-title']/a/@href").extract()
         name_list = response.xpath("//div[@class='channel-detail movie-item-title']/a/text()").extract()
         print(movie_list)
+        if len(movie_list)==0:
+            yield scrapy.Request(response.url, callback=self.parse, dont_filter=True)
+            return
         for i in range(0, len(movie_list)):
 
             next_link = movie_list[i]
@@ -48,10 +51,10 @@ class MaoyanSpiderSpider(scrapy.Spider):
         print('page='+ str(page), next_page)
 
         if next_page and page < 13:
-            yield scrapy.Request("https://maoyan.com/films" + next_page, callback = self.parse, dont_filter=True)
+            yield scrapy.Request("https://maoyan.com/films" + next_page, callback=self.parse, dont_filter=True)
             page = page + 1
         elif year_flag < len(year_list):
-            yield scrapy.Request("https://maoyan.com/films?showType=3&yearId=" + year_list[year_flag] + '&sortId=3',callback = self.parse, dont_filter = True)
+            yield scrapy.Request("https://maoyan.com/films?showType=3&yearId=" + year_list[year_flag] + '&sortId=3', callback=self.parse, dont_filter=True)
             page = 0
             year_flag += 1
         pass
@@ -62,6 +65,7 @@ class MaoyanSpiderSpider(scrapy.Spider):
         movie_item = MaoyanItem()
         #电影名称
         if not response.xpath("//h3[@class='name']/text()").extract_first():
+            yield scrapy.Request(response.url, callback= self.sub_page, dont_filter=True)
             return
         movie_item['name'] = response.xpath("//h3[@class='name']/text()").extract_first()
         #上映日期

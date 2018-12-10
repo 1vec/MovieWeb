@@ -124,8 +124,10 @@ class my_useragent(object):
         request.headers['User_Agent'] = agent
         print("Using user agent:" + str(request.headers["User_Agent"]))
 
+
 class my_proxy(object):
-    def process_request(selfself,request,spider):
+
+    def process_request(selfself, request, spider):
         request.meta['proxy'] = 'https://http-pro.abuyun.com:9010'
         proxy_name_pass = b'HAD63J3Z77E26V6P:06A3559A06A6DC95'
         encode_pass_name = base64.b64encode(proxy_name_pass)
