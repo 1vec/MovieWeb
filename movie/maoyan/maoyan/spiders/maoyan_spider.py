@@ -6,6 +6,7 @@ import time, random
 from maoyan.num_decode import getNumber
 import pandas as pd
 import sqlite3
+import json
 
 year_list = ['11','12','13']
 year_flag = 0
@@ -84,13 +85,12 @@ class MaoyanSpiderSpider(scrapy.Spider):
             if item not in actors and item != ',':
                 actors.append(item)
                 flag = flag + 1
-        seperation = ','
-        movie_item['actors'] = seperation.join(actors)
+        movie_item['actors'] = json.dumps(actors, ensure_ascii=False)
 
         #电影类型
         movie_type = str(response.xpath("//div[@class='movie-brief-container']/ul/li[1]/text()").extract_first())
         if movie_type and '分钟' not in movie_type:
-            movie_item['type'] = movie_type
+            movie_item['type'] = json.dumps(movie_type.split(','), ensure_ascii=False)
 
         #字符解码文件url
         if(re.search(r"url\('(?P<font>.+?woff)'", response.text)):
@@ -112,18 +112,21 @@ class MaoyanSpiderSpider(scrapy.Spider):
 
 
         if score:
-            movie_item['score'] = score_decode
+            movie_item['score'] = float(score_decode)
         else:
-            movie_item['score'] = '无'
+            movie_item['score'] = None
 
         if money:
             if unit == '亿':
                 money = float(money_decode) * 100000000
             elif unit == '万':
                 money = float(money_decode) * 10000
-            movie_item['box_office'] = money
+            try:
+                movie_item['box_office'] = round(money)
+            except TypeError:
+                print('[ERRRRRRR]', money)
         else:
-            movie_item['box_office'] = '无'
+            movie_item['box_office'] = None
 
         yield movie_item
         #people_part = response.xpath("//div[@class='mod-title']/a[@class='more']/@href")

@@ -13,8 +13,6 @@ def getNumber(url, encrypt_number):
         f.write(response_woff)
 
     baseFonts = TTFont('base.woff')
-    base_nums = ['5', '3', '0', '2', '7', '6', '4', '1', '9', '8']
-    base_fonts = ['uniE6EC', 'uniEB3E', 'uniF538', 'uniEC6C', 'uniEB22', 'uniF72B', 'uniE1FC', 'uniF1F8', 'uniF63B', 'uniE19E']
     onlineFonts = TTFont('fonts.woff')
 
     baseGlyphName_number = {
