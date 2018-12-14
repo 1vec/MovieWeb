@@ -1,7 +1,7 @@
-<template>
+<!-- <template>
     <div class="fillcontain">
         <head-top></head-top>
-        <!-- <div class="table_container">
+        <div class="table_container">
             <el-table
                 :data="tableData"
                 @expand='expand'
@@ -157,7 +157,7 @@
 			    <el-button type="primary" @click="addspecs">确 定</el-button>
 			  </div>
 			</el-dialog>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -432,3 +432,4 @@
         display: block;
     }
 </style>
+ -->

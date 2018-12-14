@@ -1,7 +1,7 @@
-<template>
+<!-- <template>
     <div class="fillcontain">
         <head-top></head-top>
-        <!-- <div class="table_container">
+        <div class="table_container">
             <el-table
                 :data="tableData"
                 highlight-current-row
@@ -35,7 +35,7 @@
                   :total="count">
                 </el-pagination>
             </div>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -118,3 +118,4 @@
         padding: 20px;
     }
 </style>
+ -->

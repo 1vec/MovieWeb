@@ -1,7 +1,7 @@
-<template>
+<!-- <template>
     <div class="fillcontain">
         <head-top></head-top>
-        <!-- <div class="table_container">
+        <div class="table_container">
             <el-table
                 :data="tableData"
                 style="width: 100%">
@@ -118,7 +118,7 @@
                 <el-button type="primary" @click="updateShop">确 定</el-button>
               </div>
             </el-dialog>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -361,3 +361,4 @@
         display: block;
     }
 </style>
+ -->
