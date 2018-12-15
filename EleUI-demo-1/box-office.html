@@ -11,6 +11,7 @@
   </head>
   <body>
     <div id="app">
+    <template>
       <el-container>
         <el-header>
           <el-row>
@@ -21,6 +22,7 @@
             </el-col>
             <el-col :span=6>
               <el-menu
+                :default-active="menuActive"
                 class="el-menu-demo"
                 mode="horizontal"
                 background-color="#545c64"
@@ -36,44 +38,32 @@
           </el-row>
         </el-header>
         <el-main>
-          <div class="box-form">
-            <el-tabs type="border-card" style="height: 300px">
-              <el-tab-pane>
-                <span slot="label"><i class="el-icon-date"></i> 票房分析</span>
-                汪汪汪汪汪汪汪<br>
-                汪汪
-
-                <div class="block">
-                  <span class="demonstration"></span>
-                  {{date1}}
-                  <el-date-picker
-                    v-model="date1"
-                    type="daterange"
-                    
-                    unlink-panels
-                    range-separator="至"
-                    start-placeholder="开始日期"
-                    end-placeholder="结束日期"
-                    :picker-options="pickerOptions2">
-                  </el-date-picker>
-                </div>
-
-
-
-
-
-
-              </el-tab-pane>
-              <el-tab-pane label="类型份额">类型份额</el-tab-pane>
-              <el-tab-pane label="变化趋势">变化趋势</el-tab-pane>
-              <el-tab-pane label="生成报表">生成报表</el-tab-pane>
-            </el-tabs>
-
-
-
-
-
+          <div class="box-main">
+          
+            <el-form class="box-form" ref="form" :model="form" >
+              <el-form-item>
+                <el-collapse class="box-collapse" v-model="form.activeNames"  @change="handleChange">
+                  <el-collapse-item  title="票房占比" name="1">
+                    <div class="clpsItem">
+                    EchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEcharts
+                    </div>
+                  </el-collapse-item>
+                  <el-collapse-item title="票房趋势" name="2">
+                    <div class="clpsItem">
+                    EchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEcharts
+                    </div>
+                  </el-collapse-item>
+                  <el-collapse-item title="打印报表" name="3">
+                    <div>打印报表不应该放在这里的，之后要改成按钮或者什么的</div>
+                  </el-collapse-item>
+                </el-collapse>
+              </el-form-item>
+            </el-form>
           </div>
+          
+
+
+         
         </el-main>
         <el-footer height="100%">
           <el-row type="flex" justyfy="space-around">
@@ -108,71 +98,33 @@
           </el-row>
         </el-footer>
       </el-container>
+    </template>
     </div>
   </body>
-
+</html>
 
 
 
 
 
   <script>
-    var main = new Vue({
-      el: '#app',
-      data: {
-        selected: 'date1'
+    var Main = {
+      data(){
+        return{
+          menuActive:'2',
+          form:{
+            activeNames: ['1']
+          }
+        };
+      },
+      methods: {
+        handleChange(val) {
+          console.log(val);
+        }
       }
-
-    })
-
+    };
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
   </script>
-
   
-<!-- 
-<script>
-  export default {
-    data() {
-      return {
-        pickerOptions2: {
-          shortcuts: [{
-            text: '最近一周',
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit('pick', [start, end]);
-            }
-          }, {
-            text: '最近一个月',
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-              picker.$emit('pick', [start, end]);
-            }
-          }, {
-            text: '最近三个月',
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-              picker.$emit('pick', [start, end]);
-            }
-          }]
-        },
-        
-        date1: ''
-      };
-    }
-  };
-</script>
- -->
-
-
-
-
-
-
-
-
-</html>
+  
