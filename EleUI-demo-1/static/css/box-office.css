@@ -17,28 +17,32 @@ a{
 }
 
 .el-header{
-  background: #545c64;
+  /*background: #545c64;*/
 }
 
 .el-header .logo a, .el-header .logo a:hover{
   color: #fff;
 }
 
-/* 主题 */
+/* 主体 */
 
 .el-main{
   position: relative;
   
-  background: url(../img/banner.jpg)no-repeat;
-  min-height: 1000px;
+  
+  min-height: 950px;
   /*color: #fff;*/
 }
 
-.el-main:before{
+.el-container{
+  background: url(../img/banner.jpg)no-repeat;
+}
+
+.el-container:before{
   background: rgba(0,122,207,.4);
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 1000px;
   content: "";
 }
 

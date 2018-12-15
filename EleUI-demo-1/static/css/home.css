@@ -17,7 +17,7 @@ a{
 }
 
 .el-header{
-  background: #545c64;
+  /*background: #545c64;*/
 }
 
 .el-header .logo a, .el-header .logo a:hover{
@@ -30,13 +30,17 @@ a{
 
 .el-main{
   position: relative;
-  
-  background: url(../img/banner.jpg)no-repeat;
-  min-height: 1000px;
   color: #fff;
+  
+  min-height: 1000px;
+  
 }
 
-.el-main:before{
+.el-container{
+  background: url(../img/banner.jpg)no-repeat;
+}
+
+.el-container:before{
   background: rgba(0,122,207,.4);
   position: absolute;
   width: 100%;
