@@ -17,40 +17,75 @@ a{
 }
 
 .el-header{
-  background: #545c64;
+  /*background: #545c64;*/
 }
 
 .el-header .logo a, .el-header .logo a:hover{
   color: #fff;
 }
 
-/* 主题 */
+/* 主体 */
 
 .el-main{
   position: relative;
   
-  background: url(../img/banner.jpg)no-repeat;
-  min-height: 1000px;
-  color: #fff;
+  
+  min-height: 950px;
+  /*color: #fff;*/
 }
-/*
-.el-main:before{
+
+.el-container{
+  background: url(../img/banner.jpg)no-repeat;
+}
+
+.el-container:before{
   background: rgba(0,122,207,.4);
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 1000px;
   content: "";
 }
-*/
+
 .el-main .el-row{
   font-size: 80px;
 }
 
-.box-form{
-  margin: 10%;
-  /*margin-left: 10%;*/
+.box-main{
+  position: absolute;
+  top: 4%;
+  left: 10%;
+  width:80%;
+  border: 1px solid rgba(232,237,250,.5);
+  background-color: #fff;
 }
 
+.box-form{
+  margin: 6px;
+  background-color: #fff;
+  box-shadow: 0 0 2px 4px rgba(232,237,250,.5);
+}
+
+.box-form .box-collapse{
+  margin: 2%;
+}
+
+.el-collapse-item__header{
+  font-size: 20px;
+}
+
+.el-collapse-item__header.is-active{
+  border-bottom-color:  #4d7ab1;
+  color: #4d7ab1;
+}
+
+.el-collapse-item__wrap {
+  min-height: 350px;
+}
+
+/*.clpsItem{
+  min-height: 350px;
+  background: #fff;
+}*/
 
 
 /* 脚注 */

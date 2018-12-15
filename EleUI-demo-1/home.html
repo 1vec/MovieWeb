@@ -13,22 +13,22 @@
     <div id="app">
       <el-container>
         <el-header>
-          <el-row>
-            <el-col :span=3>
+          <el-row type="flex" align="middle">
+            <el-col :span="4" :offset="1">
               <div class="logo">
-                <a>Movie<span>Nest</span></a>
+                <a style="font-family:'Times New Roman';font-size: 36px">Movie<span>Nest</span></a>
               </div>
             </el-col>
-            <el-col :span=6>
+            <el-col :span="20" :offset="1">
               <el-menu
                 class="el-menu-demo"
                 mode="horizontal"
-                background-color="#545c64"
+                background-color=rgba(0,0,0,0)
                 text-color="#fff"
                 active-text-color="#ffd04b">
-                <el-menu-item index="1">主页</el-menu-item>
-                <el-menu-item index="2">票房分析</el-menu-item>
-                <el-menu-item index="3">评分分析</el-menu-item>
+                <el-menu-item index="1" style="font-family: Arial; font-size: 20px">主页</el-menu-item>
+                <el-menu-item index="2" style="font-family: Arial; font-size: 20px">票房分析</el-menu-item>
+                <el-menu-item index="3" style="font-family: Arial; font-size: 20px">评分分析</el-menu-item>
               </el-menu>
             </el-col>
             <el-col :span=4>
@@ -37,10 +37,10 @@
         </el-header>
         <el-main>
           <div class="explore">
-          <el-row>电影,</el-row>
-          <el-row>你知道吗？</el-row>
+          <el-row style="font-family: Arial; font-size: 80px">电影,</el-row>
+          <el-row style="font-family: Arial; font-size: 80px">你知道吗？</el-row>
           <el-row>
-            <el-button type="primary" size="medium">开始探索</el-button>
+            <el-button type="primary" style="height:60px; width:160px; font-size:24px;">开始探索</el-button>
           </el-row>
           </div>
         </el-main>
@@ -56,23 +56,23 @@
             </el-col>
             <el-col :span=5>
               <h4>链接</h4>
-              <p><a>主页</a></p>
-              <p><a>票房分析</a></p>
-              <p><a>评分分析</a></p>
+              <p style="font-family: Arial;"><a>主页</a></p>
+              <p style="font-family: Arial;"><a>票房分析</a></p>
+              <p style="font-family: Arial;"><a>评分分析</a></p>
             </el-col>
             <el-col :span=5>
               <h4>经典电影</h4>
-              <p><a href="https://en.wikipedia.org/wiki/L%C3%A9on:_The_Professional">这个杀手不太冷（1994）</a></p>
-              <p><a href="https://en.wikipedia.org/wiki/Titanic_(1997_film)">泰坦尼克号（1997）</a></p>
-              <p><a href="https://en.wikipedia.org/wiki/Flipped_(film)">怦然心动（2010）</a></p>
-              <p><a href="https://en.wikipedia.org/wiki/The_Matrix">黑客帝国（1999）</a></p>
-              <p><a href="https://en.wikipedia.org/wiki/Roman_Holiday">罗马假日（1953）</a></p>
+              <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/L%C3%A9on:_The_Professional">这个杀手不太冷（1994）</a></p>
+              <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/Titanic_(1997_film)">泰坦尼克号（1997）</a></p>
+              <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/Flipped_(film)">怦然心动（2010）</a></p>
+              <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/The_Matrix">黑客帝国（1999）</a></p>
+              <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/Roman_Holiday">罗马假日（1953）</a></p>
             </el-col>
             <el-col :span=5>
               <h4>联系方式</h4>
               <p>518000</p>
               <p>广东省深圳市南山区</p>
-              <p class="foot-email"><a href="http://www.hitsz.edu.cn/home.html">哈尔滨工业大学（深圳）</a></p>
+              <p  style="font-family: Arial;" class="foot-email"><a href="http://www.hitsz.edu.cn/">哈尔滨工业大学（深圳）</a></p>
             </el-col>
           </el-row>
         </el-footer>
