@@ -52,12 +52,12 @@ a{
   left: 10%;
   width:80%;
   border: 1px solid rgba(232,237,250,.5);
-  background: #fff;
+  background-color: #fff;
 }
 
 .box-form{
   margin: 6px;
-  /*min-height: 100%;*/
+  background-color: #fff;
   box-shadow: 0 0 2px 4px rgba(232,237,250,.5);
 }
 
@@ -65,9 +65,23 @@ a{
   margin: 2%;
 }
 
-.clpsItem{
+.el-collapse-item__header{
+  font-size: 20px;
+}
+
+.el-collapse-item__header.is-active{
+  border-bottom-color:  #4d7ab1;
+  color: #4d7ab1;
+}
+
+.el-collapse-item__wrap {
   min-height: 350px;
 }
+
+/*.clpsItem{
+  min-height: 350px;
+  background: #fff;
+}*/
 
 
 /* 脚注 */

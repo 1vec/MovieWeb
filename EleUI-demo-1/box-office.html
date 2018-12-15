@@ -44,18 +44,24 @@
               <el-form-item>
                 <el-collapse class="box-collapse" v-model="form.activeNames"  @change="handleChange">
                   <el-collapse-item  title="票房占比" name="1">
-                    <div class="clpsItem">
-                    EchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEcharts
-                    </div>
+                    <!-- <div class="clpsItem"> -->
+                    <el-select v-model="value" placeholder="请选择图表类型">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+
+                    <!-- </div> -->
                   </el-collapse-item>
                   <el-collapse-item title="票房趋势" name="2">
-                    <div class="clpsItem">
+                    <!-- <div class="clpsItem"> -->
                     EchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEcharts
-                    </div>
+                    <!-- </div> -->
                   </el-collapse-item>
-                  <el-collapse-item title="打印报表" name="3">
-                    <div>打印报表不应该放在这里的，之后要改成按钮或者什么的</div>
-                  </el-collapse-item>
+                  
                 </el-collapse>
               </el-form-item>
             </el-form>
@@ -113,8 +119,25 @@
         return{
           menuActive:'2',
           form:{
-            activeNames: ['1']
-          }
+            activeNames: ['1'],
+            
+          },
+          options: [{
+              value: '选项1',
+              label: '黄金糕'
+            }, {
+              value: '选项2',
+              label: '双皮奶'
+            }, {
+              value: '选项3',
+              label: '蚵仔煎'
+            }, {
+              value: '选项4',
+              label: '龙须面'
+            }, {
+              value: '选项5',
+              label: '北京烤鸭'
+            }],
         };
       },
       methods: {
