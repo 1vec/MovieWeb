@@ -27,6 +27,17 @@ class MaoyanSpiderSpider(scrapy.Spider):
     name = 'maoyan_spider'
     allowed_domains = ['maoyan.com/films']
 
+    custom_settings = {
+        'LOG_LEVEL': 'INFO',
+        'DOWNLOAD_DELAY': 0,
+        'COOKIES_ENABLED': False,
+        'DOWNLOAD_MIDDLEWARES':{
+            'maoyan.middlewares.SeleniumMiddleware': 543,
+            'maoyan.middlewares.my_proxy': 400,
+            #'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+        }
+    }
+
     def __init__(self, year_list='10,11,12,13', *args, **kwargs):
         super(MaoyanSpiderSpider, self).__init__(*args, **kwargs)
         self.year_list = year_list.split(',')
@@ -42,23 +53,23 @@ class MaoyanSpiderSpider(scrapy.Spider):
         name_list = response.xpath("//div[@class='channel-detail movie-item-title']/a/text()").extract()
         print(movie_list)
         if len(movie_list)==0:
-            yield scrapy.Request(response.url, callback=self.parse, dont_filter=True)
+            yield scrapy.Request(response.url, meta={'useSelenium':True, 'noRedirect':True}, callback=self.parse, dont_filter=True)
             return
         for i in range(0, len(movie_list)):
 
             next_link = movie_list[i]
             movie_scrapping = name_list[i]
             if next_link and movie_scrapping not in movie_scraped:
-                yield scrapy.Request("https://maoyan.com" + next_link, callback=self.sub_page, dont_filter=True)
+                yield scrapy.Request("https://maoyan.com" + next_link, meta={'useSelenium':True, 'noRedirect':True}, callback=self.sub_page, dont_filter=True)
         next_page = response.xpath("//div[@class='movies-pager']/ul/li/a[contains(text(),'下一页')]/@href").extract_first()
 
         print('page='+ str(page), next_page)
 
         if next_page and page < 13:
-            yield scrapy.Request("https://maoyan.com/films" + next_page, callback=self.parse, dont_filter=True)
+            yield scrapy.Request("https://maoyan.com/films" + next_page,meta={'useSelenium':True, 'noRedirect':True},  callback=self.parse, dont_filter=True)
             page = page + 1
         elif year_flag < len(self.year_list):
-            yield scrapy.Request("https://maoyan.com/films?showType=3&yearId=" + self.year_list[year_flag] + '&sortId=3', callback=self.parse, dont_filter=True)
+            yield scrapy.Request("https://maoyan.com/films?showType=3&yearId=" + self.year_list[year_flag] + '&sortId=3',meta={'useSelenium':True, 'noRedirect':True},  callback=self.parse, dont_filter=True)
             page = 0
             year_flag += 1
         pass
@@ -69,7 +80,7 @@ class MaoyanSpiderSpider(scrapy.Spider):
         movie_item = MaoyanItem()
         #电影名称
         if not response.xpath("//h3[@class='name']/text()").extract_first():
-            yield scrapy.Request(response.url, callback= self.sub_page, dont_filter=True)
+            yield scrapy.Request(response.url, meta={'useSelenium':True, 'noRedirect':True}, callback= self.sub_page, dont_filter=True)
             return
         movie_item['name'] = response.xpath("//h3[@class='name']/text()").extract_first()
         #上映日期
@@ -131,7 +142,6 @@ class MaoyanSpiderSpider(scrapy.Spider):
                 movie_item['box_office'] = None
         else:
             movie_item['box_office'] = None
-
         yield movie_item
 
         pass

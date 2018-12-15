@@ -8,6 +8,16 @@
 from scrapy import signals
 import random
 import base64
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+from scrapy.http import HtmlResponse
+from logging import getLogger
+import time
+
 
 
 class MaoyanSpiderMiddleware(object):
@@ -107,7 +117,6 @@ class MaoyanDownloaderMiddleware(object):
 
 class my_useragent(object):
     def process_request(self, request, spider):
-        '''
         USER_AGENT_LIST = [
             "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; AcooBrowser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)",
             "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; Acoo Browser; SLCC1; .NET CLR 2.0.50727; Media Center PC 5.0; .NET CLR 3.0.04506)",
@@ -153,11 +162,6 @@ class my_useragent(object):
             'Mozilla/4.77 [en] (X11; I; IRIX;64 6.5 IP30)', 'Mozilla/4.8 [en] (X11; U; SunOS; 5.7 sun4u)',
             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
         ]
-        '''
-
-        USER_AGENT_LIST = [
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
-        ]
         agent = random.choice(USER_AGENT_LIST)
         request.headers['User_Agent'] = agent
         print("Using user agent:" + str(request.headers["User_Agent"]))
@@ -177,3 +181,39 @@ class my_second_proxy(object):
     def process_request(self, request, spider):
         request.meta['proxy'] = 'https://transfer.mogumiao.com:9001'
         request.headers['Authorization'] = 'Basic ' + 'dDRtMUtzZ0p4NGgwWUdtVDppdVgxcEJpWEtjVFYxRlZv'
+
+
+class SeleniumMiddleware():
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            timeout=crawler.settings.get('SELENIUM_TIMEOUT'),
+            isLoadImage=crawler.settings.get('LOAD_IMAGE'),
+            windowHeight=crawler.settings.get('WINDOW_HEIGHT'),
+            windowWidth=crawler.settings.get('WINDOW_WIDTH')
+        )
+
+    def __init__(self, timeout=30, isLoadImage=False, windowHeight=None, windowWidth=None):
+        self.logger = getLogger(__name__)
+        self.timeout = timeout
+        self.isLoadImage = isLoadImage
+        self.browser = webdriver.Chrome()
+        if windowHeight and windowWidth:
+            self.browser.set_window_size(windowHeight, windowWidth)
+        self.browser.set_script_timeout(self.timeout)
+        self.wait = WebDriverWait(self.browser, 25)
+
+    def process_request(self, request, spider):
+        print('Chrome is getting page')
+        useSelenium = request.meta.get('useSelenium', True)
+        if useSelenium:
+            try:
+                self.browser.get(request.url)
+                time.sleep(random.random()*2)
+            except:
+                print('Chrome gets error')
+                return  HtmlResponse(url=request.url, status=500, request=request)
+
+        else:
+            time.sleep(random.random()*2)
+        return  HtmlResponse(url=request.url, body=self.browser.page_source, request=request, encoding='utf-8', status=200)
