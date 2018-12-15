@@ -8,8 +8,7 @@ import pandas as pd
 import sqlite3
 import json
 
-year_list = ['11','12','13']
-year_flag = 0
+year_flag = 1
 page = 0
 movie_scraped = []
 try:
@@ -23,12 +22,16 @@ except:
 
 class MaoyanSpiderSpider(scrapy.Spider):
     global year_flag
-    global year_list
     global page
     global movie_scraped
     name = 'maoyan_spider'
     allowed_domains = ['maoyan.com/films']
-    start_urls = ['https://maoyan.com/films?showType=3&yearId=10&sortId=3']
+
+    def __init__(self, year_list='10,11,12,13', *args, **kwargs):
+        super(MaoyanSpiderSpider, self).__init__(*args, **kwargs)
+        self.year_list = year_list.split(',')
+        self.start_urls = ['https://maoyan.com/films?showType=3&yearId='+self.year_list[0]+'&sortId=3']
+
 
     def parse(self, response):
         global year_flag
@@ -54,8 +57,8 @@ class MaoyanSpiderSpider(scrapy.Spider):
         if next_page and page < 13:
             yield scrapy.Request("https://maoyan.com/films" + next_page, callback=self.parse, dont_filter=True)
             page = page + 1
-        elif year_flag < len(year_list):
-            yield scrapy.Request("https://maoyan.com/films?showType=3&yearId=" + year_list[year_flag] + '&sortId=3', callback=self.parse, dont_filter=True)
+        elif year_flag < len(self.year_list):
+            yield scrapy.Request("https://maoyan.com/films?showType=3&yearId=" + self.year_list[year_flag] + '&sortId=3', callback=self.parse, dont_filter=True)
             page = 0
             year_flag += 1
         pass
@@ -125,12 +128,12 @@ class MaoyanSpiderSpider(scrapy.Spider):
                 movie_item['box_office'] = round(money)
             except TypeError:
                 print('[ERRRRRRR]', money)
+                movie_item['box_office'] = None
         else:
             movie_item['box_office'] = None
 
         yield movie_item
-        #people_part = response.xpath("//div[@class='mod-title']/a[@class='more']/@href")
-        
+
         pass
 
 

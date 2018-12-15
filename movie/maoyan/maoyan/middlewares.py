@@ -107,6 +107,7 @@ class MaoyanDownloaderMiddleware(object):
 
 class my_useragent(object):
     def process_request(self, request, spider):
+        '''
         USER_AGENT_LIST = [
             "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; AcooBrowser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)",
             "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; Acoo Browser; SLCC1; .NET CLR 2.0.50727; Media Center PC 5.0; .NET CLR 3.0.04506)",
@@ -143,6 +144,19 @@ class my_useragent(object):
             "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11",
             "Mozilla/5.0 (X11; U; Linux x86_64; zh-CN; rv:1.9.2.10) Gecko/20100922 Ubuntu/10.10 (maverick) Firefox/3.6.10",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
+            'MSIE (MSIE 6.0; X11; Linux; i686) Opera 7.23', 'Opera/9.20 (Macintosh; Intel Mac OS X; U; en)',
+            'Opera/9.0 (Macintosh; PPC Mac OS X; U; en)', 'iTunes/9.0.3 (Macintosh; U; Intel Mac OS X 10_6_2; en-ca)',
+            'Mozilla/4.76 [en_jp] (X11; U; SunOS 5.8 sun4u)', 'iTunes/4.2 (Macintosh; U; PPC Mac OS X 10.2)',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:5.0) Gecko/20100101 Firefox/5.0',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:9.0) Gecko/20100101 Firefox/9.0',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20120813 Firefox/16.0',
+            'Mozilla/4.77 [en] (X11; I; IRIX;64 6.5 IP30)', 'Mozilla/4.8 [en] (X11; U; SunOS; 5.7 sun4u)',
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
+        ]
+        '''
+
+        USER_AGENT_LIST = [
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
         ]
         agent = random.choice(USER_AGENT_LIST)
         request.headers['User_Agent'] = agent
@@ -151,8 +165,15 @@ class my_useragent(object):
 
 class my_proxy(object):
 
-    def process_request(selfself, request, spider):
+    def process_request(self, request, spider):
         request.meta['proxy'] = 'https://http-pro.abuyun.com:9010'
-        proxy_name_pass = b'HAD63J3Z77E26V6P:06A3559A06A6DC95'
+        proxy_name_pass = b'HU0PGV22PUNAMOXP:4B0B5460D5425072'
         encode_pass_name = base64.b64encode(proxy_name_pass)
         request.headers['Proxy-Authorization'] = 'Basic ' + encode_pass_name.decode()
+        request.headers['Proxy-Switch-Ip'] = 'yes'
+
+class my_second_proxy(object):
+
+    def process_request(self, request, spider):
+        request.meta['proxy'] = 'https://transfer.mogumiao.com:9001'
+        request.headers['Authorization'] = 'Basic ' + 'dDRtMUtzZ0p4NGgwWUdtVDppdVgxcEJpWEtjVFYxRlZv'
