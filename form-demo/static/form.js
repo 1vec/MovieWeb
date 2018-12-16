@@ -23,23 +23,17 @@ app = new Vue({
           this.resource = response.data
           console.log('resource:' + this.resource)
 
-          var data1 = []
-          var data2 = []
+          data = []
           for (prop in this.resource) {
-            data1.push(prop)
-            data2.push(this.resource[prop])
+            data.push({value: this.resource[prop], name: prop})
           }
-          console.log('data1:' + data1)
-          console.log('data2:' + data2)
+          console.log(data)
           var option = {
-            xAxis: {
-              data: data1
-            },
-            yAxis: {},
             series: [{
               name: '票房',
-              type: 'bar',
-              data: data2
+              type: 'pie',
+              radius: '55%',
+              data: data
             }]
           }
           this.myChart.setOption(option);
