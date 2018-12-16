@@ -17,57 +17,89 @@
           
     <el-form class="box-form" ref="form" :model="form" >
       <el-form-item>
-        <el-collapse class="box-collapse" v-model="form.activeNames"  @change="handleChange">
-          <el-collapse-item  title="票房占比" name="1">
+        <el-collapse class="box-collapse" v-model="form.activeName"  accordion>
+          <el-collapse-item  title="票房占比" name="0">
             
 
-            <div class="block">
-              <span class="demonstration">Month</span>
-              <el-date-picker
-                    v-model="startm"
-                    align="right"
-                    type="month"
-                    placeholder="开始时间"
-                    value-format = "yyyy-MM"
-                    :picker-options="startDatePicker">
-              </el-date-picker>
-              <el-date-picker
-                    v-model="endm"
-                    align="right"
-                    type="month"
-                    placeholder="结束时间"
-                    value-format = "yyyy-MM"
-                    :picker-options="endDatePicker">
-              </el-date-picker>
-              <p>Start Value: {[ startm ]}</p>
-              <p>End Value: {[ endm ]}</p>
-              <el-button type="primary" v-on:click="submit()">提交</el-button>
-              <p>Resource: {[ resource ]}</p>
-            </div>
+            <div class="block" style="margin-top: 10px">
+              <el-col span="12" offset="1">
+                <span class="demonstration">时间：</span>
+                <el-date-picker
+                      v-model="startm"
+                      align="right"
+                      type="month"
+                      placeholder="开始时间"
+                      value-format = "yyyy-MM"
+                      :picker-options="startDatePicker">
+                </el-date-picker>
+                <el-date-picker
+                      v-model="endm"
+                      align="right"
+                      type="month"
+                      placeholder="结束时间"
+                      value-format = "yyyy-MM"
+                      :picker-options="endDatePicker">
+                </el-date-picker>
+              </el-col>
+              <el-col :span="8">
+                <span class="demonstration">图表类型：</span>
+                <el-select v-model="value" placeholder="请选择图表类型" name="1">
+                  <el-option 
+                    v-for="item in opt0"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+              </el-col>
+              <el-button type="primary" v-on:click="submit()">提交</el-button>              
+            </div>         
 
-            <el-select v-model="value1" placeholder="请选择图表类型" name="1">
-              <el-option 
-                v-for="item in opt1"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-
-            <!-- <div id="plot1" style="width: 600px;height: 400px;"></div>
+            <div id="plot1" style="width: 600px;height: 400px;"></div>
             <script type="text/javascript">
               app.myChart = echarts.init(document.getElementById('plot1'));
-            </script> -->
-
-
-
-
-
-            
+            </script>
             
           </el-collapse-item>
-          <el-collapse-item title="票房趋势" name="2">
-            
+          <el-collapse-item title="票房趋势" name="1">
+            <div class="block" style="margin-top: 10px">
+              <el-col span="12" offset="1">
+                <span class="demonstration">时间：</span>
+                <el-date-picker
+                      v-model="startm"
+                      align="right"
+                      type="month"
+                      placeholder="开始时间"
+                      value-format = "yyyy-MM"
+                      :picker-options="startDatePicker">
+                </el-date-picker>
+                <el-date-picker
+                      v-model="endm"
+                      align="right"
+                      type="month"
+                      placeholder="结束时间"
+                      value-format = "yyyy-MM"
+                      :picker-options="endDatePicker">
+                </el-date-picker>
+              </el-col>
+              <el-col :span="8">
+                <span class="demonstration">图表类型：</span>
+                <el-select v-model="value" placeholder="请选择图表类型" name="1">
+                  <el-option 
+                    v-for="item in opt1"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+              </el-col>
+              <el-button type="primary" v-on:click="submit()">提交</el-button>              
+            </div> 
+
+            <div id="plot1" style="width: 600px;height: 400px;"></div>
+            <script type="text/javascript">
+              app.myChart = echarts.init(document.getElementById('plot1'));
+            </script>
               
           </el-collapse-item>
         </el-collapse>
@@ -81,49 +113,51 @@
 <!-- script start -->
 {% block mainvue %} 
 <script>
-  app = new Vue({
+  var main = new Vue({
     el: '#app',
     elimiters: ['{[', ']}'],
     data: {
         menuActive:'2',
         form:{
-          activeNames: ['1'],          
+          activeName: '0',          
         },
-        value1:'',
-        options: [{
-            value: '选项1',
+        value:'',
+        opt0: [{
+            value: '0',
             label: '饼状图'
           }, {
-            value: '选项2',
+            value: '1',
             label: '柱状图'
           }, {
-            value: '选项3',
-            label: 'Echarts'
-          }, {
-            value: '选项4',
-            label: 'Echarts'
-          }, {
-            value: '选项5',
-            label: 'Echarts'
+            value: '3',
+            label: '词云'
           }],
+        opt1: [{
+            value: '2',
+            label: '折线图'
+          }, {
+            value: '4',
+            label: '散点图'
+        }],
         startm: '',
         endm: '',
         resource: 'Hello',
         startDatePicker: '',
         endDatePicker: '',
         mychart: '',
-      
     },
     created: function(){
       this.startDatePicker = this.startDatePicker2()
       this.endDatePicker = this.endDatePicker2()
     },
     methods: {
-      handleChange(val) {
-        console.log(val);
-      },
       submit: function(){
+        if(!this.startm || !this.endm){
+          alert('请输入正确的起始日期')
+        }
         axios.post('/resource', {
+          activename: this.form.activeName,
+          chartType: this.value,
           startm: this.startm,
           endm: this.endm
         })
@@ -131,19 +165,139 @@
             this.resource = response.data
             console.log('resource:' + this.resource)
 
-            data = []
-            for (prop in this.resource) {
-              data.push({value: this.resource[prop], name: prop})
+            console.log('Hello')
+            if(this.chartType == '0'){
+              console.log('Hello')
+              data = []
+              for (prop in this.resource) {
+                data.push({value: this.resource[prop], name: prop})
+              }
+              console.log(data)
+              var option = {
+                legend: {},
+                xAxis: {},
+                yAxis: {},
+                series: [{
+                  name: '票房',
+                  type: 'pie',
+                  radius: '55%',
+                  data: data
+                }]
+              }
             }
-            console.log(data)
-            var option = {
-              series: [{
-                name: '票房',
-                type: 'pie',
-                radius: '55%',
-                data: data
-              }]
+            // else if(this.chartType == '1'){
+            //   xAxis = this.resource[0]
+            //   data = this.resource[1]
+            //   legend = []
+            //   series = []
+            //   for (prop in data) {
+            //     legend.push(prop)
+            //     series.push({
+            //       name: prop,
+            //       type: 'bar',
+            //       data: data[prop]
+            //     })
+            //   }
+            //   console.log(xAxis)
+            //   console.log(series)
+            //   var option = {
+            //     legend: {
+            //       data: legend
+            //     },
+            //     xAxis: {
+            //       data: xAxis
+            //     },
+            //     yAxis: {},
+            //     series: series
+            //   };
+            // }
+            else if(this.chartType == '2'){
+              xAxis = this.resource[0]
+              data = this.resource[1]
+              legend = []
+              series = []
+              for (prop in data) {
+                legend.push(prop)
+                series.push({
+                  name: prop,
+                  type: 'line',
+                  data: data[prop]
+                })
+              }
+              console.log(xAxis)
+              console.log(series)
+              var option = {
+                legend: {
+                  data: legend
+                },
+                xAxis: {
+                  data: xAxis
+                },
+                yAxis: {},
+                series: series
+              };
             }
+            // else if(this.chartType == '3'){
+            //   data = []
+            //   for (prop in this.resource) {
+            //     data.push({value: this.resource[prop], name: prop})
+            //   }
+            //   console.log(data)
+            //   var option = {
+                
+            //     series: [{
+            //       name: '票房',
+            //       type: 'wordCloud',
+            //       gridSize: 2,
+            //       sizeRange: [12, 50],
+            //       rotationRange: [-90, 90],
+            //       shape: 'pentagon',
+            //       textStyle: {
+            //           normal: {
+            //               color: function () {
+            //                   return 'rgb(' + [
+            //                           Math.round(Math.random() * 255),
+            //                           Math.round(Math.random() * 255),
+            //                           Math.round(Math.random() * 255)
+            //                       ].join(',') + ')';
+            //               }
+            //           },
+            //           emphasis: {
+            //               shadowBlur: 10,
+            //               shadowColor: '#333'
+            //           }
+            //         },
+                  
+            //       data: data
+            //     }]
+            //   }
+            // }
+            // else(this.chartType == '4'){
+            //   xAxis = this.resource[0]
+            //   data = this.resource[1]
+            //   legend = []
+            //   series = []
+            //   for (prop in data) {
+            //     legend.push(prop)
+            //     series.push({
+            //       name: prop,
+            //       type: 'line',
+            //       data: data[prop]
+            //     })
+            //   }
+            //   console.log(xAxis)
+            //   console.log(series)
+            //   var option = {
+            //     legend: {
+            //       data: legend
+            //     },
+            //     xAxis: {
+            //       data: xAxis
+            //     },
+            //     yAxis: {},
+            //     series: series
+            //   };
+            // }
             this.myChart.setOption(option);
             //this.$set('resource', response.data)
           }, response => {

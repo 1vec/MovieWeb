@@ -5,13 +5,14 @@
 
     <!-- 引入组件库 -->
     <script src="{{ url_for('static', filename='js/vue.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='js/wordcloud.js') }}"></script> -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <!-- header & footer ccs -->
     <link rel="stylesheet" href="static/css/base.css">
     <link rel="shortcut icon" type="image/icon" href="static/img/icon.png">
 
     <!-- TITLE OF SITE -->
-    <title>{% block title %}{% endblock %}MovieNest</title>
+    <title>MovieNest {% block title %}{% endblock %}</title>
 
     <!--respective style.css 配图渲染-->
     {% block css_style %}{% endblock %}
@@ -43,7 +44,9 @@
                   <el-menu-item index="3" style="font-family: Arial; font-size: 20px">评分分析</el-menu-item>
                 </el-menu>
               </el-col>
-              <el-col :span=4>
+              <el-col :span=4 :offset="1">
+                <el-button v-if="'1' == '0'" type="primary" icon="el-icon-check" round></el-button>
+                <el-button v-else type="primary" round>登录</el-button>
 
               </el-col>
             </el-row>
