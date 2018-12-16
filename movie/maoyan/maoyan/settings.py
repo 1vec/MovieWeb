@@ -25,7 +25,6 @@ HTTPERROR_ALLOWED_CODES = [403, 404]
 RETRY_HTTP_CODES = [500, 502, 503, 504, 400, 403, 404, 408, 401, 301]
 
 SELENIUM_TIMEOUT = 25
-LOAD_IMAGE = False
 WINDOW_HEIGHT = 900
 WINDOW_WIDTH = 900
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -40,7 +39,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 0.5
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -68,8 +67,8 @@ COOKIES_ENABLED = False
 DOWNLOADER_MIDDLEWARES = {
     'maoyan.middlewares.SeleniumMiddleware': 543,
     #'maoyan.middlewares.MaoyanDownloaderMiddleware': 543,
-    'maoyan.middlewares.my_useragent': 544,
-    #'maoyan.middlewares.my_proxy':544,
+    #'maoyan.middlewares.my_useragent': 544,
+    'maoyan.middlewares.my_proxy':544,
     #'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
 }
 

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import re
+import sys
+sys.path.append('..\\')
 from maoyan.items import MaoyanItem
 import time, random
 from maoyan.num_decode import getNumber
@@ -20,29 +22,17 @@ except:
     movie_scraped = []
 
 
-class MaoyanSpiderSpider(scrapy.Spider):
+class MaoyanSpider(scrapy.Spider):
     global year_flag
     global page
     global movie_scraped
     name = 'maoyan_spider'
     allowed_domains = ['maoyan.com/films']
 
-    custom_settings = {
-        'LOG_LEVEL': 'INFO',
-        'DOWNLOAD_DELAY': 0,
-        'COOKIES_ENABLED': False,
-        'DOWNLOAD_MIDDLEWARES':{
-            'maoyan.middlewares.SeleniumMiddleware': 543,
-            'maoyan.middlewares.my_proxy': 400,
-            #'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-        }
-    }
-
     def __init__(self, year_list='10,11,12,13', *args, **kwargs):
-        super(MaoyanSpiderSpider, self).__init__(*args, **kwargs)
+        super(MaoyanSpider, self).__init__(*args, **kwargs)
         self.year_list = year_list.split(',')
         self.start_urls = ['https://maoyan.com/films?showType=3&yearId='+self.year_list[0]+'&sortId=3']
-
 
     def parse(self, response):
         global year_flag

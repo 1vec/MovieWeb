@@ -1,0 +1,2 @@
+from scrapyd import schedule
+

@@ -188,18 +188,22 @@ class SeleniumMiddleware():
     def from_crawler(cls, crawler):
         return cls(
             timeout=crawler.settings.get('SELENIUM_TIMEOUT'),
-            isLoadImage=crawler.settings.get('LOAD_IMAGE'),
             windowHeight=crawler.settings.get('WINDOW_HEIGHT'),
             windowWidth=crawler.settings.get('WINDOW_WIDTH')
         )
 
-    def __init__(self, timeout=30, isLoadImage=False, windowHeight=None, windowWidth=None):
+    def __init__(self, timeout=30, windowHeight=None, windowWidth=None):
         self.logger = getLogger(__name__)
         self.timeout = timeout
-        self.isLoadImage = isLoadImage
-        self.browser = webdriver.Chrome()
+
+        chrome_options = webdriver.ChromeOptions()
+        prefs = {"profile.managed_default_content_settings.images": 2}
+        chrome_options.add_experimental_option('prefs', prefs)
+        self.browser = webdriver.Chrome(chrome_options=chrome_options)
+
         if windowHeight and windowWidth:
             self.browser.set_window_size(windowHeight, windowWidth)
+
         self.browser.set_script_timeout(self.timeout)
         self.wait = WebDriverWait(self.browser, 25)
 
