@@ -3,7 +3,7 @@
 {% block header %}
     <h1>{% block title %} {% endblock %}</h1>
     {% block css_style %}
-        <link rel="stylesheet" href="static/css/home.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
     {% endblock %}
 {% endblock %}
 
@@ -23,7 +23,7 @@
 <!-- content End -->
 
 <!-- script start -->
-{% block script %} 
+{% block mainvue %} 
   <script>
       var main = new Vue({
         el: '#app',
