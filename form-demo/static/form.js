@@ -7,7 +7,8 @@ app = new Vue({
     resource: 'Hello',
     startDatePicker: '',
     endDatePicker: '',
-    mychart: ''
+    myChart: '',
+    chartType: '0'
   },
   created: function(){
     this.startDatePicker = this.startDatePicker2()
@@ -15,7 +16,11 @@ app = new Vue({
   },
   methods: {
     submit: function(){
+      if(!this.startm || !this.endm){
+        alert('请输入正确的起始日期')
+      }
       axios.post('/resource', {
+        type: this.chartType,
         startm: this.startm,
         endm: this.endm
       })
@@ -23,21 +28,53 @@ app = new Vue({
           this.resource = response.data
           console.log('resource:' + this.resource)
 
-          data = []
-          for (prop in this.resource) {
-            data.push({value: this.resource[prop], name: prop})
+          console.log('Hello')
+          if(this.chartType == '0' || this.chartType == '2'){
+            console.log('Hello')
+            data = []
+            for (prop in this.resource) {
+              data.push({value: this.resource[prop], name: prop})
+            }
+            console.log(data)
+            var option = {
+              legend: {},
+              xAxis: {},
+              yAxis: {},
+              series: [{
+                name: '票房',
+                type: 'pie',
+                radius: '55%',
+                data: data
+              }]
+            }
           }
-          console.log(data)
-          var option = {
-            series: [{
-              name: '票房',
-              type: 'pie',
-              radius: '55%',
-              data: data
-            }]
+          else if(this.chartType == '1' || this.chartType == '3'){
+            xAxis = this.resource[0]
+            data = this.resource[1]
+            legend = []
+            series = []
+            for (prop in data) {
+              legend.push(prop)
+              series.push({
+                name: prop,
+                type: 'line',
+                data: data[prop]
+              })
+            }
+            console.log(xAxis)
+            console.log(series)
+            var option = {
+              legend: {
+                data: legend
+              },
+              xAxis: {
+                data: xAxis
+              },
+              yAxis: {},
+              series: series
+            };
           }
           this.myChart.setOption(option);
-          //this.$set('resource', response.data)
         }, response => {
           console.log(response)
         })
