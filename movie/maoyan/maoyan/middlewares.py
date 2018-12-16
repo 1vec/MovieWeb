@@ -199,6 +199,7 @@ class SeleniumMiddleware():
         chrome_options = webdriver.ChromeOptions()
         prefs = {"profile.managed_default_content_settings.images": 2}
         chrome_options.add_experimental_option('prefs', prefs)
+        chrome_options.add_argument('--headless')
         self.browser = webdriver.Chrome(chrome_options=chrome_options)
 
         if windowHeight and windowWidth:
