@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Box-office{% endblock %}</h1>
+    {% block css_style %}
+      <link rel="stylesheet" href="static/css/box-office.css">
+    {% endblock %}
+{% endblock %}
+
+
+<!-- content Start -->
+{% block content %}
+<el-main>
+  <div class="box-main">
+          
+    <el-form class="box-form" ref="form" :model="form" >
+      <el-form-item>
+        <el-collapse class="box-collapse" v-model="form.activeNames"  @change="handleChange">
+          <el-collapse-item  title="票房占比" name="1">
+            <!-- <div class="clpsItem"> -->
+            <el-select v-model="value" placeholder="请选择图表类型">
+              <el-option 
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+            <!-- </div> -->
+          </el-collapse-item>
+          <el-collapse-item title="票房趋势" name="2">
+            <!-- <div class="clpsItem"> -->
+              EchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEchartsEcharts
+             <!-- </div> -->
+          </el-collapse-item>
+        </el-collapse>
+      </el-form-item>
+    </el-form>
+  </div>
+</el-main>
+{% endblock %}
+<!-- content End -->
+
+<!-- script start -->
+{% block script %} 
+<script>
+  var Main = {
+    data(){
+      return{
+        menuActive:'2',
+        form:{
+          activeNames: ['1'],          
+        },
+        value:'',
+        options: [{
+            value: '选项1',
+            label: '饼状图'
+          }, {
+            value: '选项2',
+            label: '柱状图'
+          }, {
+            value: '选项3',
+            label: 'Echarts'
+          }, {
+            value: '选项4',
+            label: 'Echarts'
+          }, {
+            value: '选项5',
+            label: 'Echarts'
+          }]
+      };
+    },
+    methods: {
+      handleChange(val) {
+        console.log(val);
+      }
+    }
+  };
+  var Ctor = Vue.extend(Main)
+  new Ctor().$mount('#app')
+</script>
+{% endblock %}
+<!-- script end -->
+
+  
