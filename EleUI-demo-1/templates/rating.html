@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1>{% block title %}Box-office{% endblock %}</h1>
+    <h1>{% block title %}Rating{% endblock %}</h1>
     {% block css_style %}
     <script src="https://unpkg.com/axios/dist/axios.js"></script>
     <script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.js"></script>
@@ -18,7 +18,7 @@
     <el-form class="box-form" ref="form" :model="form" >
       <el-form-item>
         <el-collapse class="box-collapse" v-model="form.activeNames"  @change="handleChange">
-          <el-collapse-item  title="票房占比" name="1">
+          <el-collapse-item  title="Top10电影" name="1">
             
 
             <div class="block">
@@ -39,15 +39,11 @@
                     value-format = "yyyy-MM"
                     :picker-options="endDatePicker">
               </el-date-picker>
-              <p>Start Value: {[ startm ]}</p>
-              <p>End Value: {[ endm ]}</p>
-              <el-button type="primary" v-on:click="submit()">提交</el-button>
-              <p>Resource: {[ resource ]}</p>
             </div>
 
-            <el-select v-model="value1" placeholder="请选择图表类型" name="1">
+            <el-select v-model="value" placeholder="请选择图表类型">
               <el-option 
-                v-for="item in opt1"
+                v-for="item in options"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value">
@@ -66,7 +62,7 @@
             
             
           </el-collapse-item>
-          <el-collapse-item title="票房趋势" name="2">
+          <el-collapse-item title="劳模演员" name="2">
             
               
           </el-collapse-item>
@@ -81,7 +77,7 @@
 <!-- script start -->
 {% block mainvue %} 
 <script>
-  app = new Vue({
+  var main = new Vue({
     el: '#app',
     elimiters: ['{[', ']}'],
     data: {
@@ -181,3 +177,4 @@
 {% endblock %}
 <!-- script end -->
 
+  

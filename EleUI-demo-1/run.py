@@ -10,6 +10,10 @@ def home():
 def box():
     return render_template('box-office.html')
 
+@app.route('/rating')
+def rating():
+    return render_template('rating.html')
+
 @app.route('/resource', methods=['POST'])
 def hello():
     print(request.get_json())
