@@ -1,35 +1,9 @@
 @import url("https://unpkg.com/element-ui@2.4.11/lib/theme-chalk/index.css");
 
-body, html{
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
-a{
-  text-decoration: none;
-}
-
-/* 导航栏 */
-
-.el-header, .el-main{
-  padding: 0;
-}
-
-.el-header{
-  /*background: #545c64;*/
-}
-
-.el-header .logo a, .el-header .logo a:hover{
-  color: #fff;
-}
-
 /* 主体 */
 
 .el-main{
   position: relative;
-  
-  
   min-height: 950px;
   /*color: #fff;*/
 }
@@ -86,39 +60,3 @@ a{
   min-height: 350px;
   background: #fff;
 }*/
-
-
-/* 脚注 */
-
-.el-footer{
-  padding: 70px;
-}
-
-.el-footer p{
-  margin: 0;
-  margin-bottom: 8px;
-}
-
-.el-footer p, a{
-  color: #565a5c;
-  transition:all .5s;
-}
-
-.el-footer a:hover{
-  transform: scaleX(1.2);
-  color: #00d8ff;
-}
-
-.foot-logo{
-  padding-top: 76px;
-}
-
-.logo a, .logo a:hover{
-  color: #565a5c;
-  font-size:24px;
-  text-transform: capitalize;
-}
-
-.logo a>span{
-  color: #00d8ff;
-}

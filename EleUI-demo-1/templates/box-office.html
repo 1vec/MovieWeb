@@ -3,7 +3,7 @@
 {% block header %}
     <h1>{% block title %}Box-office{% endblock %}</h1>
     {% block css_style %}
-      <link rel="stylesheet" href="static/css/box-office.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/box-office.css') }}">
     {% endblock %}
 {% endblock %}
 
