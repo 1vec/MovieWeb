@@ -44,8 +44,21 @@
                     </el-menu>
                 </el-col>
                 <el-col :span="4" :offset="1">
-                    <el-button v-if="'1' == '1'" type="primary" icon="el-icon-check" round></el-button>
-                    <el-button v-else type="primary" round onclick="window.location.href='{{ url_for('auth.login') }}'">登录</el-button>
+                    <!-- <el-button v-if="'1' == '1'" type="primary" icon="el-icon-check" round></el-button> -->
+
+                    {% if g.user %}
+                        <el-dropdown>
+                          <el-button type="primary" round>用户中心
+                            <i class="el-icon-arrow-down el-icon--right"></i>
+                          </el-button>
+                          <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item><a href="{{ url_for('auth.logout') }}">注销</a></el-dropdown-item>
+                          </el-dropdown-menu>
+                        </el-dropdown>
+                    {% else %}
+                        <el-button type="primary" round onclick="window.location.href='{{ url_for('auth.login') }}'">登录</el-button>
+                    {% endif %}
+
 
                 </el-col>
             </el-row>

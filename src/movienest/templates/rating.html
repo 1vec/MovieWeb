@@ -51,7 +51,7 @@
                                 </el-col>
                                 <el-button type="primary" v-on:click="submitRate">提交</el-button>
                             </div>
-                            <div id="chartTop" style="width: 600px;height: 400px;"></div>
+                            <div id="chartTop" style="width: 100%;height: 400px;"></div>
 
                         </el-collapse-item>
                         <el-collapse-item title="劳模演员" name="1">
@@ -88,7 +88,7 @@
                                 </el-col>
                                 <el-button type="primary" v-on:click="submitTrend">提交</el-button>
                             </div>
-                            <div id="chartModel" style="width: 600px;height: 400px;"></div>
+                            <div id="chartModel" style="width: 100%;height: 400px;"></div>
                         </el-collapse-item>
                     </el-collapse>
                 </el-form-item>
@@ -190,7 +190,10 @@
                                 }
                                 console.log(data)
                                 var option = {
-                                    legend: {},
+                                    legend: {
+                                        orient: 'vertical',
+                                        left: 'left',
+                                    },
                                     xAxis: {
                                         show: false
                                     },
@@ -234,7 +237,10 @@
                                 }
                                 console.log(data)
                                 var option = {
-                                    legend: {},
+                                    legend: {
+                                        orient: 'vertical',
+                                        left: 'left',
+                                    },
                                     xAxis: {
                                         show: false
                                     },
