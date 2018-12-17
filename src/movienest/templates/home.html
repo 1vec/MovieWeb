@@ -29,7 +29,35 @@
             el: '#app',
             data: {
                 menuActive:'1',
-            }
+                selectedOptions: ['用户中心'],
+                options: [{
+                    value:'guanli',
+                    label:'管理数据库',
+                    children:[{
+                        value: '2015',
+                        label: '2015年'
+                    },{
+                        value: '2016',
+                        label: '2016年'
+                    },{
+                        value: '2017',
+                        label: '2017年'
+                    },{
+                        value: '2018',
+                        label: '2018年'
+                    }]
+                },{
+                    value:'zhuxiao',
+                    label:'注销',
+                }
+
+                ]
+            },
+            // methods: {
+            //     handleChange(value) {
+            //         console.log(value);
+            //     }
+            // }
         })
     </script>
 {% endblock %}

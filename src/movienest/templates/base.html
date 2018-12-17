@@ -43,18 +43,26 @@
                         <el-menu-item index="3" style="font-family: Arial; font-size: 20px"><a href={{ url_for('movienest.rating') }}>评分分析</a></el-menu-item>
                     </el-menu>
                 </el-col>
-                <el-col :span="4" :offset="1">
+                <el-col :span="2" :offset="1">
                     <!-- <el-button v-if="'1' == '1'" type="primary" icon="el-icon-check" round></el-button> -->
 
                     {% if g.user %}
-                        <el-dropdown>
-                          <el-button type="primary" round>用户中心
+                        <!-- <el-dropdown> -->
+                          <!-- <el-button type="primary" round>用户中心
                             <i class="el-icon-arrow-down el-icon--right"></i>
-                          </el-button>
-                          <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item><a href="{{ url_for('auth.logout') }}">注销</a></el-dropdown-item>
-                          </el-dropdown-menu>
-                        </el-dropdown>
+                          </el-button> -->
+                          <!-- <el-dropdown-menu slot="dropdown"> -->
+                            <el-cascader
+                                :options="options"
+                                :no-data-text="用户中心"
+                                v-model="selectedOptions"
+
+                                @change="handleChange">
+                            </el-cascader>
+
+                            <!-- <el-dropdown-item><a href="{{ url_for('auth.logout') }}">注销</a></el-dropdown-item> -->
+                          <!-- </el-dropdown-menu> -->
+                        <!-- </el-dropdown> -->
                     {% else %}
                         <el-button type="primary" round onclick="window.location.href='{{ url_for('auth.login') }}'">登录</el-button>
                     {% endif %}
