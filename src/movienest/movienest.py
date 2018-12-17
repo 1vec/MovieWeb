@@ -22,6 +22,7 @@ def box_office():
 def rating():
     return render_template('rating.html')
 
+
 @bp.route('/resource', methods=['POST'])
 def hello():
     req = request.get_json()
@@ -37,6 +38,7 @@ def hello():
     elif code == 4:
         data = rate_range(req['startm'], req['endm'])
     return Response(json.dumps(data))
+
 
 def count_type(start, end):
     result = {}
@@ -58,6 +60,7 @@ def count_type(start, end):
         if result[each] <= 3:
             result.pop(each)
     return result
+
 
 def count_type_monthly(start, end):
     result = {}
@@ -86,10 +89,11 @@ def count_type_monthly(start, end):
         for date in unique_date:
             result[tp].append(count.get(date, 0))
 
-    top_five = sorted(result.items(), key = lambda d: sum(d[1]), reverse=True)
+    top_five = sorted(result.items(), key=lambda d: sum(d[1]), reverse=True)
     top_five = dict(top_five[:5])
 
-    return (unique_date, top_five)
+    return unique_date, top_five
+
 
 def box_type(start, end):
     result = {}
@@ -112,6 +116,7 @@ def box_type(start, end):
         if result[each] <= 3:
             result.pop(each)
     return result
+
 
 def box_type_monthly(start, end):
     result = {}
@@ -144,7 +149,7 @@ def box_type_monthly(start, end):
     top_five = sorted(result.items(), key = lambda d: sum(d[1]), reverse=True)
     top_five = dict(top_five[:5])
 
-    return (unique_date, top_five)
+    return unique_date, top_five
 
 def rate_range(start, end):
     db = get_db()
@@ -156,4 +161,18 @@ def rate_range(start, end):
     for i in range(10):
         each_movie = sorted_movies[i]
         result.append([each_movie['name'], each_movie['score']])
+    return result
+
+
+def get_model(start, end):
+    db = get_db()
+    result = {}
+    for each_movie in db.execute(
+        'SELECT actors FROM movies WHERE'
+        '? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ?',
+            (start, end)).fetchall():
+        for actor in json.loads(each_movie['actors']):
+            result.setdefault(actor, 0)
+            result.actor += 1
+    result = sorted(result.items, key=lambda d: d[1], reversed=True)[:20]
     return result
