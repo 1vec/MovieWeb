@@ -9,27 +9,27 @@
 	<p style="font-size: 60px"></p>
 
     <img src="{{ url_for('static', filename='img/icon.png') }}"  alt="MovieNest">
-    <p style="font-size: 24px; font-family: 'Arial'">Sign up for MovieNest</p>
+    <p style="font-size: 20px; font-family: 'Arial'; color: slategray;">开始探索 MovieNest</p>
     <form method="post">
         <p>
             <input name="username" id="username" required
-                   placeholder="Set username here"
-                   style="width:200px; height:30px; font-size: 20px" >
+                   placeholder="设置用户名"
+                   style="width:200px; height:30px; font-size: 16px" >
         </p>
         <p>
             <input type="password" name="password" id="password" required
-                   placeholder="Set password here"
-                   style="width:200px; height:30px;font-size: 20px">
+                   placeholder="设置密码"
+                   style="width:200px; height:30px;font-size: 16px">
         </p>
 
-        <input type="submit" value="Sign UP"
+        <input type="submit" value="注    册"
                style="height:30px; width:207px; font-size:20px; background-color: #00d8ff; color:#fff;border:0;">
     </form>
     <p></p>
 
-    <a style="height:30px; width:207px; font-size:20px; color: #00d8ff;
+    <a style="height:30px; width:207px; font-size:20px; color: slategray;
 	    background-color:#fff;border:0;"href="{{ url_for('auth.login') }}"
-        >Back to sign in</a>
+        >>>我是老用户<<</a>
     <p style="font-size: 60px"></p>
 
 </div>
