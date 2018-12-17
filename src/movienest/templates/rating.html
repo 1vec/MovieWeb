@@ -120,6 +120,9 @@
                 }, {
                     value: '3',
                     label: '词云'
+                }, {
+                    value: '5',
+                    label: '漏斗图'
                 }],
                 opt1: [{
                     value: '0',
@@ -207,6 +210,7 @@
                                     toolbox: {
                                         feature: {
                                             saveAsImage: {
+                                                title:'保存'
                                             }
                                         }
                                     },
@@ -218,7 +222,78 @@
                                         data: data
                                     }]
                                 }
-                              }
+                            }
+                            else if(this.value0 == '5'){
+                                console.log('Hello')
+                                data = []
+                                for (prop in this.resource) {
+                                  data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
+                                }
+                                console.log(data)
+                                var option = {
+                                    tooltip : {
+                                        trigger: 'item',
+                                        formatter: "{a} <br/>{b} : {c}"
+                                    },
+                                    legend: {
+                                        orient: 'vertical',
+                                        left: 'left',
+                                    },
+                                    
+                                    toolbox: {
+                                        feature: {
+                                            saveAsImage: {
+                                                title:'保存'
+                                            }
+                                        }
+                                    },
+                                    calculable: true,
+                                    series: [
+                                        {
+                                            name:'漏斗图',
+                                            type:'funnel',
+                                            left: '0%',
+                                            top: 60,
+                                            //x2: 80,
+                                            bottom: 60,
+                                            width: '70%',
+                                            // height: {totalHeight} - y - y2,
+                                            min: 0,
+                                            max: 100,
+                                            minSize: '30%',
+                                            maxSize: '100%',
+                                            sort: 'descending',
+                                            gap: 2,
+                                            label: {
+                                                normal: {
+                                                    show: true,
+                                                    position: 'inside'
+                                                },
+                                                emphasis: {
+                                                    textStyle: {
+                                                        fontSize: 20
+                                                    }
+                                                }
+                                            },
+                                            labelLine: {
+                                                normal: {
+                                                    length: 10,
+                                                    lineStyle: {
+                                                        width: 1,
+                                                        type: 'solid'
+                                                    }
+                                                }
+                                            },
+                                            itemStyle: {
+                                                normal: {
+                                                    borderColor: '#fff',
+                                                    borderWidth: 1
+                                                }
+                                            },
+                                        data: data
+                                    }]
+                                }
+                            }
                             this.chartTop.setOption(option)
 
                         }, response => {
@@ -264,6 +339,7 @@
                                     toolbox: {
                                         feature: {
                                             saveAsImage: {
+                                                title:'保存'
                                             }
                                         }
                                     },
