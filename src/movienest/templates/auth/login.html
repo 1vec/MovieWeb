@@ -1,58 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign in</title>
-    <link rel="shortcut icon" type="image/icon" href="./icon.png">
+    <title>Sign IN</title>
+    <link rel="shortcut icon" type="image/icon" href="static/img/icon.png">
 </head>
 <body>
 <div class="divForm">
-    <img src="./icon.png"  alt="MovieNest" />
-    <p style="font-size: 24px; font-family: 'Arial'">Sign in to MovieNest</p>
-    <form method="post">
-        <p>
-            <input name="username" id="username"
-                   placeholder="Username" required
-                   style="width:200px; height:30px; font-size: 20px" >
-        </p>
-        <p>
-            <input type="password" name="password" id="password"
-                   placeholder="Password" required
-                   style="width:200px; height:30px;font-size: 20px">
-        </p>
+    <img src="{{ url_for('static', filename='img/icon.png') }}"  alt="MovieNest">
+		<p style="font-size: 24px; font-family: 'Arial'">Sign in to MovieNest</p>
+		<form method="post">
+			<p>
+	        <input name="username" id="username"
+	          placeholder="Username" required
+	          style="width:200px; height:30px; font-size: 20px" >
+	        </p>
+	        <p>
+	        <input type="password" name="password" id="password"
+	          placeholder="Password" required
+	          style="width:200px; height:30px;font-size: 20px">
+	         </p>
 
-        <input type="submit" value="Sign IN"
-               style="height:30px; width:207px; font-size:20px; background-color: #00d8ff; color:#fff;border:0;">
-    </form>
-</div>
+	        <input type="submit" value="Sign IN"
+				   style="height:30px; width:207px; font-size:20px; background-color: #00d8ff; color:#fff;border:0;">
+	    </form>
+	    <p></p>
+
+	    <a style="height:30px; width:207px; font-size:20px; color: #00d8ff;
+	        background-color:#fff;border:0;"href="{{ url_for('auth.register') }}"
+            >Sign UP for MovieNest</a>
+	</div>
 </body>
 </html>
 <style type="text/css">
-    .divForm{
-        position: absolute;/*绝对定位*/
-        top: 20%;
-        left: 30%;
-        text-align: center;/*(让div中的内容居中)*/
-
-    }
-    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-        color: gray;
-        font-size: 12pt;
-        line-height: 25px;
-    }
-    ::-moz-placeholder { /* Firefox 19+ */
-        color: gray;
-        font-size: 12pt;
-        line-height: 25px;
-    }
-    :-ms-input-placeholder { /* IE 10+ */
-        color: gray;
-        font-size: 12pt;
-        line-height: 25px;
-    }
-    :-moz-placeholder { /* Firefox 18- */
-        color: gray;
-        font-size: 12pt;
-        line-height: 25px;
-    }
+  a{ text-decoration:none}
+.divForm{
+	position: relative;/*绝对定位*/
+	text-align: center;/*(让div中的内容居中)*/
+	width: auto;
+	margin-top: 100px;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+   color: gray;
+   font-size: 12pt;
+   line-height: 25px;
+}
+::-moz-placeholder { /* Firefox 19+ */
+   color: gray;
+   font-size: 12pt;
+   line-height: 25px;
+}
+:-ms-input-placeholder { /* IE 10+ */
+   color: gray;
+   font-size: 12pt;
+   line-height: 25px;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: gray;
+   font-size: 12pt;
+   line-height: 25px;
+}
 </style>
-
