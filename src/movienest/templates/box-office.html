@@ -183,10 +183,14 @@
                                 console.log('Hello')
                                 data = []
                                 for (prop in this.resource) {
-                                  data.push({value: this.resource[prop], name: prop})
+                                  data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
                                 }
                                 console.log(data)
                                 var option = {
+                                    tooltip : {
+                                        trigger: 'item',
+                                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                                    },
                                     legend: {
                                         orient: 'vertical',
                                         left: 'left',
@@ -197,11 +201,19 @@
                                     yAxis: {
                                        show: false
                                     },
+                                    toolbox: {
+                                        feature: {
+                                            saveAsImage: {
+                                            }
+                                        }
+                                    },
 
                                     series: [{
                                         name: '票房',
                                         type: 'pie',
                                         radius: '55%',
+                                        label: {
+                                        },
                                         data: data
                                     }]
                                 }
@@ -246,14 +258,20 @@
                                 console.log(xAxis)
                                 console.log(series)
                                 var option = {
-                                  legend: {
-                                    data: legend
-                                  },
-                                  xAxis: {
-                                    data: xAxis
-                                  },
-                                  yAxis: {},
-                                  series: series
+                                    legend: {
+                                        data: legend
+                                    },
+                                    toolbox: {
+                                        feature: {
+                                            saveAsImage: {
+                                            }
+                                        }
+                                    },
+                                    xAxis: {
+                                        data: xAxis
+                                    },
+                                    yAxis: {},
+                                    series: series
                                 }
                               }
                             this.chartTrend.setOption(option)

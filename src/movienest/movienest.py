@@ -117,7 +117,7 @@ def box_type(start, end):
     for each in tuple(result.keys()):
         if result[each] <= 3:
             result.pop(each)
-    return result
+    return sorted(result.items(), key=lambda d: d[1], reverse=True)
 
 
 def box_type_monthly(start, end):
@@ -176,5 +176,5 @@ def get_model(start, end):
         for actor in json.loads(each_movie['actors']):
             result.setdefault(actor, 0)
             result[actor] += 1
-    result = sorted(result.items(), key=lambda d: d[1], reverse=True)[:20]
+    result = sorted(result.items(), key=lambda d: d[1], reverse=True)[:10]
     return result

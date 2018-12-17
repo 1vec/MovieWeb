@@ -190,6 +190,10 @@
                                 }
                                 console.log(data)
                                 var option = {
+                                    tooltip : {
+                                        trigger: 'item',
+                                        formatter: "{a} <br/>{b} : {c}"
+                                    },
                                     legend: {
                                         orient: 'vertical',
                                         left: 'left',
@@ -199,6 +203,12 @@
                                     },
                                     yAxis: {
                                        show: false
+                                    },
+                                    toolbox: {
+                                        feature: {
+                                            saveAsImage: {
+                                            }
+                                        }
                                     },
 
                                     series: [{
@@ -237,6 +247,10 @@
                                 }
                                 console.log(data)
                                 var option = {
+                                    tooltip : {
+                                        trigger: 'item',
+                                        formatter: "{a} <br/>{b} : {c}"
+                                    },
                                     legend: {
                                         orient: 'vertical',
                                         left: 'left',
@@ -247,9 +261,14 @@
                                     yAxis: {
                                        show: false
                                     },
-
+                                    toolbox: {
+                                        feature: {
+                                            saveAsImage: {
+                                            }
+                                        }
+                                    },
                                     series: [{
-                                        name: '评分',
+                                        name: '出演次数',
                                         type: 'pie',
                                         radius: '55%',
                                         data: data
