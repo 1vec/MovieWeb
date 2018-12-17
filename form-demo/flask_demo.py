@@ -31,7 +31,8 @@ def get_db():
     if datebase is None:
         datebase = sqlite3.connect(
             'scrapy.db',
-            detect_types=sqlite3.PARSE_DECLTYPES
+            detect_types=sqlite3.PARSE_DECLTYPES,
+            check_same_thread=False
         )
         datebase.row_factory = sqlite3.Row
     return datebase

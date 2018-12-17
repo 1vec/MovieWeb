@@ -175,6 +175,6 @@ def get_model(start, end):
             (start, end)).fetchall():
         for actor in json.loads(each_movie['actors']):
             result.setdefault(actor, 0)
-            result.actor += 1
-    result = sorted(result.items, key=lambda d: d[1], reversed=True)[:20]
+            result[actor] += 1
+    result = sorted(result.items(), key=lambda d: d[1], reverse=True)[:20]
     return result

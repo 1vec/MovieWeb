@@ -43,8 +43,8 @@
                         <el-menu-item index="3" style="font-family: Arial; font-size: 20px"><a href={{ url_for('movienest.rating') }}>评分分析</a></el-menu-item>
                     </el-menu>
                 </el-col>
-                <el-col :span=4 :offset="1">
-                    <el-button v-if="'1' == '0'" type="primary" icon="el-icon-check" round></el-button>
+                <el-col :span="4" :offset="1">
+                    <el-button v-if="'1' == '1'" type="primary" icon="el-icon-check" round></el-button>
                     <el-button v-else type="primary" round onclick="window.location.href='{{ url_for('auth.login') }}'">登录</el-button>
 
                 </el-col>
