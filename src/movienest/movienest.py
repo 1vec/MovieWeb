@@ -37,6 +37,8 @@ def hello():
         data = box_type_monthly(req['startm'], req['endm'])
     elif code == 4:
         data = rate_range(req['startm'], req['endm'])
+    elif code == 5:
+        data = get_model(req['startm'], req['endm'])
     return Response(json.dumps(data))
 
 
