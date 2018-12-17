@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, Response
 from movienest.auth import login_required
 from movienest.db import get_db
+import json
 
 bp = Blueprint('movienest', __name__)
 

@@ -3,35 +3,35 @@
 {% block header %}
     <h1>{% block title %} {% endblock %}</h1>
     {% block css_style %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
     {% endblock %}
 {% endblock %}
 
 
 <!-- content Start -->
 {% block content %}
-        <el-main>
-          <div class="explore">
-          <el-row style="font-family: Arial; font-size: 80px">电影,</el-row>
-          <el-row style="font-family: Arial; font-size: 80px">你知道吗？</el-row>
-          <el-row>
-            <el-button type="primary" style="height:60px; width:160px; font-size:24px;">开始探索</el-button>
-          </el-row>
-          </div>
-        </el-main>
+    <el-main>
+        <div class="explore">
+            <el-row style="font-family: Arial; font-size: 80px">电影,</el-row>
+            <el-row style="font-family: Arial; font-size: 80px">你知道吗？</el-row>
+            <el-row>
+                <el-button type="primary" style="height:60px; width:160px; font-size:24px;" onclick="window.location.href='{{ url_for('auth.login') }}'">开始探索</el-button>
+            </el-row>
+        </div>
+    </el-main>
 {% endblock %}
 <!-- content End -->
 
 <!-- script start -->
-{% block mainvue %} 
-  <script>
-      var main = new Vue({
-        el: '#app',
-        data: {
-          menuActive:'1',
-        }
-      })
-  </script>
+{% block mainvue %}
+    <script>
+        var main = new Vue({
+            el: '#app',
+            data: {
+                menuActive:'1',
+            }
+        })
+    </script>
 {% endblock %}
 <!-- script end -->
 

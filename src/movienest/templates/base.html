@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset='utf-8'>
 
     <!-- 引入组件库 -->
@@ -17,88 +17,86 @@
     <!--respective style.css 配图渲染-->
     {% block css_style %}{% endblock %}
 
-  </head>
+</head>
 
-  <body>
-    <div id="app">
-      <template>
-        <el-container>
-          <!-- Header Start -->
-          <el-header>
+<body>
+<div id="app">
+    <el-container>
+        <!-- Header Start -->
+        <el-header>
             <el-row type="flex" align="middle">
-              <el-col :span="4" :offset="1">
-                <div class="logo">
-                  <a style="font-family:'Times New Roman';font-size: 36px">Movie<span>Nest</span></a>
-                </div>
-              </el-col>
-              <el-col :span="20" :offset="1">
-                <el-menu
-                     :default-active="menuActive"
-                     class="el-menu-demo"
-                     mode="horizontal"
-                     background-color=rgba(0,0,0,0)
-                     text-color="#fff"
-                     active-text-color="#ffd04b">
-                  <el-menu-item index="1" style="font-family: Arial; font-size: 20px"><a href={{ url_for('movienest.home') }}>主页</a></el-menu-item>
-                  <el-menu-item index="2" style="font-family: Arial; font-size: 20px"><a href={{ url_for('movienest.box_office') }}>票房分析</a></el-menu-item>
-                  <el-menu-item index="3" style="font-family: Arial; font-size: 20px"><a href={{ url_for('movienest.rating') }}>评分分析</a></el-menu-item>
-                </el-menu>
-              </el-col>
-              <el-col :span=4 :offset="1">
-                <el-button v-if="'1' == '0'" type="primary" icon="el-icon-check" round></el-button>
-                <el-button v-else type="primary" round>登录</el-button>
+                <el-col :span="4" :offset="1">
+                    <div class="logo">
+                        <a style="font-family:'Times New Roman';font-size: 36px">Movie<span>Nest</span></a>
+                    </div>
+                </el-col>
+                <el-col :span="20" :offset="1">
+                    <el-menu
+                            :default-active="menuActive"
+                            class="el-menu-demo"
+                            mode="horizontal"
+                            background-color=rgba(0,0,0,0)
+                            text-color="#fff"
+                            active-text-color="#ffd04b">
+                        <el-menu-item index="1" style="font-family: Arial; font-size: 20px"><a href={{ url_for('movienest.home') }}>主页</a></el-menu-item>
+                        <el-menu-item index="2" style="font-family: Arial; font-size: 20px"><a href={{ url_for('movienest.box_office') }}>票房分析</a></el-menu-item>
+                        <el-menu-item index="3" style="font-family: Arial; font-size: 20px"><a href={{ url_for('movienest.rating') }}>评分分析</a></el-menu-item>
+                    </el-menu>
+                </el-col>
+                <el-col :span=4 :offset="1">
+                    <el-button v-if="'1' == '0'" type="primary" icon="el-icon-check" round></el-button>
+                    <el-button v-else type="primary" round onclick="window.location.href='{{ url_for('auth.login') }}'">登录</el-button>
 
-              </el-col>
+                </el-col>
             </el-row>
-          </el-header>
-          <!-- Header End -->
+        </el-header>
+        <!-- Header End -->
 
-          <!-- content Start -->
-          {% block content %}{% endblock %}
-          <!-- content End -->
+        <!-- content Start -->
+        {% block content %}{% endblock %}
+        <!-- content End -->
 
-          <!-- footer-copyright start -->
-          <el-footer height="100%">
+        <!-- footer-copyright start -->
+        <el-footer height="100%">
             <el-row type="flex" justyfy="space-around">
-              <el-col :span=5 :offset=2>
-                <div class="foot-logo">
-                  <div class="logo">
-                    <a>Movie<span>Nest</span></a>
-                    <p>最好的电影分析工具</p>
-                  </div>
-                </div>
-              </el-col>
-              <el-col :span=5>
-                <h4>链接</h4>
-                <p style="font-family: Arial;"><a href={{ url_for('movienest.home') }}>主页</a></p>
-                <p style="font-family: Arial;"><a href={{ url_for('movienest.box_office') }}>票房分析</a></p>
-                <p style="font-family: Arial;"><a href={{ url_for('movienest.rating') }}>评分分析</a></p>
-              </el-col>
-              <el-col :span=5>
-                <h4>经典电影</h4>
-                <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/L%C3%A9on:_The_Professional">这个杀手不太冷（1994）</a></p>
-                <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/Titanic_(1997_film)">泰坦尼克号（1997）</a></p>
-                <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/Flipped_(film)">怦然心动（2010）</a></p>
-                <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/The_Matrix">黑客帝国（1999）</a></p>
-                <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/Roman_Holiday">罗马假日（1953）</a></p>
-              </el-col>
-              <el-col :span=5>
-                <h4>联系方式</h4>
-                <p>518000</p>
-                <p>广东省深圳市南山区</p>
-                <p  style="font-family: Arial;" class="foot-email"><a href="http://www.hitsz.edu.cn/">哈尔滨工业大学（深圳）</a></p>
-              </el-col>
-            </el-row>          
-            <el-row type="flex" justify="space-around" style="margin-top: 50px">
-              <p style="font-size: 20px; font-family:'Times'"> &copy; 2018 <a href="http://www.hitsz.edu.cn/index.html">HITsz</a>. All Right Reserved.  </a></p>
+                <el-col :span=5 :offset=2>
+                    <div class="foot-logo">
+                        <div class="logo">
+                            <a>Movie<span>Nest</span></a>
+                            <p>最好的电影分析工具</p>
+                        </div>
+                    </div>
+                </el-col>
+                <el-col :span=5>
+                    <h4>链接</h4>
+                    <p style="font-family: Arial;"><a href={{ url_for('movienest.home') }}>主页</a></p>
+                    <p style="font-family: Arial;"><a href={{ url_for('movienest.box_office') }}>票房分析</a></p>
+                    <p style="font-family: Arial;"><a href={{ url_for('movienest.rating') }}>评分分析</a></p>
+                </el-col>
+                <el-col :span=5>
+                    <h4>经典电影</h4>
+                    <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/L%C3%A9on:_The_Professional">这个杀手不太冷（1994）</a></p>
+                    <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/Titanic_(1997_film)">泰坦尼克号（1997）</a></p>
+                    <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/Flipped_(film)">怦然心动（2010）</a></p>
+                    <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/The_Matrix">黑客帝国（1999）</a></p>
+                    <p style="font-family: Arial;"><a href="https://en.wikipedia.org/wiki/Roman_Holiday">罗马假日（1953）</a></p>
+                </el-col>
+                <el-col :span=5>
+                    <h4>联系方式</h4>
+                    <p>518000</p>
+                    <p>广东省深圳市南山区</p>
+                    <p  style="font-family: Arial;" class="foot-email"><a href="http://www.hitsz.edu.cn/">哈尔滨工业大学（深圳）</a></p>
+                </el-col>
             </el-row>
-          </el-footer>
-          <!-- footer-copyright end -->
+            <el-row type="flex" justify="space-around" style="margin-top: 50px">
+                <p style="font-size: 20px; font-family:'Times'"> &copy; 2018 <a href="http://www.hitsz.edu.cn/index.html">HITsz</a>. All Right Reserved.  </a></p>
+            </el-row>
+        </el-footer>
+        <!-- footer-copyright end -->
 
-        </el-container>
-      </template>
-    </div>
-    {% block mainvue %}{% endblock %}
-  </body>
+    </el-container>
+</div>
+{% block mainvue %}{% endblock %}
+</body>
 </html>
 
