@@ -9,15 +9,12 @@ from scrapy import signals
 import random
 import base64
 from selenium import webdriver
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
 from scrapy.http import HtmlResponse
 from logging import getLogger
 import time
-
+import string
+import zipfile2
 
 
 class MaoyanSpiderMiddleware(object):
@@ -115,6 +112,10 @@ class MaoyanDownloaderMiddleware(object):
         spider.logger.info('Spider opened: %s' % spider.name)
 
 
+
+
+
+
 class my_useragent(object):
     def process_request(self, request, spider):
         USER_AGENT_LIST = [
@@ -196,10 +197,26 @@ class SeleniumMiddleware():
         self.logger = getLogger(__name__)
         self.timeout = timeout
 
+        # 代理服务器
+        proxyHost = "http-pro.abuyun.com"
+        proxyPort = "9010"
+
+        # 代理隧道验证信息
+        proxyUser = "HU0PGV22PUNAMOXP"
+        proxyPass = "4B0B5460D5425072"
+
+        proxy_auth_plugin_path = self.create_proxy_auth_extension(
+            proxy_host=proxyHost,
+            proxy_port=proxyPort,
+            proxy_username=proxyUser,
+            proxy_password=proxyPass)
+
         chrome_options = webdriver.ChromeOptions()
         prefs = {"profile.managed_default_content_settings.images": 2}
         chrome_options.add_experimental_option('prefs', prefs)
-        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--start-maximized')
+        #chrome_options.add_extension(proxy_auth_plugin_path)
+        #chrome_options.add_argument('--headless')
         self.browser = webdriver.Chrome(chrome_options=chrome_options)
 
         if windowHeight and windowWidth:
@@ -222,3 +239,76 @@ class SeleniumMiddleware():
         else:
             time.sleep(random.random()*2)
         return  HtmlResponse(url=request.url, body=self.browser.page_source, request=request, encoding='utf-8', status=200)
+
+
+    def create_proxy_auth_extension(self, proxy_host, proxy_port,
+                                   proxy_username, proxy_password,
+                                   scheme='https', plugin_path=None):
+        if plugin_path is None:
+            plugin_path = r'./{}_{}@http-pro.abuyun.com_9010.zip'.format(proxy_username, proxy_password)
+
+        manifest_json = """
+        {
+            "version": "1.0.0",
+            "manifest_version": 2,
+            "name": "Abuyun Proxy",
+            "permissions": [
+                "proxy",
+                "tabs",
+                "unlimitedStorage",
+                "storage",
+                "<all_urls>",
+                "webRequest",
+                "webRequestBlocking"
+            ],
+            "background": {
+                "scripts": ["background.js"]
+            },
+            "minimum_chrome_version":"22.0.0"
+        }
+        """
+
+        background_js = string.Template(
+            """
+            var config = {
+                mode: "fixed_servers",
+                rules: {
+                    singleProxy: {
+                        scheme: "${scheme}",
+                        host: "${host}",
+                        port: parseInt(${port})
+                    },
+                    bypassList: ["foobar.com"]
+                }
+              };
+
+            chrome.proxy.settings.set({value: config, scope: "regular"}, function() {});
+
+            function callbackFn(details) {
+                return {
+                    authCredentials: {
+                        username: "${username}",
+                        password: "${password}"
+                    }
+                };
+            }
+
+            chrome.webRequest.onAuthRequired.addListener(
+                callbackFn,
+                {urls: ["<all_urls>"]},
+                ['blocking']
+            );
+            """
+        ).substitute(
+            host=proxy_host,
+            port=proxy_port,
+            username=proxy_username,
+            password=proxy_password,
+            scheme=scheme,
+        )
+
+        with zipfile2.ZipFile(plugin_path, 'w') as zp:
+            zp.writestr("manifest.json", manifest_json)
+            zp.writestr("background.js", background_js)
+
+        return plugin_path

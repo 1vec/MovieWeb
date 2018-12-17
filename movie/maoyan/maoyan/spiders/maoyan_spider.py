@@ -15,7 +15,7 @@ page = 0
 movie_scraped = []
 try:
     with sqlite3.connect('scrapy.db') as con:
-        df = pd.read_sql(sql='SELECT name FROM movies', con=con)
+        df = pd.read_sql(sql='SELECT name FROM flash_movie', con=con)
         movie_scraped = df['name'].tolist()
 
 except:
@@ -55,7 +55,7 @@ class MaoyanSpider(scrapy.Spider):
 
         print('page='+ str(page), next_page)
 
-        if next_page and page < 13:
+        if next_page and page < 15:
             yield scrapy.Request("https://maoyan.com/films" + next_page,meta={'useSelenium':True, 'noRedirect':True},  callback=self.parse, dont_filter=True)
             page = page + 1
         elif year_flag < len(self.year_list):
@@ -83,7 +83,7 @@ class MaoyanSpider(scrapy.Spider):
         actors = []
         flag = 0
         for item in items:
-            if flag > 10:
+            if flag > 15:
                 break
             item = str(item).replace('\\n','').replace(' ','').replace('\n','')
             if item not in actors and item != ',':
@@ -92,9 +92,11 @@ class MaoyanSpider(scrapy.Spider):
         movie_item['actors'] = json.dumps(actors, ensure_ascii=False)
 
         #电影类型
-        movie_type = str(response.xpath("//div[@class='movie-brief-container']/ul/li[1]/text()").extract_first())
-        if movie_type and '分钟' not in movie_type:
-            movie_item['type'] = json.dumps(movie_type.split(','), ensure_ascii=False)
+        movie_type = response.xpath("//div[@class='movie-brief-container']/ul/li[1]/text()").extract_first()
+        if movie_type and '分钟' not in str(movie_type):
+            movie_item['type'] = json.dumps(str(movie_type).split(','), ensure_ascii=False)
+        else:
+            movie_item['type'] = None
 
         #字符解码文件url
         if(re.search(r"url\('(?P<font>.+?woff)'", response.text)):

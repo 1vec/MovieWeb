@@ -51,14 +51,13 @@ class SQLitePipeline(object):
             item['score'],
         )
 
-        sql = 'INSERT INTO movies (name, type, actors, director, box_office, date, score) VALUES (?,?,?,?,?,?,?)'
+        sql = 'INSERT INTO flash_movie (name, type, actors, director, box_office, date, score) VALUES (?,?,?,?,?,?,?)'
         self.db_cur.execute(sql, values)
         self.db_conn.commit()
 
     #创建表
     def create_table(self):
-        table = """CREATE TABLE movies(
-        'id' INTEGER PRIMARY KEY AUTOINCREMENT,
+        table = """CREATE TABLE flash_movie(
         'name' TEXT,
         'type' TEXT,
         'actors' TEXT,
