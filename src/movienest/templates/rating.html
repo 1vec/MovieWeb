@@ -6,6 +6,7 @@
         <script src="https://unpkg.com/axios/dist/axios.js"></script>
         <script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.js"></script>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/box-office.css') }}">
+        <script src="./static/js/echarts-wordcloud.min.js"></script>
     {% endblock %}
 {% endblock %}
 
@@ -301,6 +302,53 @@
                                             name: '评分',
                                             type: 'pie',
                                             radius: '55%',
+                                            data: data
+                                        }]
+                                    }
+                                }
+                                //////////////////////////////////////词云//////////////////////////////////////////////////////////
+                                else if(this.value0 == '3'){
+                                    console.log('Hello')
+                                    data = []
+                                    for (prop in this.resource) {
+                                      data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
+                                    }
+                                    console.log(data)
+                                    var option = {
+                                        series: [{
+                                            type: 'wordCloud',
+                                            shape: 'circle',
+                                            // maskImage: maskImage,
+                                            left: 'center',
+                                            top: 'center',
+                                            width: '70%',
+                                            height: '80%',
+                                            right: null,
+                                            bottom: null,
+                                            sizeRange: [12, 60],
+                                            rotationRange: [-90, 90],
+                                            rotationStep: 45,
+                                            gridSize: 8,
+                                            drawOutOfBound: false,
+                                            textStyle: {
+                                                normal: {
+                                                    fontFamily: 'sans-serif',
+                                                    fontWeight: 'bold',
+                                                    // Color can be a callback function or a color string
+                                                    color: function () {
+                                                        // Random color
+                                                        return 'rgb(' + [
+                                                            Math.round(Math.random() * 160),
+                                                            Math.round(Math.random() * 160),
+                                                            Math.round(Math.random() * 160)
+                                                        ].join(',') + ')';
+                                                    }
+                                                },
+                                                emphasis: {
+                                                    shadowBlur: 10,
+                                                    shadowColor: '#333'
+                                                }
+                                            },
                                             data: data
                                         }]
                                     }
