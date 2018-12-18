@@ -166,6 +166,7 @@
                         }
                     }
                 },
+                /////////////////////////////////票房占比//////////////////////////////////////////////////////////////////////////
                 submitRate: function(){
                     this.chartRate = echarts.init(document.getElementById('chartRate'));
                     if(!this.startm || !this.endm){
@@ -179,6 +180,7 @@
                         .then(response => {
                             console.log(response)
                             this.resource = response.data
+                            //////////////////////////////////////饼状图////////////////////////////////////////////////////////
                             if(this.value0 == '0'){
                                 console.log('Hello')
                                 data = []
@@ -191,25 +193,6 @@
                                         left: 'right',
                                         top: '80%',
                                         text: '票房占比 MovieNest',
-                                        // textStyle: {
-                                        //     color: '#blue',
-                                        //     // label: {
-                                        //     //     formatter: [
-                                        //     //         '{a|票房占比}',
-                                        //     //         '{b|Movie}',
-                                        //     //         '{c|Nest}'
-                                        //     //     ].join('\n'),
-                                        //     //     rich: {
-                                        //     //         a: {
-                                        //     //             color:'black'
-                                        //     //         },
-                                        //     //         b: {},
-                                        //     //         c: {
-                                        //     //             color: '#00d8ff'
-                                        //     //         }
-                                        //     //     }
-                                        //     // }
-                                        // },
                                         subtext: [this.startm,this.endm]
                                     },
                                     tooltip : {
@@ -250,6 +233,7 @@
                             console.log(response)
                         })
                 },
+                //////////////////////////////////////票房趋势/////////////////////////////////////////////////////////////////////
                 submitTrend: function(){
                     this.chartTrend = echarts.init(document.getElementById('chartTrend'));
 
@@ -264,7 +248,7 @@
                         .then(response => {
                             console.log(response)
 
-
+                            //////////////////////////////////////折线图////////////////////////////////////////////////////////
                             this.resource = response.data
                             if(this.value1 == '2'){
                                 console.log('Hello')

@@ -49,10 +49,43 @@
                                         </el-option>
                                     </el-select>
                                 </el-col>
-                                <el-button type="primary" v-on:click="submitRate">提交</el-button>
+                                <el-button type="primary" v-on:click="submitTop">提交</el-button>
                             </div>
-                            <div id="chartTop" style="width: 100%;height: 400px;"></div>
+                            
+                            <div v-if="value0 == '6'">
+                                <el-table
+                                    :data="tableData"
+                                    stripe
+                                    border
+                                    style="width: 80%; left: 10%"
+                                    height="400px"
+                                    >
+                                    <!-- <el-table-column
+                                      prop="rate"
+                                      label="排名"
+                                      width="180">
+                                    </el-table-column> -->
+                                    <el-table-column
+                                      prop="name"
+                                      label="电影名"
+                                      width="180">
+                                    </el-table-column>
+                                    <el-table-column
+                                      prop="grade"
+                                      label="评分"
+                                      width="180">
+                                    </el-table-column>
+                                    <!-- <el-table-column
+                                      prop="time"
+                                      label="上映时间">
+                                    </el-table-column> -->
+                                </el-table>
+                            </div>
 
+                            <div v-else id="chartTop" style="width: 100%;height: 400px;"></div>
+                        
+
+                        <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
                         </el-collapse-item>
                         <el-collapse-item title="劳模演员" name="1">
                             <div class="block" style="margin-top: 10px">
@@ -86,9 +119,35 @@
                                         </el-option>
                                     </el-select>
                                 </el-col>
-                                <el-button type="primary" v-on:click="submitTrend">提交</el-button>
+                                <el-button type="primary" v-on:click="submitModel">提交</el-button>
                             </div>
-                            <div id="chartModel" style="width: 100%;height: 400px;"></div>
+                            <div v-if="value1 == '6'">
+                                <el-table
+                                    :data="tableData"
+                                    stripe
+                                    border
+                                    style="width: 80%; left: 10%"
+                                    height="400px"
+                                    >
+                                    <!-- <el-table-column
+                                      prop="rate"
+                                      label="排名"
+                                      width="180">
+                                    </el-table-column> -->
+                                    <el-table-column
+                                      prop="name"
+                                      label="演员"
+                                      width="180">
+                                    </el-table-column>
+                                    <el-table-column
+                                      prop="grade"
+                                      label="参影数"
+                                      width="180">
+                                    </el-table-column>
+                                    
+                                </el-table>
+                            </div>
+                            <div v-else id="chartModel" style="width: 100%;height: 400px;"></div>
                         </el-collapse-item>
                     </el-collapse>
                 </el-form-item>
@@ -123,6 +182,9 @@
                 }, {
                     value: '5',
                     label: '漏斗图'
+                }, {
+                    value: '6',
+                    label: '表格'
                 }],
                 opt1: [{
                     value: '0',
@@ -133,6 +195,12 @@
                 }, {
                     value: '3',
                     label: '词云'
+                }, {
+                    value: '5',
+                    label: '漏斗图'
+                }, {
+                    value: '6',
+                    label: '表格'
                 }],                
                 startm: '',
                 endm: '',
@@ -140,7 +208,9 @@
                 startDatePicker: '',
                 endDatePicker: '',
                 chartTop: '',
-                chartModel: ''
+                chartModel: '',
+                tableData:'',
+
             },
             created: function(){
                 this.startDatePicker = this.startDatePicker2()
@@ -172,8 +242,8 @@
                         }
                     }
                 },
-                submitRate: function(){
-                    this.chartTop = echarts.init(document.getElementById('chartTop'));
+                //////////////////////////////////////Top10电影////////////////////////////////////////////////////////
+                submitTop: function(){
                     if(!this.startm || !this.endm){
                         alert('请输入正确的起始日期')
                     }
@@ -183,126 +253,143 @@
                         endm: this.endm
                     })
                         .then(response => {
+                            if(this.value0 != '6' && !this.chartTop)
+                                this.chartTop = echarts.init(document.getElementById('chartTop'));
                             console.log(response)
                             this.resource = response.data
-                            if(this.value0 == '0'){
-                                console.log('Hello')
-                                data = []
+                            ///////////////////////////////表格////////////////////////
+                            if(this.value0 == '6'){
+                                this.tableData = []
                                 for (prop in this.resource) {
-                                  data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
-                                }
-                                console.log(data)
-                                var option = {
-                                    tooltip : {
-                                        trigger: 'item',
-                                        formatter: "{a} <br/>{b} : {c}"
-                                    },
-                                    legend: {
-                                        orient: 'vertical',
-                                        left: 'left',
-                                    },
-                                    xAxis: {
-                                        show: false
-                                    },
-                                    yAxis: {
-                                       show: false
-                                    },
-                                    toolbox: {
-                                        feature: {
-                                            saveAsImage: {
-                                                title:'保存'
-                                            }
-                                        }
-                                    },
-
-                                    series: [{
-                                        name: '评分',
-                                        type: 'pie',
-                                        radius: '55%',
-                                        data: data
-                                    }]
-                                }
+                                      this.tableData.push({grade: this.resource[prop][1], name: this.resource[prop][0]})
+                                    }
+                                console.log(this.tableData)
                             }
-                            else if(this.value0 == '5'){
-                                console.log('Hello')
-                                data = []
-                                for (prop in this.resource) {
-                                  data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
-                                }
-                                console.log(data)
-                                var option = {
-                                    tooltip : {
-                                        trigger: 'item',
-                                        formatter: "{a} <br/>{b} : {c}"
-                                    },
-                                    legend: {
-                                        orient: 'vertical',
-                                        left: 'left',
-                                    },
-                                    
-                                    toolbox: {
-                                        feature: {
-                                            saveAsImage: {
-                                                title:'保存'
+                            else{
+                                //////////////////////////////////////饼状图////////////////////////////////////////////////////////
+                                if(this.value0 == '0'){
+                                    console.log('Hello')
+                                    data = []
+                                    for (prop in this.resource) {
+                                      data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
+                                    }
+                                    console.log(data)
+                                    var option = {
+                                        tooltip : {
+                                            trigger: 'item',
+                                            formatter: "{a} <br/>{b} : {c}"
+                                        },
+                                        legend: {
+                                            orient: 'vertical',
+                                            left: 'left',
+                                        },
+                                        xAxis: {
+                                            show: false
+                                        },
+                                        yAxis: {
+                                           show: false
+                                        },
+                                        toolbox: {
+                                            feature: {
+                                                saveAsImage: {
+                                                    title:'保存'
+                                                }
                                             }
-                                        }
-                                    },
-                                    calculable: true,
-                                    series: [
-                                        {
-                                            name:'漏斗图',
-                                            type:'funnel',
-                                            left: '20%',
-                                            top: 60,
-                                            //x2: 80,
-                                            bottom: 60,
-                                            width: '70%',
-                                            // height: {totalHeight} - y - y2,
-                                            min: 0,
-                                            max: 100,
-                                            minSize: '30%',
-                                            maxSize: '100%',
-                                            sort: 'descending',
-                                            gap: 2,
-                                            label: {
-                                                normal: {
-                                                    show: true,
-                                                    position: 'inside'
+                                        },
+
+                                        series: [{
+                                            name: '评分',
+                                            type: 'pie',
+                                            radius: '55%',
+                                            data: data
+                                        }]
+                                    }
+                                }
+                                //////////////////////////////////////漏斗图////////////////////////////////////////////////////////
+                                else if(this.value0 == '5'){
+                                    console.log('Hello')
+                                    data = []
+                                    for (prop in this.resource) {
+                                      data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
+                                    }
+                                    console.log(data)
+                                    var option = {
+                                        tooltip : {
+                                            trigger: 'item',
+                                            formatter: "{a} <br/>{b} : {c}"
+                                        },
+                                        legend: {
+                                            orient: 'vertical',
+                                            left: 'left',
+                                        },
+                                        
+                                        toolbox: {
+                                            feature: {
+                                                saveAsImage: {
+                                                    title:'保存'
+                                                }
+                                            }
+                                        },
+                                        calculable: true,
+                                        series: [
+                                            {
+                                                name:'漏斗图',
+                                                type:'funnel',
+                                                left: '20%',
+                                                top: 60,
+                                                //x2: 80,
+                                                bottom: 60,
+                                                width: '70%',
+                                                // height: {totalHeight} - y - y2,
+                                                min: 0,
+                                                max: 100,
+                                                minSize: '30%',
+                                                maxSize: '100%',
+                                                sort: 'descending',
+                                                gap: 2,
+                                                label: {
+                                                    normal: {
+                                                        show: true,
+                                                        position: 'inside'
+                                                    },
+                                                    emphasis: {
+                                                        textStyle: {
+                                                            fontSize: 20
+                                                        }
+                                                    }
                                                 },
-                                                emphasis: {
-                                                    textStyle: {
-                                                        fontSize: 20
+                                                labelLine: {
+                                                    normal: {
+                                                        length: 10,
+                                                        lineStyle: {
+                                                            width: 1,
+                                                            type: 'solid'
+                                                        }
                                                     }
-                                                }
-                                            },
-                                            labelLine: {
-                                                normal: {
-                                                    length: 10,
-                                                    lineStyle: {
-                                                        width: 1,
-                                                        type: 'solid'
+                                                },
+                                                itemStyle: {
+                                                    normal: {
+                                                        borderColor: '#fff',
+                                                        borderWidth: 1
                                                     }
-                                                }
-                                            },
-                                            itemStyle: {
-                                                normal: {
-                                                    borderColor: '#fff',
-                                                    borderWidth: 1
-                                                }
-                                            },
-                                        data: data
-                                    }]
+                                                },
+                                            data: data
+                                        }]
+                                    }
                                 }
+                                this.chartTop.setOption(option, {
+                                    notMerge: false
+                                })
                             }
-                            this.chartTop.setOption(option)
-
                         }, response => {
                             console.log(response)
                         })
                 },
-                submitTrend: function(){
-                    this.chartModel = echarts.init(document.getElementById('chartModel'));
-
+                //////////////////////////////////////劳模演员/////////////////////////////////////////////////////////////////
+                submitModel: function(){
+                    if(this.value1 != '6'){
+                        this.chartModel = echarts.init(document.getElementById('chartModel'));
+                    }
                     if(!this.startm || !this.endm){
                         alert('请输入正确的起始日期')
                     }
@@ -314,45 +401,55 @@
                         .then(response => {
                             console.log(response)
                             this.resource = response.data
-                            if(this.value0 == '0'){
-                                console.log('Hello')
-                                data = []
+                            ///////////////////////////////表格////////////////////////
+                            if(this.value1 == '6'){
+                                this.tableData = []
                                 for (prop in this.resource) {
-                                  data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
-                                }
-                                console.log(data)
-                                var option = {
-                                    tooltip : {
-                                        trigger: 'item',
-                                        formatter: "{a} <br/>{b} : {c}"
-                                    },
-                                    legend: {
-                                        orient: 'vertical',
-                                        left: 'left',
-                                    },
-                                    xAxis: {
-                                        show: false
-                                    },
-                                    yAxis: {
-                                       show: false
-                                    },
-                                    toolbox: {
-                                        feature: {
-                                            saveAsImage: {
-                                                title:'保存'
-                                            }
-                                        }
-                                    },
-                                    series: [{
-                                        name: '出演次数',
-                                        type: 'pie',
-                                        radius: '55%',
-                                        data: data
-                                    }]
-                                }
+                                      this.tableData.push({grade: this.resource[prop][1], name: this.resource[prop][0]})
+                                    }
+                                console.log(this.tableData)
                             }
-                            this.chartModel.setOption(option)
-
+                            else{
+                                //////////////////////////////////////饼状图////////////////////////////////////////////////////////
+                                if(this.value1 == '0'){
+                                    console.log('Hello')
+                                    data = []
+                                    for (prop in this.resource) {
+                                      data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
+                                    }
+                                    console.log(data)
+                                    var option = {
+                                        tooltip : {
+                                            trigger: 'item',
+                                            formatter: "{a} <br/>{b} : {c}"
+                                        },
+                                        legend: {
+                                            orient: 'vertical',
+                                            left: 'left',
+                                        },
+                                        xAxis: {
+                                            show: false
+                                        },
+                                        yAxis: {
+                                           show: false
+                                        },
+                                        toolbox: {
+                                            feature: {
+                                                saveAsImage: {
+                                                    title:'保存'
+                                                }
+                                            }
+                                        },
+                                        series: [{
+                                            name: '出演次数',
+                                            type: 'pie',
+                                            radius: '55%',
+                                            data: data
+                                        }]
+                                    }
+                                }
+                                this.chartModel.setOption(option)
+                            }
 
                         }, response => {
                             console.log(response)
@@ -360,7 +457,6 @@
                 }
             }
         })
-        
     </script>
 {% endblock %}
 <!-- script end -->
