@@ -6,6 +6,8 @@
         <script src="https://unpkg.com/axios/dist/axios.js"></script>
         <script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.js"></script>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/box-office.css') }}">
+        <script src="{{ url_for('static', filename='js/echarts-wordcloud.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/genoption.js') }}"></script>
     {% endblock %}
 {% endblock %}
 
@@ -40,7 +42,7 @@
                                 </el-col>
                                 <el-col :span="8">
                                     <span class="demonstration">图表类型：</span>
-                                    <el-select v-model="value0" placeholder="请选择图表类型" name="0">
+                                    <el-select v-model="chartType0" placeholder="请选择图表类型" name="0">
                                         <el-option
                                                 v-for="item in opt0"
                                                 :key="item.value"
@@ -77,7 +79,7 @@
                                 </el-col>
                                 <el-col :span="8">
                                     <span class="demonstration">图表类型：</span>
-                                    <el-select v-model="value1" placeholder="请选择图表类型" name="1">
+                                    <el-select v-model="chartType1" placeholder="请选择图表类型" name="1">
                                         <el-option
                                                 v-for="item in opt1"
                                                 :key="item.value"
@@ -109,14 +111,11 @@
                 form:{
                     activeName: '0',
                 },
-                value0:'',//图表类型
-                value1:'',
+                chartType0:'',//图表类型
+                chartType1:'',
                 opt0: [{
                     value: '0',
                     label: '饼状图'
-                }, {
-                    value: '1',
-                    label: '柱状图'
                 }, {
                     value: '3',
                     label: '词云'
@@ -124,9 +123,6 @@
                 opt1: [{
                     value: '2',
                     label: '折线图'
-                }, {
-                    value: '4',
-                    label: '散点图'
                 }],
                 startm: '',
                 endm: '',
@@ -168,7 +164,8 @@
                 },
                 /////////////////////////////////票房占比//////////////////////////////////////////////////////////////////////////
                 submitRate: function(){
-                    this.chartRate = echarts.init(document.getElementById('chartRate'));
+                    if(!this.chartRate)
+                        this.chartRate = echarts.init(document.getElementById('chartRate'));
                     if(!this.startm || !this.endm){
                         alert('请输入正确的起始日期')
                     }
@@ -178,56 +175,16 @@
                         endm: this.endm
                     })
                         .then(response => {
-                            console.log(response)
                             this.resource = response.data
-                            //////////////////////////////////////饼状图////////////////////////////////////////////////////////
-                            if(this.value0 == '0'){
-                                console.log('Hello')
-                                data = []
-                                for (prop in this.resource) {
-                                  data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
-                                }
-                                console.log(data)
-                                var option = {
-                                    title: {
-                                        left: 'right',
-                                        top: '80%',
-                                        text: '票房占比 MovieNest',
-                                        subtext: [this.startm,this.endm]
-                                    },
-                                    tooltip : {
-                                        trigger: 'item',
-                                        formatter: "{a} <br/>{b} : {c} ({d}%)"
-                                    },
-                                    legend: {
-                                        orient: 'vertical',
-                                        left: 'left',
-                                    },
-                                    xAxis: {
-                                        show: false
-                                    },
-                                    yAxis: {
-                                       show: false
-                                    },
-                                    toolbox: {
-                                        feature: {
-                                            saveAsImage: {
-                                                title:'保存'
-                                            }
-                                        }
-                                    },
-
-                                    series: [{
-                                        name: '票房',
-                                        type: 'pie',
-                                        radius: '55%',
-                                        label: {
-                                        },
-                                        data: data
-                                    }]
-                                }
+                            if(this.chartType0 == '0'){
+                              option = genOption_pie(this.resource)
                             }
-                                this.chartRate.setOption(option)
+                            else if(this.chartType0 == '3'){
+                              option = genOption_wordCloud(this.resource)
+                            }
+                            this.chartRate.setOption(option, {
+                                notMerge: false
+                            })
 
                         }, response => {
                             console.log(response)
@@ -235,7 +192,8 @@
                 },
                 //////////////////////////////////////票房趋势/////////////////////////////////////////////////////////////////////
                 submitTrend: function(){
-                    this.chartTrend = echarts.init(document.getElementById('chartTrend'));
+                    if(!this.chartTrend)
+                        this.chartTrend = echarts.init(document.getElementById('chartTrend'));
 
                     if(!this.startm || !this.endm){
                         alert('请输入正确的起始日期')
@@ -246,48 +204,13 @@
                         endm: this.endm
                     })
                         .then(response => {
-                            console.log(response)
-
-                            //////////////////////////////////////折线图////////////////////////////////////////////////////////
                             this.resource = response.data
-                            if(this.value1 == '2'){
-                                console.log('Hello')
-                                data = []
-                                xAxis = this.resource[0]
-                                data = this.resource[1]
-                                legend = []
-                                series = []
-                                for (prop in data) {
-                                    legend.push(prop)
-                                    series.push({
-                                    name: prop,
-                                    type: 'line',
-                                    data: data[prop]
-                                    })
-                                }
-                                console.log(xAxis)
-                                console.log(series)
-                                var option = {
-                                    legend: {
-                                        data: legend
-                                    },
-                                    toolbox: {
-                                        feature: {
-                                            saveAsImage: {
-                                                title:'保存'
-                                            }
-                                        }
-                                    },
-                                    xAxis: {
-                                        data: xAxis
-                                    },
-                                    yAxis: {},
-                                    series: series
-                                }
-                              }
-                            this.chartTrend.setOption(option)
-
-
+                            if(this.chartType1 == '2'){
+                              option = genOption_line(this.resource)
+                            }
+                            this.chartTrend.setOption(option, {
+                                notMerge: false
+                            })
                         }, response => {
                             console.log(response)
                         })

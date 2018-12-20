@@ -61,6 +61,11 @@ def register():
         flash(error)
     return render_template('auth/register.html')
 
+@bp.route('/password', methods=('GET', 'POST'))
+def password():
+    if request.method == 'POST':
+        pass
+    return render_template('auth/password.html')
 
 @bp.route('/logout')
 def logout():

@@ -8,8 +8,8 @@
     <!-- <script src="{{ url_for('static', filename='js/wordcloud.js') }}"></script> -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <!-- header & footer ccs -->
-    <link rel="stylesheet" href="static/css/base.css">
-    <link rel="shortcut icon" type="image/icon" href="static/img/icon.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="shortcut icon" type="image/icon" href="{{ url_for('static', filename='img/icon.png') }}">
 
     <!-- TITLE OF SITE -->
     <title>MovieNest {% block title %}{% endblock %}</title>
@@ -69,7 +69,7 @@
                                 </el-select>
 
                             </el-dropdown-item>
-                            <el-dropdown-item><a href="{{ url_for('auth.changepwd') }}">修改密码</a></el-dropdown-item>
+                            <el-dropdown-item><a href="{{ url_for('auth.password') }}">修改密码</a></el-dropdown-item>
                             <el-dropdown-item><a href="{{ url_for('auth.logout') }}">注销</a></el-dropdown-item>
                           </el-dropdown-menu>
                         </el-dropdown>
@@ -103,7 +103,7 @@
                     <p style="font-family: Arial;"><a href={{ url_for('movienest.home') }}>主页</a></p>
                     <p style="font-family: Arial;"><a href={{ url_for('movienest.box_office') }}>票房分析</a></p>
                     <p style="font-family: Arial;"><a href={{ url_for('movienest.rating') }}>评分分析</a></p>
-                    <p style="font-family: Arial;"><a href={{ url_for('movienest.') }}>榜单</a></p>
+                    <p style="font-family: Arial;"><a href={{ url_for('movienest.listing') }}>榜单</a></p>
                     <p style="font-family: Arial;"><a href={{ url_for('movienest.search') }}>搜索</a></p>
                 </el-col>
                 <el-col :span=5>

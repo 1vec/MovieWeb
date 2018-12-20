@@ -25,9 +25,13 @@ def rating():
 
 @bp.route('/search')
 @login_required
-def rating():
+def search():
     return render_template('search.html')
 
+@bp.route('/listing')
+@login_required
+def listing():
+    return render_template('listing.html')
 
 @bp.route('/resource', methods=['POST'])
 def hello():
