@@ -5,8 +5,7 @@
     {% block css_style %}
         <script src="https://unpkg.com/axios/dist/axios.js"></script>
         <script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.js"></script>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/box-office.css') }}">
-        <script src="./static/js/echarts-wordcloud.min.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
     {% endblock %}
 {% endblock %}
 
@@ -17,7 +16,7 @@
         <div class="box-main">
             <el-form class="box-form" ref="form" :model="form" >
                 <el-form-item>
-                    <el-collapse class="box-collapse" v-model="form.activeName"  accordion>
+                    <!-- <el-collapse class="box-collapse" v-model="form.activeName"  accordion>
                         <el-collapse-item  title="Top10电影" name="0">
                             <div class="block" style="margin-top: 10px">
                                 <el-col :span="12" :offset="1">
@@ -150,7 +149,7 @@
                             </div>
                             <div v-else id="chartModel" style="width: 100%;height: 400px;"></div>
                         </el-collapse-item>
-                    </el-collapse>
+                    </el-collapse> -->
                 </el-form-item>
             </el-form>
         </div>
@@ -165,7 +164,7 @@
             el: '#app',
             elimiters: ['{[', ']}'],
             data: {
-                menuActive:'3',
+                menuActive:'4',
                 form:{
                     activeName: '0',
                 },
@@ -173,35 +172,29 @@
                 value1:'',
                 opt0: [{
                     value: '0',
-                    label: '饼状图'
+                    label: '所有类别'
                 }, {
                     value: '1',
-                    label: '柱状图'
+                    label: '动作片'
+                }, {
+                    value: '2',
+                    label: '喜剧片'
                 }, {
                     value: '3',
-                    label: '词云'
+                    label: '冒险片'
                 }, {
-                    value: '5',
-                    label: '漏斗图'
+                    value: '4',
+                    label: '剧情片'
                 }, {
-                    value: '6',
-                    label: '表格'
+                    value: '4',
+                    label: '爱情片'
                 }],
                 opt1: [{
                     value: '0',
-                    label: '饼状图'
+                    label: '按时间排序'
                 }, {
                     value: '1',
-                    label: '柱状图'
-                }, {
-                    value: '3',
-                    label: '词云'
-                }, {
-                    value: '5',
-                    label: '漏斗图'
-                }, {
-                    value: '6',
-                    label: '表格'
+                    label: '按评分排序'
                 }],                
                 startm: '',
                 endm: '',
@@ -381,7 +374,7 @@
                                         calculable: true,
                                         series: [
                                             {
-                                                name:'评分',
+                                                name:'漏斗图',
                                                 type:'funnel',
                                                 left: '20%',
                                                 top: 60,

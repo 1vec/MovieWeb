@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Change Password</title>
+    <link rel="shortcut icon" type="image/icon" href="static/img/icon.png">
+</head>
+<body>
+<div class="divForm">
+    <p style="font-size: 60px"></p>
+
+    <img src="{{ url_for('static', filename='img/icon.png') }}"  alt="MovieNest">
+		<p style="font-size: 20px; font-family: 'Arial'; color: slategray;">开始探索 MovieNest</p>
+		<form method="post">
+			<p>
+	        <input name="username" id="username"
+	          placeholder="新密码" required
+	          style="width:200px; height:30px; font-size: 16px" >
+	        </p>
+	        <p>
+	        <input type="password" name="password" id="password"
+	          placeholder="再次输入" required
+	          style="width:200px; height:30px;font-size: 16px">
+	         </p>
+
+	        <input type="submit" value="修改密码"
+				   style="height:30px; width:207px; font-size:20px; background-color: #00d8ff; color:#fff;border:0;">
+	    </form>
+	    <p></p>
+
+	    <a style="height:30px; width:207px; font-size:20px; color: slategray;
+	        background-color:#fff;border:0;"href="{{ url_for('movienest.home') }}"
+            >>>放弃修改<<</a>
+        <p style="font-size: 60px"></p>
+	</div>
+</body>
+</html>
+<style type="text/css">
+  a{ text-decoration:none}
+.divForm{
+	position: relative;
+	text-align: center;/*(让div中的内容居中)*/
+	width: 360px;
+	height: 410px;
+	margin: 0 auto;
+	margin-top: 10%;
+	background: #fff;
+	border-radius: 10px;
+	border:2px solid #fff;
+	box-shadow: 2px 2px 5px 3px #ccc;
+}
+{#::-webkit-input-placeholder { /* Chrome/Opera/Safari */#}
+{#   color: gray;#}
+{#   font-size: 12pt;#}
+{#   line-height: 25px;#}
+{#}#}
+{#::-moz-placeholder { /* Firefox 19+ */#}
+{#   color: gray;#}
+{#   font-size: 12pt;#}
+{#   line-height: 25px;#}
+{#}#}
+{#:-ms-input-placeholder { /* IE 10+ */#}
+{#   color: gray;#}
+{#   font-size: 12pt;#}
+{#   line-height: 25px;#}
+{#}#}
+{#:-moz-placeholder { /* Firefox 18- */#}
+{#   color: gray;#}
+{#   font-size: 12pt;#}
+{#   line-height: 25px;#}
+{#}#}
+</style>

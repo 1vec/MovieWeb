@@ -1,0 +1,62 @@
+@import url("https://unpkg.com/element-ui@2.4.11/lib/theme-chalk/index.css");
+
+/* 主体 */
+
+.el-main{
+  position: relative;
+  min-height: 950px;
+  /*color: #fff;*/
+}
+
+.el-container{
+  background: url(../img/banner.jpg)no-repeat;
+}
+
+.el-container:before{
+  background: rgba(0,122,207,.4);
+  position: absolute;
+  width: 100%;
+  height: 1000px;
+  content: "";
+}
+
+.el-main .el-row{
+  font-size: 80px;
+}
+
+.box-main{
+  position: absolute;
+  top: 4%;
+  left: 10%;
+  width:80%;
+  border: 1px solid rgba(232,237,250,.5);
+  background-color: #fff;
+}
+
+.box-form{
+  margin: 6px;
+  background-color: #fff;
+  box-shadow: 0 0 2px 4px rgba(232,237,250,.5);
+}
+
+.box-form .box-collapse{
+  margin: 2%;
+}
+
+.el-collapse-item__header{
+  font-size: 20px;
+}
+
+.el-collapse-item__header.is-active{
+  border-bottom-color:  #4d7ab1;
+  color: #4d7ab1;
+}
+
+.el-collapse-item__wrap {
+  min-height: 350px;
+}
+
+/*.clpsItem{
+  min-height: 350px;
+  background: #fff;
+}*/
