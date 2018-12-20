@@ -23,6 +23,12 @@ def rating():
     return render_template('rating.html')
 
 
+@bp.route('/search')
+@login_required
+def rating():
+    return render_template('search.html')
+
+
 @bp.route('/resource', methods=['POST'])
 def hello():
     req = request.get_json()
