@@ -1,4 +1,6 @@
-function genOption_pie(resource){
+function genOption_pie(resource,name){
+  window.alert(name)
+  console.log(name)
   data = []
   for (prop in resource) {
     data.push({value: resource[prop][1], name: resource[prop][0]})
@@ -27,7 +29,7 @@ function genOption_pie(resource){
     },
 
     series: [{
-      name: '评分',
+      name: name,
       type: 'pie',
       radius: '55%',
       data: data

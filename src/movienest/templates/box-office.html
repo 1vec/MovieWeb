@@ -177,7 +177,8 @@
                         .then(response => {
                             this.resource = response.data
                             if(this.chartType0 == '0'){
-                              option = genOption_pie(this.resource)
+                              option = genOption_pie(this.resource, '票房')
+                            
                             }
                             else if(this.chartType0 == '3'){
                               option = genOption_wordCloud(this.resource)
