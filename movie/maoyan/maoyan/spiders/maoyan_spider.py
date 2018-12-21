@@ -12,14 +12,6 @@ import json
 
 year_flag = 1
 page = 0
-movie_scraped = []
-try:
-    with sqlite3.connect('scrapy.db') as con:
-        df = pd.read_sql(sql='SELECT name FROM flash_movie', con=con)
-        movie_scraped = df['name'].tolist()
-
-except:
-    movie_scraped = []
 
 
 class MaoyanSpider(scrapy.Spider):
@@ -49,8 +41,8 @@ class MaoyanSpider(scrapy.Spider):
 
             next_link = movie_list[i]
             movie_scrapping = name_list[i]
-            if next_link and movie_scrapping not in movie_scraped:
-                yield scrapy.Request("https://maoyan.com" + next_link, meta={'useSelenium':True, 'noRedirect':True}, callback=self.sub_page, dont_filter=True)
+            if next_link:
+                yield scrapy.Request("https://maoyan.com" + next_link, meta={'useSelenium':True, 'noRedirect':True, 'movie_id': next_link.split('/')[-1]}, callback=self.sub_page, dont_filter=True)
         next_page = response.xpath("//div[@class='movies-pager']/ul/li/a[contains(text(),'下一页')]/@href").extract_first()
 
         print('page='+ str(page), next_page)
@@ -73,6 +65,8 @@ class MaoyanSpider(scrapy.Spider):
             yield scrapy.Request(response.url, meta={'useSelenium':True, 'noRedirect':True}, callback= self.sub_page, dont_filter=True)
             return
         movie_item['name'] = response.xpath("//h3[@class='name']/text()").extract_first()
+        #电影ID
+        movie_item['movie_id'] = int(response.meta['movie_id'])
         #上映日期
         movie_item['date'] = str(response.xpath("//ul/li[@class='ellipsis'][contains(text(),'上映')]/text()").extract_first()).replace('大陆上映','')
         #导演与演员
@@ -89,12 +83,12 @@ class MaoyanSpider(scrapy.Spider):
             if item not in actors and item != ',':
                 actors.append(item)
                 flag = flag + 1
-        movie_item['actors'] = json.dumps(actors, ensure_ascii=False)
+        movie_item['actors'] = actors
 
         #电影类型
         movie_type = response.xpath("//div[@class='movie-brief-container']/ul/li[1]/text()").extract_first()
         if movie_type and '分钟' not in str(movie_type):
-            movie_item['type'] = json.dumps(str(movie_type).split(','), ensure_ascii=False)
+            movie_item['type'] = str(movie_type).split(',')
         else:
             movie_item['type'] = None
 

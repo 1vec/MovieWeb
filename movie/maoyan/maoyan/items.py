@@ -11,6 +11,8 @@ import scrapy
 class MaoyanItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    #电影id
+    movie_id = scrapy.Field()
     #电影名称
     name = scrapy.Field()
     #电影题材
