@@ -98,12 +98,12 @@
                 }],
                 resource: 'Hello',
                 tableData:'',
-
+                input: ''
             },
             methods: {
                 submitTop: function(){
                     axios.post('/resource', {
-                        type: 4,
+                        type: 7,
                     })
                         .then(response => {
                             console.log(response)

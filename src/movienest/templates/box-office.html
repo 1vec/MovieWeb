@@ -54,9 +54,9 @@
                                 <el-button type="primary" v-on:click="submitRate">提交</el-button>
                             </div>
                             <div id="chartRate" style="width: 100%;height: 400px;"></div>
-
                         </el-collapse-item>
-                        <el-collapse-item title="票房趋势" name="1">
+
+                        <el-collapse-item title="热门类别票房趋势" name="1">
                             <div class="block" style="margin-top: 10px">
                                 <el-col :span="12" :offset="1">
                                     <span class="demonstration">时间：</span>
@@ -92,6 +92,13 @@
                             </div>
                             <div id="chartTrend" style="width: 100%;height: 400px;"></div>
                         </el-collapse-item>
+
+                        <!--???????????????????????????????????要用collapse触发????????????????????????????????????????????????????????-->
+                        <el-collapse-item  title="总票房同比" name="2">
+
+                        </el-collapse-item>
+                
+
                     </el-collapse>
                 </el-form-item>
             </el-form>
