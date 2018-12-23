@@ -1,4 +1,4 @@
-function genOption_pie(resource){
+function genOption_pie(resource, serieName){
   data = []
   for (prop in resource) {
     data.push({value: resource[prop][1], name: resource[prop][0]})
@@ -27,7 +27,7 @@ function genOption_pie(resource){
     },
 
     series: [{
-      name: '评分',
+      name: serieName,
       type: 'pie',
       radius: '55%',
       data: data
@@ -36,13 +36,18 @@ function genOption_pie(resource){
   return option
 }
 
-function genOption_wordCloud(resource){
+function genOption_wordCloud(resource, serieName){
   data = []
   for (prop in resource) {
     data.push({value: resource[prop][1], name: resource[prop][0]})
   }
   var option = {
+    tooltip : {
+      trigger: 'item',
+      formatter: "{a} <br/>{b} : {c}"
+    },
     series: [{
+      name: serieName,
       type: 'wordCloud',
       shape: 'circle',
       // maskImage: maskImage,
