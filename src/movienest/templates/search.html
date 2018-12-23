@@ -16,8 +16,8 @@
         <div class="box-main">
             <el-form class="box-form" ref="form" :model="form" >
                 <el-form-item>
-                    <div>
-                        <el-col :span="6" :offset="1">
+                    <div style=" margin-top: 12px; margin-bottom: 8px; margin-left: 70px; ">
+                        <el-col :span="7" :offset="1">
                             <span class="demonstration">搜索类型：</span>
                             <el-select v-model="value0" placeholder="请选择图表类型" name="0">
                                 <el-option
@@ -28,11 +28,17 @@
                                 </el-option>
                             </el-select>
                         </el-col>
-                        <el-col :span="13">
-                            <el-input placeholder="请输入关键词" v-model=input></el-input>  
+                        <el-col :span="2" :offset="1">
+                            <span class="demonstration">搜索关键词：</span>
                         </el-col>
-                        <el-button type="primary" v-on:click="submitTop">提交</el-button>
+                        <el-col :span="9" >
+                            <el-input style="width: 350px" placeholder="请输入关键词" v-model=input></el-input>  
+                        </el-col>
+                        <!-- <el-col :span="3" :offset="1"> -->
+                            <el-button type="primary" v-on:click="submitTop">提交</el-button>
+                        <!-- </el-col> -->
                     </div>
+
                     <div>
                         <el-table
                             :data="tableData"
