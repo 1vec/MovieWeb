@@ -264,13 +264,13 @@
                                   option = genOption_pie(this.resource, '评分')
                                 }
                                 else if(this.chartType0 == '3'){
-                                  option = genOption_wordCloud(this.resource)
+                                  option = genOption_wordCloud(this.resource, '评分')
                                 }
                                 else if(this.chartType0 == '5'){
                                   option = genOption_funnel(this.resource)
                                 }
                                 this.chartTop.setOption(option, {
-                                    notMerge: false
+                                    notMerge: true
                                 })
                             }
                         }, response => {
@@ -301,16 +301,16 @@
                             }
                             else{
                                 if(this.chartType1 == '0'){
-                                  option = genOption_pie(this.resource,'评分')
+                                  option = genOption_pie(this.resource, '出演次数')
                                 }
                                 else if(this.chartType1 == '3'){
-                                  option = genOption_wordCloud(this.resource)
+                                  option = genOption_wordCloud(this.resource, '出演次数')
                                 }
                                 else if(this.chartType1 == '5'){
                                   option = genOption_funnel(this.resource)
                                 }
                                 this.chartModel.setOption(option, {
-                                    notMerge: false
+                                    notMerge: true
                                 })
                             }
 

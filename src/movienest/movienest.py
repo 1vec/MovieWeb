@@ -46,7 +46,7 @@ def hello():
     elif code == 3:
         data = box_type_monthly(req['startm'], req['endm'])
     elif code == 4:
-        data = rate_range(req['startm'], req['endm'])
+        data = rank_score(req['startm'], req['endm'])
     elif code == 5:
         data = get_model(req['startm'], req['endm'])
     return Response(json.dumps(data))
@@ -108,83 +108,81 @@ def count_type_monthly(start, end):
 
 
 def box_type(start, end):
-    result = {}
+    result = []
     db = get_db()
     print(start, end)
-    for each_movie in db.execute(
-            'SELECT type, box_office FROM movies WHERE'
-            '? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ?',
+    for each in db.execute(
+            'SELECT t.name, sum(box_office) value '
+            'FROM movie_type mt '
+            'JOIN movies m ON m.id = mt.movie_id '
+            'JOIN types t ON t.id = mt.type_id '
+            'WHERE ? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ? '
+            'GROUP BY t.name '
+            'ORDER BY value DESC '
+            'LIMIT 25',
             (start, end)).fetchall():
-        for each_type in json.loads(each_movie['type']):
-            result.setdefault(each_type, 0)
-            if each_movie['box_office'] is not None:
-                result[each_type] += each_movie['box_office']
-    try:
-        result.pop('None')
-    except:
-        pass
-
-    for each in tuple(result.keys()):
-        if result[each] <= 3:
-            result.pop(each)
-    return sorted(result.items(), key=lambda d: d[1], reverse=True)
+        result.append(tuple(each))
+    print(result)
+    return result
 
 
 def box_type_monthly(start, end):
-    result = {}
-    unique_date = set()
     db = get_db()
-    print(start, end)
-    for each_movie in db.execute(
-            'SELECT type, substr(date, 1, 7), box_office FROM movies WHERE'
-            '? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ?',
-            (start, end)).fetchall():
-        for each_type in json.loads(each_movie['type']):
-            date = each_movie['substr(date, 1, 7)']
-            unique_date.add(date)
-            result.setdefault(each_type, {})
-            result[each_type].setdefault(date, 0)
-            if each_movie['box_office'] is not None:
-                result[each_type][date] += each_movie['box_office']
-    try:
-        result.pop('None')
-    except:
-        pass
-    
-    unique_date = list(unique_date)
-    unique_date.sort()
-    for tp, count in result.items():
-        result[tp] = []
-        for date in unique_date:
-            result[tp].append(count.get(date, 0))
+    unique_date = db.execute(
+        'SELECT DISTINCT substr(date, 1, 7)'
+        'FROM movies '
+        'WHERE ? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ? '
+        'ORDER BY date',
+        (start, end)).fetchall()
+    mtype = db.execute(
+        'SELECT DISTINCT t.name '
+        'FROM movie_type mt '
+        'JOIN movies m ON m.id = mt.movie_id '
+        'JOIN types t ON t.id = mt.type_id '
+        'WHERE ? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ? '
+        'LIMIT 5',
+        (start, end)).fetchall()
+    unique_date = [x[0] for x in unique_date]
+    result = {}
+    for tp, *other in mtype:
+        result.setdefault(tp, list())
+        for month in unique_date:
+            result[tp].append(db.execute(
+                'SELECT sum(box_office) value '
+                'FROM movie_type mt '
+                'JOIN movies m ON m.id = mt.movie_id '
+                'JOIN types t ON t.id = mt.type_id '
+                'WHERE substr(date, 1, 7) = ? AND t.name = ? ',
+                (month, tp)).fetchone()['value'])
+    return unique_date, result
 
-    top_five = sorted(result.items(), key = lambda d: sum(d[1]), reverse=True)
-    top_five = dict(top_five[:5])
 
-    return unique_date, top_five
-
-def rate_range(start, end):
+def rank_score(start, end):
     db = get_db()
     result = []
-    sorted_movies = db.execute(
+    for each in db.execute(
             'SELECT name, score FROM movies WHERE'
-            '? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ?'
-            'ORDER BY score desc', (start, end)).fetchall()
-    for i in range(10):
-        each_movie = sorted_movies[i]
-        result.append([each_movie['name'], each_movie['score']])
+            '? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ? '
+            'ORDER BY score DESC '
+            'LIMIT 10',
+            (start, end)).fetchall():
+        result.append(tuple(each))
+    print(result)
     return result
 
 
 def get_model(start, end):
     db = get_db()
-    result = {}
-    for each_movie in db.execute(
-        'SELECT actors FROM movies WHERE'
-        '? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ?',
+    result = []
+    for each in db.execute(
+            'SELECT a.name, count(*) times '
+            'FROM movie_actor ma '
+            'JOIN movies m ON m.id = ma.movie_id '
+            'JOIN actors a ON a.id = ma.actor_id '
+            'WHERE ? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ? '
+            'GROUP BY actor_id '
+            'ORDER BY times DESC '
+            'LIMIT 15',
             (start, end)).fetchall():
-        for actor in json.loads(each_movie['actors']):
-            result.setdefault(actor, 0)
-            result[actor] += 1
-    result = sorted(result.items(), key=lambda d: d[1], reverse=True)[:10]
+        result.append(tuple(each))
     return result
