@@ -54,9 +54,9 @@
                                 <el-button type="primary" v-on:click="submitRate">提交</el-button>
                             </div>
                             <div id="chartRate" style="width: 100%;height: 400px;"></div>
-
                         </el-collapse-item>
-                        <el-collapse-item title="票房趋势" name="1">
+
+                        <el-collapse-item title="热门类别票房趋势" name="1">
                             <div class="block" style="margin-top: 10px">
                                 <el-col :span="12" :offset="1">
                                     <span class="demonstration">时间：</span>
@@ -92,6 +92,46 @@
                             </div>
                             <div id="chartTrend" style="width: 100%;height: 400px;"></div>
                         </el-collapse-item>
+
+                        <!--???????????????????????????????????要用collapse触发????????????????????????????????????????????????????????-->
+                        <el-collapse-item  title="总票房同比" name="2">
+                            <div class="block" style="margin-top: 10px">
+                                <el-col :span="12" :offset="1">
+                                    <span class="demonstration">时间：</span>
+                                    <el-date-picker
+                                            v-model="startm"
+                                            align="right"
+                                            type="month"
+                                            placeholder="开始时间"
+                                            value-format = "yyyy-MM"
+                                            :picker-options="startDatePicker">
+                                    </el-date-picker>
+                                    <el-date-picker
+                                            v-model="endm"
+                                            align="right"
+                                            type="month"
+                                            placeholder="结束时间"
+                                            value-format = "yyyy-MM"
+                                            :picker-options="endDatePicker">
+                                    </el-date-picker>
+                                </el-col>
+                                <el-col :span="8">
+                                    <span class="demonstration">图表类型：</span>
+                                    <el-select v-model="chartType2" placeholder="请选择图表类型" name="2">
+                                        <el-option
+                                                v-for="item in opt1"
+                                                :key="item.value"
+                                                :label="item.label"
+                                                :value="item.value">
+                                        </el-option>
+                                    </el-select>
+                                </el-col>
+                                <el-button type="primary" v-on:click="submitYear">提交</el-button>
+                            </div>
+                            <div id="chartYear" style="width: 100%;height: 400px;"></div>
+                        </el-collapse-item>
+                
+
                     </el-collapse>
                 </el-form-item>
             </el-form>
@@ -113,6 +153,7 @@
                 },
                 chartType0:'',//图表类型
                 chartType1:'',
+                chartType2:'',
                 opt0: [{
                     value: '0',
                     label: '饼状图'
@@ -130,7 +171,8 @@
                 startDatePicker: '',
                 endDatePicker: '',
                 chartRate: '',
-                chartTrend: ''
+                chartTrend: '',
+                chartYear: ''
             },
             created: function(){
                 this.startDatePicker = this.startDatePicker2()
@@ -210,6 +252,31 @@
                             }
                             this.chartTrend.setOption(option, {
                                 notMerge: true
+                            })
+                        }, response => {
+                            console.log(response)
+                        })
+                },
+                /////////////////////////////////////总票房同比////////////////////////////////////////////////////////////////////
+                submitYear: function(){
+                    if(!this.chartYear)
+                        this.chartYear = echarts.init(document.getElementById('chartYear'));
+
+                    if(!this.startm || !this.endm){
+                        alert('请输入正确的起始日期')
+                    }
+                    axios.post('/resource', {
+                        type: 8,
+                        startm: this.startm,
+                        endm: this.endm
+                    })
+                        .then(response => {
+                            this.resource = response.data
+                            if(this.chartType2 == '2'){
+                              option = genOption_line(this.resource)
+                            }
+                            this.chartYear.setOption(option, {
+                                notMerge: false
                             })
                         }, response => {
                             console.log(response)

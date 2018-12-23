@@ -1,0 +1,442 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Rating{% endblock %}</h1>
+    {% block css_style %}
+        <script src="https://unpkg.com/axios/dist/axios.js"></script>
+        <script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/list.css') }}">
+    {% endblock %}
+{% endblock %}
+
+
+<!-- content Start -->
+{% block content %}
+    <el-main>
+        <div class="box-main">
+            <el-form class="box-form" ref="form" :model="form" >
+                <el-form-item>
+                    <!-- <el-collapse class="box-collapse" v-model="form.activeName"  accordion> -->
+                        <!-- <el-form-item  title="Top10电影" name="0"> -->
+                            <div class="block" style="margin-top: 10px">
+                                <el-col :span="12" :offset="1">
+                                    <span class="demonstration">时间：</span>
+                                    <el-date-picker
+                                            v-model="startm"
+                                            align="right"
+                                            type="month"
+                                            placeholder="开始时间"
+                                            value-format = "yyyy-MM"
+                                            :picker-options="startDatePicker">
+                                    </el-date-picker>
+                                    <el-date-picker
+                                            v-model="endm"
+                                            align="right"
+                                            type="month"
+                                            placeholder="结束时间"
+                                            value-format = "yyyy-MM"
+                                            :picker-options="endDatePicker">
+                                    </el-date-picker>
+                                </el-col>
+                                <el-col :span="8">
+                                    <span class="demonstration">电影：</span>
+                                    <el-select v-model="value0" placeholder="请选择电影类型" name="0">
+                                        <el-option
+                                                v-for="item in opt0"
+                                                :key="item.value"
+                                                :label="item.label"
+                                                :value="item.value">
+                                        </el-option>
+                                    </el-select>
+                                </el-col>
+                                <el-button type="primary" v-on:click="submitTop">提交</el-button>
+                            </div>
+                            
+                            <div v-if="value0 == '6'">
+                                <el-table
+                                    :data="tableData"
+                                    stripe
+                                    border
+                                    style="width: 80%; left: 10%"
+                                    height="400px"
+                                    >
+                                    <el-table-column
+                                      prop="rate"
+                                      label="排名"
+                                      width="180">
+                                    </el-table-column>
+                                    <el-table-column
+                                      prop="name"
+                                      label="电影名"
+                                      width="180">
+                                    </el-table-column>
+                                    <el-table-column
+                                      prop="grade"
+                                      label="评分"
+                                      width="180">
+                                    </el-table-column>
+                                     <el-table-column
+                                      prop="time"
+                                      label="上映时间">
+                                    </el-table-column>
+                                </el-table>
+                            </div>
+
+                        
+
+                        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        
+                           
+                    <!-- </el-collapse> -->
+                </el-form-item>
+            </el-form>
+        </div>
+    </el-main>
+{% endblock %}
+<!-- content End -->
+
+<!-- script start -->
+{% block mainvue %}
+    <script>
+        var app = new Vue({
+            el: '#app',
+            elimiters: ['{[', ']}'],
+            data: {
+                menuActive:'4',
+                form:{
+                    activeName: '0',
+                },
+                value0:'',//图表类型
+                value1:'',
+                opt0: [{
+                    value: '0',
+                    label: '所有类别'
+                }, {
+                    value: '1',
+                    label: '动作片'
+                }, {
+                    value: '2',
+                    label: '喜剧片'
+                }, {
+                    value: '3',
+                    label: '冒险片'
+                }, {
+                    value: '4',
+                    label: '剧情片'
+                }, {
+                    value: '4',
+                    label: '爱情片'
+                }],
+                opt1: [{
+                    value: '0',
+                    label: '按时间排序'
+                }, {
+                    value: '1',
+                    label: '按评分排序'
+                }],                
+                startm: '',
+                endm: '',
+                resource: 'Hello',
+                startDatePicker: '',
+                endDatePicker: '',
+                chartTop: '',
+                chartModel: '',
+                tableData:'',
+
+            },
+            created: function(){
+                this.startDatePicker = this.startDatePicker2()
+                this.endDatePicker = this.endDatePicker2()
+            },
+            methods: {
+                startDatePicker2: function(){
+                    let self = this
+                    return {
+                        disabledDate(time){
+                            let startDate = new Date(2015, 0)
+                            if(self.endm){
+                                return time.getTime() > new Date(self.endm).getTime() || time.getTime() < startDate
+                            }
+                            return time.getTime() < startDate//开始时间不选时，结束时间最大值小于等于当天
+                        }
+                    }
+                },
+                endDatePicker2: function(){
+                    let self = this
+                    return {
+                        disabledDate(time){
+                            let endDate = new Date(2018, 11)
+                            if(self.startm){
+                                return new Date(self.startm).getTime() > time.getTime() || time.getTime() > endDate
+                            }else{
+                                return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
+                            }
+                        }
+                    }
+                },
+                //////////////////////////////////////Top10电影////////////////////////////////////////////////////////
+                submitTop: function(){
+                    if(!this.startm || !this.endm){
+                        alert('请输入正确的起始日期')
+                    }
+                    axios.post('/resource', {
+                        type: 4,
+                        startm: this.startm,
+                        endm: this.endm
+                    })
+                        .then(response => {
+                            if(this.value0 != '6' && !this.chartTop)
+                                this.chartTop = echarts.init(document.getElementById('chartTop'));
+                            console.log(response)
+                            this.resource = response.data
+                            ///////////////////////////////表格////////////////////////
+                            if(this.value0 == '6'){
+                                this.tableData = []
+                                for (prop in this.resource) {
+                                      this.tableData.push({grade: this.resource[prop][1], name: this.resource[prop][0]})
+                                    }
+                                console.log(this.tableData)
+                            }
+                            else{
+                                //////////////////////////////////////饼状图////////////////////////////////////////////////////////
+                                if(this.value0 == '0'){
+                                    console.log('Hello')
+                                    data = []
+                                    for (prop in this.resource) {
+                                      data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
+                                    }
+                                    console.log(data)
+                                    var option = {
+                                        tooltip : {
+                                            trigger: 'item',
+                                            formatter: "{a} <br/>{b} : {c}"
+                                        },
+                                        legend: {
+                                            orient: 'vertical',
+                                            left: 'left',
+                                        },
+                                        xAxis: {
+                                            show: false
+                                        },
+                                        yAxis: {
+                                           show: false
+                                        },
+                                        toolbox: {
+                                            feature: {
+                                                saveAsImage: {
+                                                    title:'保存'
+                                                }
+                                            }
+                                        },
+
+                                        series: [{
+                                            name: '评分',
+                                            type: 'pie',
+                                            radius: '55%',
+                                            data: data
+                                        }]
+                                    }
+                                }
+                                //////////////////////////////////////词云//////////////////////////////////////////////////////////
+                                else if(this.value0 == '3'){
+                                    console.log('Hello')
+                                    data = []
+                                    for (prop in this.resource) {
+                                      data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
+                                    }
+                                    console.log(data)
+                                    var option = {
+                                        series: [{
+                                            type: 'wordCloud',
+                                            shape: 'circle',
+                                            // maskImage: maskImage,
+                                            left: 'center',
+                                            top: 'center',
+                                            width: '70%',
+                                            height: '80%',
+                                            right: null,
+                                            bottom: null,
+                                            sizeRange: [12, 60],
+                                            rotationRange: [-90, 90],
+                                            rotationStep: 45,
+                                            gridSize: 8,
+                                            drawOutOfBound: false,
+                                            textStyle: {
+                                                normal: {
+                                                    fontFamily: 'sans-serif',
+                                                    fontWeight: 'bold',
+                                                    // Color can be a callback function or a color string
+                                                    color: function () {
+                                                        // Random color
+                                                        return 'rgb(' + [
+                                                            Math.round(Math.random() * 160),
+                                                            Math.round(Math.random() * 160),
+                                                            Math.round(Math.random() * 160)
+                                                        ].join(',') + ')';
+                                                    }
+                                                },
+                                                emphasis: {
+                                                    shadowBlur: 10,
+                                                    shadowColor: '#333'
+                                                }
+                                            },
+                                            data: data
+                                        }]
+                                    }
+                                }
+                                //////////////////////////////////////漏斗图////////////////////////////////////////////////////////
+                                else if(this.value0 == '5'){
+                                    console.log('Hello')
+                                    data = []
+                                    for (prop in this.resource) {
+                                      data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
+                                    }
+                                    console.log(data)
+                                    var option = {
+                                        tooltip : {
+                                            trigger: 'item',
+                                            formatter: "{a} <br/>{b} : {c}"
+                                        },
+                                        legend: {
+                                            orient: 'vertical',
+                                            left: 'left',
+                                        },
+                                        
+                                        toolbox: {
+                                            feature: {
+                                                saveAsImage: {
+                                                    title:'保存'
+                                                }
+                                            }
+                                        },
+                                        calculable: true,
+                                        series: [
+                                            {
+                                                name:'漏斗图',
+                                                type:'funnel',
+                                                left: '20%',
+                                                top: 60,
+                                                //x2: 80,
+                                                bottom: 60,
+                                                width: '70%',
+                                                // height: {totalHeight} - y - y2,
+                                                min: 0,
+                                                max: 100,
+                                                minSize: '30%',
+                                                maxSize: '100%',
+                                                sort: 'descending',
+                                                gap: 2,
+                                                label: {
+                                                    normal: {
+                                                        show: true,
+                                                        position: 'inside'
+                                                    },
+                                                    emphasis: {
+                                                        textStyle: {
+                                                            fontSize: 20
+                                                        }
+                                                    }
+                                                },
+                                                labelLine: {
+                                                    normal: {
+                                                        length: 10,
+                                                        lineStyle: {
+                                                            width: 1,
+                                                            type: 'solid'
+                                                        }
+                                                    }
+                                                },
+                                                itemStyle: {
+                                                    normal: {
+                                                        borderColor: '#fff',
+                                                        borderWidth: 1
+                                                    }
+                                                },
+                                            data: data
+                                        }]
+                                    }
+                                }
+                                this.chartTop.setOption(option, {
+                                    notMerge: false
+                                })
+                            }
+                        }, response => {
+                            console.log(response)
+                        })
+                },
+                //////////////////////////////////////劳模演员/////////////////////////////////////////////////////////////////
+                submitModel: function(){
+                    if(this.value1 != '6'){
+                        this.chartModel = echarts.init(document.getElementById('chartModel'));
+                    }
+                    if(!this.startm || !this.endm){
+                        alert('请输入正确的起始日期')
+                    }
+                    axios.post('/resource', {
+                        type: 5,
+                        startm: this.startm,
+                        endm: this.endm
+                    })
+                        .then(response => {
+                            console.log(response)
+                            this.resource = response.data
+                            ///////////////////////////////表格////////////////////////
+                            if(this.value1 == '6'){
+                                this.tableData = []
+                                for (prop in this.resource) {
+                                      this.tableData.push({grade: this.resource[prop][1], name: this.resource[prop][0]})
+                                    }
+                                console.log(this.tableData)
+                            }
+                            else{
+                                //////////////////////////////////////饼状图////////////////////////////////////////////////////////
+                                if(this.value1 == '0'){
+                                    console.log('Hello')
+                                    data = []
+                                    for (prop in this.resource) {
+                                      data.push({value: this.resource[prop][1], name: this.resource[prop][0]})
+                                    }
+                                    console.log(data)
+                                    var option = {
+                                        tooltip : {
+                                            trigger: 'item',
+                                            formatter: "{a} <br/>{b} : {c}"
+                                        },
+                                        legend: {
+                                            orient: 'vertical',
+                                            left: 'left',
+                                        },
+                                        xAxis: {
+                                            show: false
+                                        },
+                                        yAxis: {
+                                           show: false
+                                        },
+                                        toolbox: {
+                                            feature: {
+                                                saveAsImage: {
+                                                    title:'保存'
+                                                }
+                                            }
+                                        },
+                                        series: [{
+                                            name: '出演次数',
+                                            type: 'pie',
+                                            radius: '55%',
+                                            data: data
+                                        }]
+                                    }
+                                }
+                                this.chartModel.setOption(option)
+                            }
+
+                        }, response => {
+                            console.log(response)
+                        })
+                }
+            }
+        })
+    </script>
+{% endblock %}
+<!-- script end -->
+
