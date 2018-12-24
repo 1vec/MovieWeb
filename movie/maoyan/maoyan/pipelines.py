@@ -20,9 +20,9 @@ class SQLitePipeline(object):
 
     #打开数据库
     def open_spider(self, spider):
-        #db_name = spider.settings.get('SQLITE_DB_NAME', 'database.sqlite')
+        db_name = spider.settings.get('SQLITE_DB_NAME')
 
-        self.db_conn = sqlite3.connect('db.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
+        self.db_conn = sqlite3.connect(db_name, detect_types=sqlite3.PARSE_DECLTYPES)
         self.db_conn.execute("PRAGMA foreign_keys = ON")
         self.db_conn.row_factory = sqlite3.Row
         self.db_cur = self.db_conn.cursor()

@@ -15,7 +15,7 @@ SPIDER_MODULES = ['maoyan.spiders']
 NEWSPIDER_MODULE = 'maoyan.spiders'
 
 # sqlite 配置
-SQLITE_DB_NAME = 'scrapy.db'
+SQLITE_DB_NAME = 'db.sqlite'
 
 ITEM_PIPELINES = {
    'maoyan.pipelines.SQLitePipeline': 400,

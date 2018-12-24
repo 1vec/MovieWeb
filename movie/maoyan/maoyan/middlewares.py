@@ -205,11 +205,11 @@ class SeleniumMiddleware():
         proxyUser = "HU0PGV22PUNAMOXP"
         proxyPass = "4B0B5460D5425072"
 
-        proxy_auth_plugin_path = self.create_proxy_auth_extension(
-            proxy_host=proxyHost,
-            proxy_port=proxyPort,
-            proxy_username=proxyUser,
-            proxy_password=proxyPass)
+        #proxy_auth_plugin_path = self.create_proxy_auth_extension(
+            #proxy_host=proxyHost,
+            #proxy_port=proxyPort,
+            #proxy_username=proxyUser,
+            #proxy_password=proxyPass)
 
         chrome_options = webdriver.ChromeOptions()
         prefs = {"profile.managed_default_content_settings.images": 2}
