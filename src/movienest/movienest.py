@@ -53,6 +53,8 @@ def hello():
         data = box_yearly(req['startm'], req['endm'])
     elif code == 7:
         data = get_listing(req['startm'], req['endm'], req['mtype'])
+    elif code == 8:
+        data = search_db(req['stype'], req['keyword'])
     return Response(json.dumps(data))
 
 
@@ -225,7 +227,6 @@ def get_model(start, end):
 
 def get_listing(start, end, mtype=None):
     db = get_db()
-    keys = db.execute('SELECT * FROM movies LIMIT 1').fetchone().keys()
     result = []
     if mtype is None:
         movies = db.execute(
@@ -269,5 +270,55 @@ def get_listing(start, end, mtype=None):
             'actors': actors,
             'types': types
             })
+    return result
+
+def search_db(stype, keyword):
+    db = get_db()
+    if stype == 'name':
+        movies = db.execute(
+                'SELECT id, name, date, score FROM movies '
+                'WHERE name = ? ',
+                (keyword, )).fetchall()
+    elif stype == 'director':
+        movies = db.execute(
+                'SELECT id, name, date, score FROM movies '
+                'WHERE director = ? ',
+                (keyword, )).fetchall()
+    elif stype == 'actor':
+        movies = db.execute(
+                'SELECT m.id id, m.name name, date, score '
+                'FROM movie_actor ma '
+                'JOIN movies m ON m.id = ma.movie_id '
+                'JOIN actors a ON ma.actor_id = a.id '
+                'WHERE a.name = ?',
+                (keyword, )).fetchall()
+    print(stype, keyword)
+    print(movies)
+    result = []
+    for each in movies:
+        actors = db.execute(
+                'SELECT a.name '
+                'FROM movie_actor ma '
+                'JOIN actors a ON ma.actor_id = a.id '
+                'WHERE movie_id = ?',
+                (each['id'], )).fetchall()
+        gen = (a[0] for a in actors)
+        actors = ', '.join(gen)
+        types = db.execute(
+                'SELECT t.name '
+                'FROM movie_type mt '
+                'JOIN types t ON mt.type_id = t.id '
+                'WHERE movie_id = ?',
+                (each['id'], )).fetchall()
+        gen = (a[0] for a in types)
+        types = ', '.join(gen)
+        result.append({
+            'name': each['name'],
+            'date': each['date'],
+            'score': each['score'],
+            'actors': actors,
+            'types': types
+            })
     print(result)
     return result
+

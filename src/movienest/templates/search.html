@@ -47,25 +47,28 @@
                             style="width: 80%; left: 10%"
                             height="400px"
                             >
-                            <el-table-column
-                              prop="rate"
-                              label="排名"
-                              width="180">
-                            </el-table-column>
-                            <el-table-column
-                              prop="name"
-                              label="电影名"
-                              width="180">
-                            </el-table-column>
-                            <el-table-column
-                              prop="grade"
-                              label="评分"
-                              width="180">
-                            </el-table-column>
-                            <el-table-column
-                              prop="time"
-                              label="上映时间">
-                            </el-table-column>
+                           <el-table-column
+                             prop="name"
+                             label="电影名"
+                             width="180">
+                           </el-table-column>
+                           <el-table-column
+                             prop="types"
+                             label="分类">
+                           </el-table-column>
+                           <el-table-column
+                             prop="date"
+                             label="上映时间">
+                           </el-table-column>
+                           <el-table-column
+                             prop="actors"
+                             label="演员">
+                           </el-table-column>
+                           <el-table-column
+                             prop="score"
+                             label="评分"
+                             width="180">
+                           </el-table-column>
                           </el-table>
                       </div>
                 </el-form-item>
@@ -87,20 +90,14 @@
                 },
                 value0:'',//搜索类型
                 opt0: [{
-                    value: '0',
-                    label: '所有类别'
-                }, {
-                    value: '1',
+                    value: 'name',
                     label: '电影名'
                 }, {
-                    value: '2',
+                    value: 'director',
                     label: '导演'
                 }, {
-                    value: '3',
+                    value: 'actor',
                     label: '演员'
-                }, {
-                    value: '4',
-                    label: 'xxxx'
                 }],
                 resource: 'Hello',
                 tableData: [],
@@ -109,17 +106,13 @@
             methods: {
                 submitTop: function(){
                     axios.post('/resource', {
-                        type: 7,
+                        type: 8,
+                        stype: this.value0,
+                        keyword: this.input
                     })
                         .then(response => {
                             console.log(response)
-                            this.resource = response.data
-                            ///////////////////////////////表格////////////////////////
-                                this.tableData = []
-                                for (prop in this.resource) {
-                                      this.tableData.push({grade: this.resource[prop][1], name: this.resource[prop][0]})
-                                    }
-                                console.log(this.tableData)
+                            this.tableData = response.data
                         }, response => {
                             console.log(response)
                         })
