@@ -49,8 +49,8 @@ def hello():
         data = rank_score(req['startm'], req['endm'])
     elif code == 5:
         data = get_model(req['startm'], req['endm'])
-    elif code == 5:
-        data = get_model(req['startm'], req['endm'])
+    elif code == 6:
+        data = box_yearly(req['startm'], req['endm'])
     return Response(json.dumps(data))
 
 
@@ -157,6 +157,38 @@ def box_type_monthly(start, end):
                 'WHERE substr(date, 1, 7) = ? AND t.name = ? ',
                 (month, tp)).fetchone()['value'])
     return unique_date, result
+
+def box_yearly(start, end, mtype=None):
+    db = get_db()
+    unique_year = db.execute(
+        'SELECT DISTINCT substr(date, 1, 4)'
+        'FROM movies '
+        'WHERE ? <= substr(date, 1, 4) AND substr(date, 1, 4) <= ? '
+        'ORDER BY date',
+        (start, end)).fetchall()
+    unique_year = [x[0] for x in unique_year]
+    result = {}
+    for year in unique_year:
+        result[year] = list()
+        for i in range(1, 13):
+            month = '{}-{:02d}'.format(year, i)
+            print(month)
+            if mtype is not None:
+                result[year].append(db.execute(
+                    'SELECT sum(box_office) value '
+                    'FROM movie_type mt'
+                    'JOIN movies m ON m.id = mt.movie_id '
+                    'JOIN types t ON t.id = mt.type_id '
+                    'WHERE substr(date, 1, 7) = ? AND t.name = ? ',
+                    (month, mtype)).fetchone()['value'])
+            else:
+                result[year].append(db.execute(
+                    'SELECT sum(box_office) value '
+                    'FROM movies '
+                    'WHERE substr(date, 1, 7) = ?',
+                    (month, )).fetchone()['value'])
+    print(result)
+    return [i for i in range(1, 13)], result
 
 
 def rank_score(start, end):

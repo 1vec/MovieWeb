@@ -266,9 +266,9 @@
                         alert('请输入正确的起始日期')
                     }
                     axios.post('/resource', {
-                        type: 8,
+                        type: 6,
                         startm: this.startm,
-                        endm: this.endm
+                        endm: this.endm,
                     })
                         .then(response => {
                             this.resource = response.data
@@ -276,7 +276,7 @@
                               option = genOption_line(this.resource)
                             }
                             this.chartYear.setOption(option, {
-                                notMerge: false
+                                notMerge: true
                             })
                         }, response => {
                             console.log(response)
