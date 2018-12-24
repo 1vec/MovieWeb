@@ -59,23 +59,26 @@
                                height="400px"
                                >
                                <el-table-column
-                                 prop="rate"
-                                 label="排名"
-                                 width="180">
-                               </el-table-column>
-                               <el-table-column
                                  prop="name"
                                  label="电影名"
                                  width="180">
                                </el-table-column>
                                <el-table-column
-                                 prop="grade"
-                                 label="评分"
-                                 width="180">
+                                 prop="types"
+                                 label="分类">
                                </el-table-column>
                                <el-table-column
-                                 prop="time"
+                                 prop="date"
                                  label="上映时间">
+                               </el-table-column>
+                               <el-table-column
+                                 prop="actors"
+                                 label="演员">
+                               </el-table-column>
+                               <el-table-column
+                                 prop="score"
+                                 label="评分"
+                                 width="180">
                                </el-table-column>
                            </el-table>
                        </div>
@@ -98,22 +101,22 @@
                 },
                 value0:'',//影片类型
                 opt0: [{
-                    value: '0',
+                    value: null,
                     label: '所有类别'
                 }, {
-                    value: '1',
+                    value: '动作',
                     label: '动作片'
                 }, {
-                    value: '2',
+                    value: '喜剧',
                     label: '喜剧片'
                 }, {
-                    value: '3',
+                    value: '冒险',
                     label: '冒险片'
                 }, {
-                    value: '4',
+                    value: '剧情',
                     label: '剧情片'
                 }, {
-                    value: '5',
+                    value: '爱情',
                     label: '爱情片'
                 }],
                 startm: '',
@@ -121,7 +124,7 @@
                 resource: 'Hello',
                 startDatePicker: '',
                 endDatePicker: '',
-                tableData:'',
+                tableData: [],
 
             },
             created: function(){
@@ -154,23 +157,19 @@
                         }
                     }
                 },
-                //////////////////////////////////////Top10电影////////////////////////////////////////////////////////
                 submitTop: function(){
                     if(!this.startm || !this.endm){
                         alert('请输入正确的起始日期')
                     }
                     axios.post('/resource', {
-                        type: 6,
+                        type: 7,
                         startm: this.startm,
-                        endm: this.endm
+                        endm: this.endm,
+                        mtype: this.value0
                     })
                         .then(response => {
-                            ///////////////////////////////表格////////////////////////
-                                this.tableData = []
-                                for (prop in this.resource) {
-                                      this.tableData.push({grade: this.resource[prop][1], name: this.resource[prop][0]})
-                                    }
-                                console.log(this.tableData)
+                            console.log(response.data)
+                            this.tableData = response.data
                         }, response => {
                             console.log(response)
                         })

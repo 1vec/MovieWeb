@@ -51,6 +51,8 @@ def hello():
         data = get_model(req['startm'], req['endm'])
     elif code == 6:
         data = box_yearly(req['startm'], req['endm'])
+    elif code == 7:
+        data = get_listing(req['startm'], req['endm'], req['mtype'])
     return Response(json.dumps(data))
 
 
@@ -219,4 +221,53 @@ def get_model(start, end):
             'LIMIT 15',
             (start, end)).fetchall():
         result.append(tuple(each))
+    return result
+
+def get_listing(start, end, mtype=None):
+    db = get_db()
+    keys = db.execute('SELECT * FROM movies LIMIT 1').fetchone().keys()
+    result = []
+    if mtype is None:
+        movies = db.execute(
+                'SELECT id, name, date, score FROM movies '
+                'WHERE ? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ? '
+                'ORDER BY score DESC '
+                'LIMIT 50',
+                (start, end)).fetchall()
+    else:
+        movies = db.execute(
+                'SELECT m.id id, m.name name, date, score '
+                'FROM movie_type mt '
+                'JOIN movies m ON m.id = mt.movie_id '
+                'JOIN types t ON t.id = mt.type_id '
+                'WHERE ? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ? AND t.name = ? '
+                'ORDER BY score DESC '
+                'LIMIT 50',
+                (start, end, mtype)).fetchall()
+    print(movies)
+    for each in movies:
+        actors = db.execute(
+                'SELECT a.name '
+                'FROM movie_actor ma '
+                'JOIN actors a ON ma.actor_id = a.id '
+                'WHERE movie_id = ?',
+                (each['id'], )).fetchall()
+        gen = (a[0] for a in actors)
+        actors = ', '.join(gen)
+        types = db.execute(
+                'SELECT t.name '
+                'FROM movie_type mt '
+                'JOIN types t ON mt.type_id = t.id '
+                'WHERE movie_id = ?',
+                (each['id'], )).fetchall()
+        gen = (a[0] for a in types)
+        types = ', '.join(gen)
+        result.append({
+            'name': each['name'],
+            'date': each['date'],
+            'score': each['score'],
+            'actors': actors,
+            'types': types
+            })
+    print(result)
     return result
