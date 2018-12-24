@@ -6,7 +6,7 @@ import json
 bp = Blueprint('movienest', __name__)
 
 
-@bp.route('/home')
+@bp.route('/')
 def home():
     return render_template('home.html')
 
