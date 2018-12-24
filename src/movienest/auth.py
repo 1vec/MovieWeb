@@ -21,7 +21,7 @@ def login():
         error = None
 
         if user is None:
-            error = '请输入用户名'
+            error = '用户不存在'
         elif password is None:
             error = '请输入密码'
         elif not check_password_hash(user['password'], password):
