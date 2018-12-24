@@ -49,6 +49,8 @@ def hello():
         data = rank_score(req['startm'], req['endm'])
     elif code == 5:
         data = get_model(req['startm'], req['endm'])
+    elif code == 5:
+        data = get_model(req['startm'], req['endm'])
     return Response(json.dumps(data))
 
 
