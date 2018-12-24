@@ -2,8 +2,10 @@ from flask import Blueprint, render_template, request, session, redirect, url_fo
 from werkzeug.security import check_password_hash, generate_password_hash
 from movienest.db import get_db
 import functools
+import re
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+re_password = re.compile(r'\w{8,16}$', flags=re.ASCII)
 
 
 @bp.route('/login', methods=('GET', 'POST'))
@@ -50,6 +52,8 @@ def register():
                 (username, )
         ).fetchone() is not None:
             error = '用户已存在'
+        elif check_valid_password(password) is False:
+            error = '密码应为8-16位字母、数字'
 
         if error is None:
             db.execute(
@@ -61,10 +65,39 @@ def register():
         flash(error)
     return render_template('auth/register.html')
 
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+        return view(**kwargs)
+    return wrapped_view
+
 @bp.route('/password', methods=('GET', 'POST'))
+@login_required
 def password():
     if request.method == 'POST':
-        pass
+        password = request.form['password1']
+        password2 = request.form['password2']
+        db = get_db()
+        error = None
+
+        if password is None:
+            error = '请输入密码'
+        elif password != password2:
+            error = '两次输入密码不一致'
+        elif check_valid_password(password) is False:
+            error = '密码应为8-16位字母、数字'
+        if error is None:
+            db.execute(
+                'UPDATE user '
+                'SET password = ? '
+                'WHERE id = ?',
+                (generate_password_hash(password), g.user['id'])
+            )
+            db.commit()
+            return redirect(url_for('movienest.home'))
+        flash(error)
     return render_template('auth/password.html')
 
 @bp.route('/logout')
@@ -84,11 +117,7 @@ def load_logged_in_user():
             (user_id, )
         ).fetchone()
 
-
-def login_required(view):
-    @functools.wraps(view)
-    def wrapped_view(**kwargs):
-        if g.user is None:
-            return redirect(url_for('auth.login'))
-        return view(**kwargs)
-    return wrapped_view
+def check_valid_password(pwd):
+    if re_password.match(pwd) is None:
+        return False
+    return True
