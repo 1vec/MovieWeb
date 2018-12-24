@@ -87,7 +87,7 @@ function genOption_wordCloud(resource, serieName){
   return option
 }
 
-function genOption_funnel(resource){
+function genOption_funnel(resource, serieName){
   data = []
   for (prop in resource) {
     data.push({value: resource[prop][1], name: resource[prop][0]})
@@ -113,8 +113,8 @@ function genOption_funnel(resource){
     calculable: true,
     series: [
       {
-        name:'评分',
-        type:'funnel',
+        name: serieName,
+        type: 'funnel',
         left: '20%',
         top: 60,
         //x2: 80,

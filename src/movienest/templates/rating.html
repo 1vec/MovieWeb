@@ -54,37 +54,7 @@
                                 <el-button type="primary" v-on:click="submitTop">提交</el-button>
                             </div>
                             
-                            <div v-if="chartType0 == '6'">
-                                <el-table
-                                    :data="tableData"
-                                    stripe
-                                    border
-                                    style="width: 80%; left: 10%"
-                                    height="400px"
-                                    >
-                                    <!-- <el-table-column
-                                      prop="rate"
-                                      label="排名"
-                                      width="180">
-                                    </el-table-column> -->
-                                    <el-table-column
-                                      prop="name"
-                                      label="电影名"
-                                      width="180">
-                                    </el-table-column>
-                                    <el-table-column
-                                      prop="grade"
-                                      label="评分"
-                                      width="180">
-                                    </el-table-column>
-                                    <!-- <el-table-column
-                                      prop="time"
-                                      label="上映时间">
-                                    </el-table-column> -->
-                                </el-table>
-                            </div>
-
-                            <div v-else id="chartTop" style="width: 100%;height: 400px;"></div>
+                            <div id="chartTop" style="width: 100%;height: 400px;"></div>
                         
 
                         <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -123,33 +93,7 @@
                                 </el-col>
                                 <el-button type="primary" v-on:click="submitModel">提交</el-button>
                             </div>
-                            <div v-if="chartType1 == '6'">
-                                <el-table
-                                    :data="tableData"
-                                    stripe
-                                    border
-                                    style="width: 80%; left: 10%"
-                                    height="400px"
-                                    >
-                                    <!-- <el-table-column
-                                      prop="rate"
-                                      label="排名"
-                                      width="180">
-                                    </el-table-column> -->
-                                    <el-table-column
-                                      prop="name"
-                                      label="演员"
-                                      width="180">
-                                    </el-table-column>
-                                    <el-table-column
-                                      prop="grade"
-                                      label="参影数"
-                                      width="180">
-                                    </el-table-column>
-                                    
-                                </el-table>
-                            </div>
-                            <div v-else id="chartModel" style="width: 100%;height: 400px;"></div>
+                            <div id="chartModel" style="width: 100%;height: 400px;"></div>
                         </el-collapse-item>
                     </el-collapse>
                 </el-form-item>
@@ -181,9 +125,6 @@
                 }, {
                     value: '5',
                     label: '漏斗图'
-                }, {
-                    value: '6',
-                    label: '表格'
                 }],
                 opt1: [{
                     value: '0',
@@ -194,9 +135,6 @@
                 }, {
                     value: '5',
                     label: '漏斗图'
-                }, {
-                    value: '6',
-                    label: '表格'
                 }],                
                 startm: '',
                 endm: '',
@@ -252,27 +190,18 @@
                             if(this.chartType0 != '6' && !this.chartTop)
                                 this.chartTop = echarts.init(document.getElementById('chartTop'));
                             this.resource = response.data
-                            ///////////////////////////////表格////////////////////////
-                            if(this.chartType0 == '6'){
-                                this.tableData = []
-                                for (prop in this.resource) {
-                                      this.tableData.push({grade: this.resource[prop][1], name: this.resource[prop][0]})
-                                    }
+                            if(this.chartType0 == '0'){
+                              option = genOption_pie(this.resource, '评分')
                             }
-                            else{
-                                if(this.chartType0 == '0'){
-                                  option = genOption_pie(this.resource, '评分')
-                                }
-                                else if(this.chartType0 == '3'){
-                                  option = genOption_wordCloud(this.resource, '评分')
-                                }
-                                else if(this.chartType0 == '5'){
-                                  option = genOption_funnel(this.resource)
-                                }
-                                this.chartTop.setOption(option, {
-                                    notMerge: true
-                                })
+                            else if(this.chartType0 == '3'){
+                              option = genOption_wordCloud(this.resource, '评分')
                             }
+                            else if(this.chartType0 == '5'){
+                              option = genOption_funnel(this.resource, '评分')
+                            }
+                            this.chartTop.setOption(option, {
+                                notMerge: true
+                            })
                         }, response => {
                             console.log(response)
                         })
@@ -292,27 +221,18 @@
                     })
                         .then(response => {
                             this.resource = response.data
-                            ///////////////////////////////表格////////////////////////
-                            if(this.chartType1 == '6'){
-                                this.tableData = []
-                                for (prop in this.resource) {
-                                      this.tableData.push({grade: this.resource[prop][1], name: this.resource[prop][0]})
-                                    }
+                            if(this.chartType1 == '0'){
+                              option = genOption_pie(this.resource, '出演次数')
                             }
-                            else{
-                                if(this.chartType1 == '0'){
-                                  option = genOption_pie(this.resource, '出演次数')
-                                }
-                                else if(this.chartType1 == '3'){
-                                  option = genOption_wordCloud(this.resource, '出演次数')
-                                }
-                                else if(this.chartType1 == '5'){
-                                  option = genOption_funnel(this.resource)
-                                }
-                                this.chartModel.setOption(option, {
-                                    notMerge: true
-                                })
+                            else if(this.chartType1 == '3'){
+                              option = genOption_wordCloud(this.resource, '出演次数')
                             }
+                            else if(this.chartType1 == '5'){
+                              option = genOption_funnel(this.resource, '出演次数')
+                            }
+                            this.chartModel.setOption(option, {
+                                notMerge: true
+                            })
 
                         }, response => {
                             console.log(response)
