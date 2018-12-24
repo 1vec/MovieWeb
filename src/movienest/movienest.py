@@ -61,7 +61,6 @@ def hello():
 def count_type(start, end):
     result = {}
     db = get_db()
-    print(start, end)
     for each_movie in db.execute(
             'SELECT type FROM movies WHERE'
             '? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ?',
@@ -84,7 +83,6 @@ def count_type_monthly(start, end):
     result = {}
     unique_date = set()
     db = get_db()
-    print(start, end)
     for each_movie in db.execute(
             'SELECT type, substr(date, 1, 7) FROM movies WHERE'
             '? <= substr(date, 1, 7) AND substr(date, 1, 7) <= ?',
@@ -116,7 +114,6 @@ def count_type_monthly(start, end):
 def box_type(start, end):
     result = []
     db = get_db()
-    print(start, end)
     for each in db.execute(
             'SELECT t.name, sum(box_office) value '
             'FROM movie_type mt '
@@ -128,7 +125,6 @@ def box_type(start, end):
             'LIMIT 25',
             (start, end)).fetchall():
         result.append(tuple(each))
-    print(result)
     return result
 
 
@@ -176,7 +172,6 @@ def box_yearly(start, end, mtype=None):
         result[year] = list()
         for i in range(1, 13):
             month = '{}-{:02d}'.format(year, i)
-            print(month)
             if mtype is not None:
                 result[year].append(db.execute(
                     'SELECT sum(box_office) value '
@@ -191,7 +186,6 @@ def box_yearly(start, end, mtype=None):
                     'FROM movies '
                     'WHERE substr(date, 1, 7) = ?',
                     (month, )).fetchone()['value'])
-    print(result)
     return [i for i in range(1, 13)], result
 
 
@@ -205,7 +199,6 @@ def rank_score(start, end):
             'LIMIT 10',
             (start, end)).fetchall():
         result.append(tuple(each))
-    print(result)
     return result
 
 
@@ -245,7 +238,6 @@ def get_listing(start, end, mtype=None):
                 'ORDER BY score DESC '
                 'LIMIT 50',
                 (start, end, mtype)).fetchall()
-    print(movies)
     for each in movies:
         actors = db.execute(
                 'SELECT a.name '
@@ -292,8 +284,6 @@ def search_db(stype, keyword):
                 'JOIN actors a ON ma.actor_id = a.id '
                 'WHERE a.name = ?',
                 (keyword, )).fetchall()
-    print(stype, keyword)
-    print(movies)
     result = []
     for each in movies:
         actors = db.execute(
@@ -319,6 +309,5 @@ def search_db(stype, keyword):
             'actors': actors,
             'types': types
             })
-    print(result)
     return result
 
