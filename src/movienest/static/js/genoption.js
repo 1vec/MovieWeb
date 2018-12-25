@@ -132,14 +132,15 @@ function genOption_funnel(resource, serieName, optTitle){
         // height: {totalHeight} - y - y2,
         min: 0,
         max: 100,
-        minSize: '100%',
-        maxSize: '100%',
+        minSize: '60%',
+        maxSize: '60%',
         sort: 'descending',
         gap: 2,
         label: {
           normal: {
             show: true,
-            position: 'inside'
+            position: 'inside',
+            formatter: '{b} {c}'
           },
           emphasis: {
             textStyle: {
