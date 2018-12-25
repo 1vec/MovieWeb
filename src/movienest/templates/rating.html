@@ -197,13 +197,13 @@
                                         subtext: [this.startm,this.endm]
                                     } 
                             if(this.chartType0 == '0'){
-                              option = genOption_pie(this.resource, '评分')
+                              option = genOption_pie(this.resource, '评分', title)
                             }
                             else if(this.chartType0 == '3'){
-                              option = genOption_wordCloud(this.resource, '评分')
+                              option = genOption_wordCloud(this.resource, '评分', title)
                             }
                             else if(this.chartType0 == '5'){
-                              option = genOption_funnel(this.resource, '评分')
+                              option = genOption_funnel(this.resource, '评分', title)
                             }
                             this.chartTop.setOption(option, {
                                 notMerge: true
@@ -234,13 +234,13 @@
                                         subtext: [this.startm,this.endm]
                                     } 
                             if(this.chartType1 == '0'){
-                              option = genOption_pie(this.resource, '出演次数')
+                              option = genOption_pie(this.resource, '出演次数', title)
                             }
                             else if(this.chartType1 == '3'){
-                              option = genOption_wordCloud(this.resource, '出演次数')
+                              option = genOption_wordCloud(this.resource, '出演次数', title)
                             }
                             else if(this.chartType1 == '5'){
-                              option = genOption_funnel(this.resource, '出演次数')
+                              option = genOption_funnel(this.resource, '出演次数', title)
                             }
                             this.chartModel.setOption(option, {
                                 notMerge: true
