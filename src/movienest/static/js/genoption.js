@@ -29,6 +29,12 @@ function genOption_pie(resource, serieName, optTitle){
 
     series: [{
       name: serieName,
+      label: {
+        normal: {
+          show: true,
+          formatter: '{b} {c}'
+        },
+      },
       type: 'pie',
       radius: '55%',
       data: data

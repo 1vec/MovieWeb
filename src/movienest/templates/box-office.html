@@ -232,7 +232,7 @@
                               option = genOption_pie(this.resource, '票房', title)
                             }
                             else if(this.chartType0 == '3'){
-                              option = genOption_wordCloud(this.resource, '票房')
+                              option = genOption_wordCloud(this.resource, '票房', title)
                             }
                             this.chartRate.setOption(option, {
                                 notMerge: true
@@ -259,7 +259,7 @@
                             this.resource = response.data
                             title = {
                                         left: 'right',
-                                        top: '90%',
+                                        top: '88%',
                                         text: '票房趋势 MovieNest',
                                         subtext: [this.startm,this.endm]
                                     } 
@@ -292,7 +292,7 @@
                                         left: 'right',
                                         top: '90%',
                                         text: '总票房同比 MovieNest',
-                                        subtext: [this.startm,this.endm]
+                                        
                                     } 
                             if(this.chartType2 == '2'){
                               option = genOption_line(this.resource, title)
