@@ -225,6 +225,8 @@ def get_model(start, end):
             'ORDER BY times DESC '
             'LIMIT 15',
             (start, end)).fetchall():
+        if each['times'] < 2:
+            break
         result.append(tuple(each))
     return result
 
