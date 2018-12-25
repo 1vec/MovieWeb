@@ -98,22 +98,7 @@
                             <div class="block" style="margin-top: 10px">
                                 <el-col :span="12" :offset="1">
                                     <span class="demonstration">时间：</span>
-                                    <el-date-picker
-                                            v-model="starty"
-                                            align="right"
-                                            type="year"
-                                            placeholder="开始时间"
-                                            value-format = "yyyy"
-                                            :picker-options="startDatePicker">
-                                    </el-date-picker>
-                                    <el-date-picker
-                                            v-model="endy"
-                                            align="right"
-                                            type="year"
-                                            placeholder="结束时间"
-                                            value-format = "yyyy"
-                                            :picker-options="endDatePicker">
-                                    </el-date-picker>
+                                    <span style="font-size: 150%">2015-2018</span>
                                 </el-col>
                                 <el-col :span="8">
                                     <span class="demonstration">图表类型：</span>
@@ -187,10 +172,11 @@
                     return {
                         disabledDate(time){
                             let startDate = new Date(2015, 0)
+                            let endDate = new Date(2018, 11)
                             if(self.endm){
                                 return time.getTime() > new Date(self.endm).getTime() || time.getTime() < startDate
                             }
-                            return time.getTime() < startDate//开始时间不选时，结束时间最大值小于等于当天
+                            return time.getTime() > endDate || time.getTime() < startDate
                         }
                     }
                 },
@@ -198,11 +184,12 @@
                     let self = this
                     return {
                         disabledDate(time){
+                            let startDate = new Date(2015, 0)
                             let endDate = new Date(2018, 11)
                             if(self.startm){
                                 return new Date(self.startm).getTime() > time.getTime() || time.getTime() > endDate
                             }else{
-                                return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
+                                return startDate > time.getTime() || time.getTime() > endDate
                             }
                         }
                     }
@@ -278,13 +265,10 @@
                     if(!this.chartYear)
                         this.chartYear = echarts.init(document.getElementById('chartYear'));
 
-                    if(!this.starty || !this.endy){
-                        alert('请输入正确的起始日期')
-                    }
                     axios.post('/resource', {
                         type: 6,
-                        startm: this.starty,
-                        endm: this.endy,
+                        startm: '2015',
+                        endm: '2018',
                     })
                         .then(response => {
                             this.resource = response.data

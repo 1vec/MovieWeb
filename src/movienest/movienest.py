@@ -156,13 +156,16 @@ def box_type_monthly(start, end):
     for tp, *other in mtype:
         result.setdefault(tp, list())
         for month in unique_date:
-            result[tp].append(db.execute(
+            value = db.execute(
                 'SELECT sum(box_office) value '
                 'FROM movie_type mt '
                 'JOIN movies m ON m.id = mt.movie_id '
                 'JOIN types t ON t.id = mt.type_id '
                 'WHERE substr(date, 1, 7) = ? AND t.name = ? ',
-                (month, tp)).fetchone()['value'])
+                (month, tp)).fetchone()['value']
+            if value is None:
+                value = 0
+            result[tp].append(value)
     return unique_date, result
 
 def box_yearly(start, end, mtype=None):
