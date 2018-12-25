@@ -97,7 +97,12 @@ function genOption_wordCloud(resource, serieName, optTitle){
 
 function genOption_funnel(resource, serieName, optTitle){
   data = []
+  minValue = resource[0][1]
+  maxValue = resource[0][1]
   for (prop in resource) {
+    value = resource[prop][1]
+    minValue = value < minValue ? value : minValue
+    minValue = value > minValue ? value : minValue
     data.push({value: resource[prop][1], name: resource[prop][0]})
   }
   console.log(data)
@@ -130,17 +135,17 @@ function genOption_funnel(resource, serieName, optTitle){
         bottom: 60,
         width: '70%',
         // height: {totalHeight} - y - y2,
-        min: 0,
-        max: 100,
-        minSize: '60%',
+        min: minValue,
+        max: maxValue,
+        minSize: '55%',
         maxSize: '60%',
         sort: 'descending',
-        gap: 2,
+        gap: 1,
         label: {
           normal: {
             show: true,
             position: 'inside',
-            formatter: '{b} {c}'
+            formatter: '{b} ({c})'
           },
           emphasis: {
             textStyle: {
