@@ -98,22 +98,7 @@
                             <div class="block" style="margin-top: 10px">
                                 <el-col :span="12" :offset="1">
                                     <span class="demonstration">时间：</span>
-                                    <el-date-picker
-                                            v-model="startm"
-                                            align="right"
-                                            type="year"
-                                            placeholder="开始时间"
-                                            value-format = "yyyy"
-                                            :picker-options="startDatePicker">
-                                    </el-date-picker>
-                                    <el-date-picker
-                                            v-model="endm"
-                                            align="right"
-                                            type="year"
-                                            placeholder="结束时间"
-                                            value-format = "yyyy"
-                                            :picker-options="endDatePicker">
-                                    </el-date-picker>
+                                    <span style="font-size: 150%">2015-2018</span>
                                 </el-col>
                                 <el-col :span="8">
                                     <span class="demonstration">图表类型：</span>
@@ -264,13 +249,10 @@
                     if(!this.chartYear)
                         this.chartYear = echarts.init(document.getElementById('chartYear'));
 
-                    if(!this.startm || !this.endm){
-                        alert('请输入正确的起始日期')
-                    }
                     axios.post('/resource', {
                         type: 6,
-                        startm: this.startm,
-                        endm: this.endm,
+                        startm: '2015',
+                        endm: '2018',
                     })
                         .then(response => {
                             this.resource = response.data
