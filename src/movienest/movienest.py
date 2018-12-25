@@ -278,15 +278,16 @@ def get_listing(start, end, mtype=None):
 
 def search_db(stype, keyword):
     db = get_db()
+    keyword = '%{}%'.format(keyword)
     if stype == 'name':
         movies = db.execute(
                 'SELECT id, name, date, score FROM movies '
-                'WHERE name = ? ',
+                'WHERE name LIKE ? ',
                 (keyword, )).fetchall()
     elif stype == 'director':
         movies = db.execute(
                 'SELECT id, name, date, score FROM movies '
-                'WHERE director = ? ',
+                'WHERE director LIKE ? ',
                 (keyword, )).fetchall()
     elif stype == 'actor':
         movies = db.execute(
@@ -294,7 +295,7 @@ def search_db(stype, keyword):
                 'FROM movie_actor ma '
                 'JOIN movies m ON m.id = ma.movie_id '
                 'JOIN actors a ON ma.actor_id = a.id '
-                'WHERE a.name = ?',
+                'WHERE a.name LIKE ?',
                 (keyword, )).fetchall()
     result = []
     for each in movies:
