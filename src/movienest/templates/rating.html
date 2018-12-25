@@ -190,6 +190,12 @@
                             if(this.chartType0 != '6' && !this.chartTop)
                                 this.chartTop = echarts.init(document.getElementById('chartTop'));
                             this.resource = response.data
+                            title = {
+                                        left: 'right',
+                                        top: '80%',
+                                        text: 'Top10电影 MovieNest',
+                                        subtext: [this.startm,this.endm]
+                                    } 
                             if(this.chartType0 == '0'){
                               option = genOption_pie(this.resource, '评分')
                             }
@@ -221,6 +227,12 @@
                     })
                         .then(response => {
                             this.resource = response.data
+                            title = {
+                                        left: 'right',
+                                        top: '80%',
+                                        text: '劳模演员 MovieNest',
+                                        subtext: [this.startm,this.endm]
+                                    } 
                             if(this.chartType1 == '0'){
                               option = genOption_pie(this.resource, '出演次数')
                             }
