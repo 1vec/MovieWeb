@@ -190,6 +190,9 @@ function genOption_line(resource, optTitle){
   }
   var option = {
     title: optTitle,
+    tooltip: {
+      trigger: 'axis',
+    },
     legend: {
       data: legend
     },
