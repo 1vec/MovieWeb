@@ -99,7 +99,7 @@
                                 <el-col :span="12" :offset="1">
                                     <span class="demonstration">时间：</span>
                                     <el-date-picker
-                                            v-model="startm"
+                                            v-model="starty"
                                             align="right"
                                             type="year"
                                             placeholder="开始时间"
@@ -107,7 +107,7 @@
                                             :picker-options="startDatePicker">
                                     </el-date-picker>
                                     <el-date-picker
-                                            v-model="endm"
+                                            v-model="endy"
                                             align="right"
                                             type="year"
                                             placeholder="结束时间"
@@ -152,8 +152,8 @@
                     activeName: '0',
                 },
                 chartType0:'',//图表类型
-                chartType1:'',
-                chartType2:'',
+                chartType1:'2',
+                chartType2:'2',
                 opt0: [{
                     value: '0',
                     label: '饼状图'
@@ -167,12 +167,15 @@
                 }],
                 startm: '',
                 endm: '',
+                starty: '2015',
+                endy: '2018',
                 resource: 'Hello',
                 startDatePicker: '',
                 endDatePicker: '',
-                chartRate: '',
+                chartRate: '', 
                 chartTrend: '',
-                chartYear: ''
+                chartYear: '',
+
             },
             created: function(){
                 this.startDatePicker = this.startDatePicker2()
@@ -204,7 +207,7 @@
                         }
                     }
                 },
-                /////////////////////////////////票房占比//////////////////////////////////////////////////////////////////////////
+                                /////////////////////////////////票房占比//////////////////////////////////////////////////////////////////////////
                 submitRate: function(){
                     if(!this.chartRate)
                         this.chartRate = echarts.init(document.getElementById('chartRate'));
@@ -218,8 +221,15 @@
                     })
                         .then(response => {
                             this.resource = response.data
-                            if(this.chartType0 == '0'){
-                              option = genOption_pie(this.resource, '票房')
+                            title = {
+                                        left: 'right',
+                                        top: '80%',
+                                        text: '票房占比 MovieNest',
+                                        subtext: [this.startm,this.endm]
+                                    }                       
+                            if(this.chartType0 == '0'){    
+                              
+                              option = genOption_pie(this.resource, '票房', title)
                             }
                             else if(this.chartType0 == '3'){
                               option = genOption_wordCloud(this.resource, '票房')
@@ -262,13 +272,13 @@
                     if(!this.chartYear)
                         this.chartYear = echarts.init(document.getElementById('chartYear'));
 
-                    if(!this.startm || !this.endm){
+                    if(!this.starty || !this.endy){
                         alert('请输入正确的起始日期')
                     }
                     axios.post('/resource', {
                         type: 6,
-                        startm: this.startm,
-                        endm: this.endm,
+                        startm: this.starty,
+                        endm: this.endy,
                     })
                         .then(response => {
                             this.resource = response.data

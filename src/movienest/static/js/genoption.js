@@ -1,9 +1,10 @@
-function genOption_pie(resource, serieName){
+function genOption_pie(resource, serieName, optTitle){
   data = []
   for (prop in resource) {
     data.push({value: resource[prop][1], name: resource[prop][0]})
   }
   var option = {
+    title: optTitle,
     tooltip : {
       trigger: 'item',
       formatter: "{a} <br/>{b} : {c}"
@@ -36,12 +37,13 @@ function genOption_pie(resource, serieName){
   return option
 }
 
-function genOption_wordCloud(resource, serieName){
+function genOption_wordCloud(resource, serieName, optTitle){
   data = []
   for (prop in resource) {
     data.push({value: resource[prop][1], name: resource[prop][0]})
   }
   var option = {
+    title: optTitle,
     tooltip : {
       trigger: 'item',
       formatter: "{a} <br/>{b} : {c}"
@@ -87,13 +89,14 @@ function genOption_wordCloud(resource, serieName){
   return option
 }
 
-function genOption_funnel(resource, serieName){
+function genOption_funnel(resource, serieName, optTitle){
   data = []
   for (prop in resource) {
     data.push({value: resource[prop][1], name: resource[prop][0]})
   }
   console.log(data)
   var option = {
+    title: optTitle,
     tooltip : {
       trigger: 'item',
       formatter: "{a} <br/>{b} : {c}"
@@ -159,7 +162,7 @@ function genOption_funnel(resource, serieName){
   return option
 }
 
-function genOption_line(resource){
+function genOption_line(resource, optTitle){
   data = []
   xAxis = resource[0]
   data = resource[1]
@@ -174,6 +177,7 @@ function genOption_line(resource){
     })
   }
   var option = {
+    title: optTitle,
     legend: {
       data: legend
     },
@@ -192,3 +196,5 @@ function genOption_line(resource){
   }
   return option
 }
+
+

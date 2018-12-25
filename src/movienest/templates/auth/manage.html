@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>管理爬虫</title>
+    <link rel="shortcut icon" type="image/icon" href="{{ url_for('static', filename='img/icon.png') }}">
+</head>
+<body>
+<div class="divForm">
+    <p style="font-size: 60px"></p>
+
+    <img src="{{ url_for('static', filename='img/icon.png') }}"  alt="MovieNest">
+		<p style="font-size: 20px; font-family: 'Arial'; color: slategray;">管理爬虫 MovieNest</p>
+
+		{% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+		<p style="font-size: 10px"></p>
+
+		<form method="post">
+<!-- 			
+	        <input name="username" id="username"
+	          placeholder="用户名" required
+	          style="width:200px; height:30px; font-size: 16px" >
+
+	        <p style="font-size: 20px"></p>
+
+	        <input type="password" name="password" id="password"
+	          placeholder="密码" required
+	          style="width:200px; height:30px;font-size: 16px">
+
+	        <p style="font-size: 30px"></p>
+ -->
+
+			<!-- `checked` 为 true 或 false -->
+  			<el-checkbox v-model="checked1">2015年</el-checkbox>
+  			<el-checkbox v-model="checked2">2016年</el-checkbox>
+  			<el-checkbox v-model="checked3">2017年</el-checkbox>
+  			<el-checkbox v-model="checked4">2018年</el-checkbox>
+
+	        <input type="submit" value="提    交"
+				   style="height:30px; width:207px; font-size:20px; background-color: #00d8ff; color:#fff;border:0;">
+	    </form>
+
+	    <p style="font-size: 20px"></p>
+
+	    <!-- <a style="height:30px; width:207px; font-size:18px; color: slategray;
+	        background-color:#fff;border:0;"href="{{ url_for('auth.register') }}"
+            >>>我是新用户<<</a> -->
+        <p style="font-size: 60px"></p>
+	</div>
+</body>
+</html>
+<style type="text/css">
+  a{ text-decoration:none}
+.divForm{
+	position: relative;
+	text-align: center;/*(让div中的内容居中)*/
+	width: 360px;
+/*	height: 410px;*/
+	margin: 0 auto;
+	margin-top: 10%;
+	background: #fff;
+	border-radius: 10px;
+	border:2px solid #fff;
+	box-shadow: 2px 2px 5px 3px #ccc;
+}
+.flash{
+  margin-bottom: 15px;
+  padding: 3px;
+  height: 30px;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  color: #e42d20;
+  background: #ff085e0f;
+}
+{#::-webkit-input-placeholder { /* Chrome/Opera/Safari */#}
+{#   color: gray;#}
+{#   font-size: 12pt;#}
+{#   line-height: 25px;#}
+{#}#}
+{#::-moz-placeholder { /* Firefox 19+ */#}
+{#   color: gray;#}
+{#   font-size: 12pt;#}
+{#   line-height: 25px;#}
+{#}#}
+{#:-ms-input-placeholder { /* IE 10+ */#}
+{#   color: gray;#}
+{#   font-size: 12pt;#}
+{#   line-height: 25px;#}
+{#}#}
+{#:-moz-placeholder { /* Firefox 18- */#}
+{#   color: gray;#}
+{#   font-size: 12pt;#}
+{#   line-height: 25px;#}
+{#}#}
+</style>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        elimiters: ['{[', ']}'],
+        data: {
+        	checked1: 'false',
+        	checked2: 'false',
+        	checked3: 'false',
+        	checked4: 'false',
+        }
+    })

@@ -33,6 +33,13 @@ def search():
 def listing():
     return render_template('listing.html')
 
+#这里可能有bug#########################################
+@bp.route('/manage')
+@login_required
+def manage():
+    return render_template('manage.html')
+######################################################
+
 @bp.route('/resource', methods=['POST'])
 def hello():
     req = request.get_json()

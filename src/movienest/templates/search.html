@@ -40,17 +40,16 @@
                     </div>
 
                     <div>
-                        <el-table
+                        <el-table 
                             :data="tableData"
                             stripe
                             border
-                            style="width: 80%; left: 10%"
+                            style="width: 80%; left: 10%; min-height: 600px"
                             height="400px"
                             >
                            <el-table-column
                              prop="name"
-                             label="电影名"
-                             width="180">
+                             label="电影名">
                            </el-table-column>
                            <el-table-column
                              prop="types"
@@ -62,12 +61,13 @@
                            </el-table-column>
                            <el-table-column
                              prop="actors"
-                             label="演员">
+                             label="演员"
+                             width="280">
                            </el-table-column>
                            <el-table-column
                              prop="score"
                              label="评分"
-                             width="180">
+                             width="80">
                            </el-table-column>
                           </el-table>
                       </div>
