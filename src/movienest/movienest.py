@@ -281,21 +281,27 @@ def search_db(stype, keyword):
     keyword = '%{}%'.format(keyword)
     if stype == 'name':
         movies = db.execute(
-                'SELECT id, name, date, score FROM movies '
-                'WHERE name LIKE ? ',
+                'SELECT DISTINCT id, name, date, score FROM movies '
+                'WHERE name LIKE ? '
+                'ORDER BY score DESC '
+                'LIMIT 100',
                 (keyword, )).fetchall()
     elif stype == 'director':
         movies = db.execute(
-                'SELECT id, name, date, score FROM movies '
-                'WHERE director LIKE ? ',
+                'SELECT DISTINCT id, name, date, score FROM movies '
+                'WHERE director LIKE ? '
+                'ORDER BY score DESC '
+                'LIMIT 100',
                 (keyword, )).fetchall()
     elif stype == 'actor':
         movies = db.execute(
-                'SELECT m.id id, m.name name, date, score '
+                'SELECT DISTINCT m.id id, m.name name, date, score '
                 'FROM movie_actor ma '
                 'JOIN movies m ON m.id = ma.movie_id '
                 'JOIN actors a ON ma.actor_id = a.id '
-                'WHERE a.name LIKE ?',
+                'WHERE a.name LIKE ? '
+                'ORDER BY score DESC '
+                'LIMIT 100',
                 (keyword, )).fetchall()
     result = []
     for each in movies:
