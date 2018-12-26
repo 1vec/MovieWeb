@@ -18,7 +18,7 @@
         <div class="box-main">
             <el-form class="box-form" ref="form" :model="form" >
                 <el-form-item>
-                    <el-collapse class="box-collapse" v-model="form.activeName"  accordion>
+                    <el-collapse class="box-collapse" v-model="form.activeName"  @change="handleChange">
                         <el-collapse-item  title="Top10电影" name="0">
                             <div class="block" style="margin-top: 10px">
                                 <el-col :span="12" :offset="1">
@@ -151,6 +151,9 @@
                 this.endDatePicker = this.endDatePicker2()
             },
             methods: {
+                handleChange(val) {
+                    console.log(val);
+                },
                 startDatePicker2: function(){
                     let self = this
                     return {
