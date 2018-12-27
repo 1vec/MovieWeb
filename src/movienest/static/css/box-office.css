@@ -10,7 +10,7 @@
 
 .el-container{
   background: url(../img/banner.jpg)no-repeat;
-  background-attachment:fixed;
+  /*background-attachment:fixed;*/
 }
 
 .el-container:before{
