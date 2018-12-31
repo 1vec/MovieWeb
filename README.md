@@ -19,6 +19,7 @@
 - Scrapy 1.5.1
 - selenium 3.141.0
 - fontTools
+- pandas
 
 # 使用方式
 在使用前，需要先安装依赖环境
