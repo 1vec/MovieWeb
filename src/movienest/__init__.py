@@ -2,7 +2,7 @@ from flask import Flask
 import os
 
 
-def create_app(test_config=None):
+def create_app(test_config=None): #使用当前目录下的各BluePrint初始化app并将其返回
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY=r'9*Q213TTDDti^DZ3tVk8va8hH*dJiBl@',
