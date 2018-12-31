@@ -61,6 +61,7 @@ python run.py
 若想使用爬虫爬取下载的新版数据库，将db.sqlite复制到instance目录下，并调用
 ```
 flask init-db
+```
 ## 爬虫使用详解
 ### 如何使用爬虫部分
 - 运行MovieWeb/src/movie/maoyan/spider_port.py即可更新数据库  
@@ -72,7 +73,6 @@ flask init-db
 - 爬取对象是 https://maoyan.com/films?showType=3&sortId=3 这个子网页，每年的爬取深度是16页
 - 爬取框架使用了scrapy，并在下载中间件集成了selenium框架用于模仿浏览器请求
 - 最后与sqlite数据库对接
-```
 
 # 功能说明
 ## 账户管理
