@@ -13,8 +13,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from scrapy.http import HtmlResponse
 from logging import getLogger
 import time
-import string
-import zipfile2
+#import string
+#import zipfile2
 
 
 class MaoyanSpiderMiddleware(object):
@@ -239,6 +239,7 @@ class SeleniumMiddleware():
         return  HtmlResponse(url=request.url, body=self.browser.page_source, request=request, encoding='utf-8', status=200)
 
 #selenium使用代理ip，暂时用不着
+'''
     def create_proxy_auth_extension(self, proxy_host, proxy_port,
                                    proxy_username, proxy_password,
                                    scheme='https', plugin_path=None):
@@ -310,3 +311,4 @@ class SeleniumMiddleware():
             zp.writestr("background.js", background_js)
 
         return plugin_path
+'''

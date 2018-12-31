@@ -4,9 +4,9 @@ import re
 from maoyan.items import MaoyanItem
 import time, random
 from maoyan.num_decode import getNumber
-import pandas as pd
-import sqlite3
-import json
+#import pandas as pd
+#import sqlite3
+#import json
 
 year_flag = 1
 page = 0
