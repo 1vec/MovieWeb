@@ -11,7 +11,6 @@
 
 
 # 目录结构
-
 |-MovieWeb  
 &emsp; |-doc  
 &emsp;&emsp;-...（存放PPT与demo等）  
@@ -42,10 +41,10 @@
 - Scrapy 1.5.1
 - selenium 3.141.0
 - fontTools
-- pandas
+- chromeDriver（或者安装chrome浏览器）
 
 # 使用方式
-在使用前，需要先安装依赖环境
+在使用前，需要先安装依赖环境（chrome浏览器）
 ```
 pip install flask scrapy selenium fontTools
 ```
