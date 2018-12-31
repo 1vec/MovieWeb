@@ -41,7 +41,7 @@
 - Scrapy 1.5.1
 - selenium 3.141.0
 - fontTools
-- chromeDriver（或者安装chrome浏览器）
+- 配置chromeDriver及安装chrome浏览器
 
 # 使用方式
 在使用前，需要先安装依赖环境（chrome浏览器）
