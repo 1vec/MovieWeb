@@ -1,4 +1,5 @@
 function genOption_pie(resource, serieName, optTitle){
+  // 饼状图
   data = []
   for (prop in resource) {
     data.push({value: resource[prop][1], name: resource[prop][0]})
@@ -44,6 +45,7 @@ function genOption_pie(resource, serieName, optTitle){
 }
 
 function genOption_wordCloud(resource, serieName, optTitle){
+  // 词云
   data = []
   for (prop in resource) {
     data.push({value: resource[prop][1], name: resource[prop][0]})
@@ -96,6 +98,7 @@ function genOption_wordCloud(resource, serieName, optTitle){
 }
 
 function genOption_funnel(resource, serieName, optTitle){
+  // 漏斗图
   data = []
   minValue = resource[0][1]
   maxValue = resource[0][1]
@@ -175,6 +178,7 @@ function genOption_funnel(resource, serieName, optTitle){
 }
 
 function genOption_line(resource, optTitle){
+  // 折线图
   data = []
   xAxis = resource[0]
   data = resource[1]

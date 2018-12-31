@@ -14,6 +14,7 @@
     <script src="{{ url_for('static', filename='js/jspdf.min.js') }}"></script>
     <script>
         function printPage(){
+            // 打印图表功能（pdf格式）
             html2canvas(document.getElementsByClassName('box-main')[0])
               .then(function(canvas){
                 var imgData = canvas.toDataURL('image/png')
@@ -44,6 +45,7 @@
                     </div>
                 </el-col>
                 <el-col :span="20" :offset="1">
+                <!-- 导航栏 -->
                     <el-menu
                             :default-active="menuActive"
                             class="el-menu-demo"
@@ -63,6 +65,7 @@
 
                     {% if g.user %}
                         <el-dropdown>
+                        <!-- 用户中心下拉条 -->
                           <el-button type="primary" round>用户中心
                             <i class="el-icon-arrow-down el-icon--right"></i>
                           </el-button>

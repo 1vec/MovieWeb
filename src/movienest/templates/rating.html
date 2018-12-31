@@ -17,6 +17,8 @@
     <el-main>
         <div class="box-main">
             <el-form class="box-form" ref="form" :model="form" >
+            <!-- 折叠面板 -->
+            <!-- 一共两扇，每扇包括两个日期选择器，一个图表类型选择器，和一个图表 -->
                 <el-form-item>
                     <el-collapse class="box-collapse" v-model="form.activeName"  @change="handleChange">
                         <el-collapse-item  title="Top10电影" name="0">
@@ -53,7 +55,7 @@
                                 </el-col>
                                 <el-button type="primary" v-on:click="submitTop">提交</el-button>
                             </div>
-                            
+                            <!-- 为图表准备的DOM -->
                             <div id="chartTop" style="width: 100%;height: 400px;"></div>
                         
 
@@ -93,6 +95,7 @@
                                 </el-col>
                                 <el-button type="primary" v-on:click="submitModel">提交</el-button>
                             </div>
+                            <!-- 为图表准备的DOM -->
                             <div id="chartModel" style="width: 100%;height: 400px;"></div>
                         </el-collapse-item>
                     </el-collapse>
@@ -110,7 +113,7 @@
             el: '#app',
             elimiters: ['{[', ']}'],
             data: {
-                menuActive:'3',
+                menuActive:'3', //导航栏默认选项为3
                 form:{
                     activeName: '0',
                 },
@@ -135,14 +138,19 @@
                 }, {
                     value: '0',
                     label: '饼状图'
-                }],                
+                }],   
+                // 起止日期 
                 startm: '',
                 endm: '',
+                // 前后端数据交互
                 resource: 'Hello',
+                // 日期鲁棒
                 startDatePicker: '',
                 endDatePicker: '',
+                // 图表
                 chartTop: '',
                 chartModel: '',
+                // 表格
                 tableData:'',
 
             },

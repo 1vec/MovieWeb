@@ -17,6 +17,8 @@
     <el-main>
         <div class="box-main">
             <el-form class="box-form" ref="form" :model="form" >
+            <!-- 折叠面板 -->
+            <!-- 一共三扇，每扇包括两个日期选择器，一个图表类型选择器，和一个图表 -->
                 <el-form-item>
                     <el-collapse class="box-collapse" v-model="form.activeName"  @change="handleChange">
                         <el-collapse-item  title="票房占比" name="0">
@@ -53,6 +55,7 @@
                                 </el-col>
                                 <el-button type="primary" v-on:click="submitRate">提交</el-button>
                             </div>
+                            <!-- 为图表准备的DOM -->
                             <div id="chartRate" style="width: 100%;height: 400px;"></div>
                         </el-collapse-item>
 
@@ -90,6 +93,7 @@
                                 </el-col>
                                 <el-button type="primary" v-on:click="submitTrend">提交</el-button>
                             </div>
+                            <!-- 为图表准备的DOM -->
                             <div id="chartTrend" style="width: 100%;height: 400px;"></div>
                         </el-collapse-item>
 
@@ -113,6 +117,7 @@
                                 </el-col>
                                 <el-button type="primary" v-on:click="submitYear">提交</el-button>
                             </div>
+                            <!-- 为图表准备的DOM -->
                             <div id="chartYear" style="width: 100%;height: 400px;"></div>
                         </el-collapse-item>
                 
@@ -132,11 +137,12 @@
             el: '#app',
             elimiters: ['{[', ']}'],
             data: {
-                menuActive:'2',
+                menuActive:'2', //导航栏默认选择项为2
                 form:{
-                    activeName: '0',
+                    activeName: '0',    //折叠面板默认选择项为0
                 },
-                chartType0:'',//图表类型
+                // 图表类型选择
+                chartType0:'',
                 chartType1:'2',
                 chartType2:'2',
                 opt0: [{
@@ -150,13 +156,17 @@
                     value: '2',
                     label: '折线图'
                 }],
+                // 起止日期选择
                 startm: '',
                 endm: '',
                 starty: '2015',
                 endy: '2018',
+                // 请求后台数据
                 resource: 'Hello',
+                // 鲁棒后的日期变量
                 startDatePicker: '',
                 endDatePicker: '',
+                // 图表变量
                 chartRate: '', 
                 chartTrend: '',
                 chartYear: '',
@@ -167,9 +177,11 @@
                 this.endDatePicker = this.endDatePicker2()
             },
             methods: {
+                // 折叠面板
                 handleChange(val) {
                     console.log(val);
                 },
+                // 日期选择鲁棒
                 startDatePicker2: function(){
                     let self = this
                     return {
@@ -218,10 +230,11 @@
                                         subtext: [this.startm,this.endm]
                                     }                       
                             if(this.chartType0 == '0'){    
-                              
+                              // 调用genoption.js文件
                               option = genOption_pie(this.resource, '票房', title)
                             }
                             else if(this.chartType0 == '3'){
+                                // 调用genoption.js文件
                               option = genOption_wordCloud(this.resource, '票房', title)
                             }
                             this.chartRate.setOption(option, {
@@ -254,7 +267,8 @@
                                         subtext: [this.startm,this.endm]
                                     } 
                             if(this.chartType1 == '2'){
-                              option = genOption_line(this.resource, title)
+                                // 调用genoption.js文件
+                                option = genOption_line(this.resource, title)
                             }
                             this.chartTrend.setOption(option, {
                                 notMerge: true
@@ -282,7 +296,8 @@
                                         
                                     } 
                             if(this.chartType2 == '2'){
-                              option = genOption_line(this.resource, title)
+                                // 调用genoption.js文件
+                                option = genOption_line(this.resource, title)
                             }
                             this.chartYear.setOption(option, {
                                 notMerge: true

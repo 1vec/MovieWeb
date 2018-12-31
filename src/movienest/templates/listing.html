@@ -14,6 +14,7 @@
 {% block content %}
     <el-main>
         <div class="box-main">
+        <!-- 主体是一个form表单，包括两个日期选择器，一个影片类型选择框，一个提交按钮，和一个表格 -->
             <el-form class="box-form" ref="form" :model="form" >
                 <el-form-item>
                     <div style=" margin-top: 12px; margin-bottom: 8px; margin-left: 70px; ">
@@ -49,9 +50,9 @@
                         </el-col>
                             <el-button type="primary" v-on:click="submitTop">提交</el-button>
                         </div>
-                        
-                       <div>
-                           <el-table 
+                        <!-- 从后台获取数据之后生成数据表格 -->
+                        <div>
+                            <el-table 
                                :data="tableData"
                                stripe
                                border
@@ -96,7 +97,7 @@
             el: '#app',
             elimiters: ['{[', ']}'],
             data: {
-                menuActive:'4',
+                menuActive:'4', //导航栏默认选项为4
                 form:{
                 },
                 value0:'',//影片类型
@@ -119,8 +120,10 @@
                     value: '爱情',
                     label: '爱情片'
                 }],
+                // 起止时间
                 startm: '',
                 endm: '',
+                // 后端传回的数据
                 resource: 'Hello',
                 startDatePicker: '',
                 endDatePicker: '',

@@ -14,6 +14,7 @@
 {% block content %}
     <el-main>
         <div class="box-main">
+        <!-- 主体是一个form表单，一个搜索类型选择框，一个关键词输入框，一个提交按钮，和一个表格 -->
             <el-form class="box-form" ref="form" :model="form" >
                 <el-form-item>
                     <div style=" margin-top: 12px; margin-bottom: 8px; margin-left: 70px; ">
@@ -38,7 +39,7 @@
                             <el-button type="primary" v-on:click="submitTop">提交</el-button>
                         <!-- </el-col> -->
                     </div>
-
+                    <!-- 从后端获取数据后生成表格 -->
                     <div>
                         <el-table 
                             :data="tableData"
@@ -85,7 +86,7 @@
             el: '#app',
             elimiters: ['{[', ']}'],
             data: {
-                menuActive:'5',
+                menuActive:'5', // 导航栏默认选项为5
                 form:{
                 },
                 value0:'',//搜索类型
@@ -99,9 +100,9 @@
                     value: 'actor',
                     label: '演员'
                 }],
-                resource: 'Hello',
-                tableData: [],
-                input: ''
+                resource: 'Hello',  // 前后端数据交互
+                tableData: [],  //表格数据
+                input: ''   // 搜索关键词输入
             },
             methods: {
                 submitTop: function(){
