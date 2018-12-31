@@ -3,44 +3,37 @@ from movienest.auth import login_required
 from movienest.db import get_db
 import json
 
-bp = Blueprint('movienest', __name__)
+bp = Blueprint('movienest', __name__) #根目录/的BluePrint
 
 
-@bp.route('/')
+@bp.route('/') #主界面/
 def home():
     return render_template('home.html')
 
 
-@bp.route('/box-office')
+@bp.route('/box-office') #票房分析界面/box-office
 @login_required
 def box_office():
     return render_template('box-office.html')
 
 
-@bp.route('/rating')
+@bp.route('/rating') #评分分析界面/rating
 @login_required
 def rating():
     return render_template('rating.html')
 
 
-@bp.route('/search')
+@bp.route('/search') #搜索页面/search
 @login_required
 def search():
     return render_template('search.html')
 
-@bp.route('/listing')
+@bp.route('/listing') #榜单页面/listing
 @login_required
 def listing():
     return render_template('listing.html')
 
-#这里可能有bug#########################################
-@bp.route('/manage')
-@login_required
-def manage():
-    return render_template('manage.html')
-######################################################
-
-@bp.route('/resource', methods=['POST'])
+@bp.route('/resource', methods=['POST']) #资源获取路径/resource，用于获取各类票房信息
 def hello():
     req = request.get_json()
     code = int(req['type'])
@@ -65,7 +58,7 @@ def hello():
     return Response(json.dumps(data))
 
 
-def count_type(start, end):
+def count_type(start, end): #按类型计数，弃用
     result = {}
     db = get_db()
     for each_movie in db.execute(
@@ -86,7 +79,7 @@ def count_type(start, end):
     return result
 
 
-def count_type_monthly(start, end):
+def count_type_monthly(start, end): #按类型分类按月计数，弃用
     result = {}
     unique_date = set()
     db = get_db()
@@ -118,7 +111,7 @@ def count_type_monthly(start, end):
     return unique_date, top_five
 
 
-def box_type(start, end):
+def box_type(start, end): #票房分类统计
     result = []
     db = get_db()
     for each in db.execute(
@@ -135,7 +128,7 @@ def box_type(start, end):
     return result
 
 
-def box_type_monthly(start, end):
+def box_type_monthly(start, end): #票房分类按月统计
     db = get_db()
     unique_date = db.execute(
         'SELECT DISTINCT substr(date, 1, 7)'
@@ -168,7 +161,7 @@ def box_type_monthly(start, end):
             result[tp].append(value)
     return unique_date, result
 
-def box_yearly(start, end, mtype=None):
+def box_yearly(start, end, mtype=None): #票房年同比
     db = get_db()
     unique_year = db.execute(
         'SELECT DISTINCT substr(date, 1, 4)'
@@ -199,7 +192,7 @@ def box_yearly(start, end, mtype=None):
     return [i for i in range(1, 13)], result
 
 
-def rank_score(start, end):
+def rank_score(start, end): #评分排序
     db = get_db()
     result = []
     for each in db.execute(
@@ -212,7 +205,7 @@ def rank_score(start, end):
     return result
 
 
-def get_model(start, end):
+def get_model(start, end): #获取劳模演员
     db = get_db()
     result = []
     for each in db.execute(
@@ -230,7 +223,7 @@ def get_model(start, end):
         result.append(tuple(each))
     return result
 
-def get_listing(start, end, mtype=None):
+def get_listing(start, end, mtype=None): #获取榜单，如果给定mtype则说明指定类型，否则为所有类型
     db = get_db()
     result = []
     if mtype is None:
@@ -276,7 +269,7 @@ def get_listing(start, end, mtype=None):
             })
     return result
 
-def search_db(stype, keyword):
+def search_db(stype, keyword): #搜索有关stype（电影名、导演等）的关键字相关电影
     db = get_db()
     keyword = '%{}%'.format(keyword)
     if stype == 'name':
