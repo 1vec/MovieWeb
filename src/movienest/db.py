@@ -4,7 +4,7 @@ import sqlite3
 import click
 
 
-def get_db():
+def get_db(): #获取sqlite对象
     if 'db' not in g:
         g.db = sqlite3.connect(
             current_app.config['DATABASE'],
@@ -14,26 +14,26 @@ def get_db():
     return g.db
 
 
-def close_db(e=None):
+def close_db(e=None): #关闭数据库
     db = g.pop('db', None)
     if db is not None:
         db.close()
 
 
-def init_db():
+def init_db(): #初始化数据库
     db = get_db()
     with current_app.open_resource('schema.sql') as fin:
         db.executescript(fin.read().decode('utf-8'))
 
 
-@click.command('init-db')
+@click.command('init-db') #用命令行初始化数据库
 @with_appcontext
 def init_db_command():
     init_db()
     click.echo('Initialized the database.')
 
 
-def init_app(app):
+def init_app(app): #初始化app有关数据库的设置
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
 
