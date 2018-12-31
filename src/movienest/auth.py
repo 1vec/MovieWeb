@@ -4,11 +4,11 @@ from movienest.db import get_db
 import functools
 import re
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
-re_password = re.compile(r'\w{8,16}$', flags=re.ASCII)
+bp = Blueprint('auth', __name__, url_prefix='/auth') #/auth下页面的BluePrint
+re_password = re.compile(r'\w{8,16}$', flags=re.ASCII) #密码匹配正则
 
 
-@bp.route('/login', methods=('GET', 'POST'))
+@bp.route('/login', methods=('GET', 'POST')) #登录页面/auth/login
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -35,7 +35,7 @@ def login():
     return render_template('auth/login.html')
 
 
-@bp.route('/register', methods=('GET', 'POST'))
+@bp.route('/register', methods=('GET', 'POST')) #注册页面/auth/register
 def register():
     if request.method == 'POST':
         username = request.form['username']
@@ -65,7 +65,7 @@ def register():
         flash(error)
     return render_template('auth/register.html')
 
-def login_required(view):
+def login_required(view): #要求登录的权限控制装饰器
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:
@@ -73,7 +73,7 @@ def login_required(view):
         return view(**kwargs)
     return wrapped_view
 
-@bp.route('/password', methods=('GET', 'POST'))
+@bp.route('/password', methods=('GET', 'POST')) #修改密码/auth/password页面
 @login_required
 def password():
     if request.method == 'POST':
@@ -100,14 +100,14 @@ def password():
         flash(error)
     return render_template('auth/password.html')
 
-@bp.route('/logout')
+@bp.route('/logout') #注销/auth/logout页面
 def logout():
     session.clear()
     return redirect(url_for('movienest.home'))
 
 
 @bp.before_app_request
-def load_logged_in_user():
+def load_logged_in_user(): #app交互前登录记录
     user_id = session.get('user_id')
     if user_id is None:
         g.user = None
@@ -117,7 +117,7 @@ def load_logged_in_user():
             (user_id, )
         ).fetchone()
 
-def check_valid_password(pwd):
+def check_valid_password(pwd): #验证密码合理性函数
     if re_password.match(pwd) is None:
         return False
     return True
