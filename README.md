@@ -27,7 +27,7 @@ pip install flask scrapy selenium
 运行爬虫
 ```
 cd src/spider
-python MovieWeb/src/movie/maoyan/spider_port.py
+python maoyan/spider_port.py
 ```
 运行网站后台
 ```
