@@ -15,7 +15,8 @@
 &emsp; |-doc  
 &emsp;&emsp;-...（存放PPT与demo等）  
 &emsp; |-src  
-&emsp;&emsp;|- movienest  
+&emsp;&emsp;|- movienest
+&emsp;&emsp;&emsp;- .. .py(这些.py文件为后台内容)   
 &emsp;&emsp;&emsp;|- static  
 &emsp;&emsp;&emsp;&emsp;-.. （存放js、css等静态文件）  
 &emsp;&emsp;&emsp;|- templates（存放前端模板）  
@@ -26,7 +27,6 @@
 &emsp;&emsp;&emsp;&emsp;- listing.html(榜单页面)  
 &emsp;&emsp;&emsp;&emsp;- rating.html(评分页面)  
 &emsp;&emsp;&emsp;&emsp;- search.html(搜索页面)  
-&emsp;&emsp;&emsp;- .. .py(这些.py文件为后台内容)   
 &emsp;&emsp;|- instance  
 &emsp;&emsp;&emsp;- db.sqlite(数据库)  
 &emsp;&emsp;-run.py（打开网页前请运行这个进行初始化）  
