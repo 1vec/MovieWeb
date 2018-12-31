@@ -42,6 +42,8 @@
 - selenium 3.141.0
 - fontTools
 - 配置chromeDriver及安装chrome浏览器
+  1. Windows下配置chromeDriver：https://www.jianshu.com/p/5ea69cd6c3f5
+  2. Linux（Ubuntu）下配置chromeDriver：https://blog.csdn.net/pangtouyu_qy/article/details/80282795
 
 # 使用方式
 在使用前，需要先安装依赖环境（chrome浏览器和LFS扩展）
