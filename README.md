@@ -15,7 +15,7 @@
 &emsp; |-doc  
 &emsp;&emsp;-...（存放PPT与demo等）  
 &emsp; |-src  
-&emsp;&emsp;|- movienest
+&emsp;&emsp;|- movienest  
 &emsp;&emsp;&emsp;- .. .py(这些.py文件为后台内容)   
 &emsp;&emsp;&emsp;|- static  
 &emsp;&emsp;&emsp;&emsp;-.. （存放js、css等静态文件）  
