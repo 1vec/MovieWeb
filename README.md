@@ -44,10 +44,24 @@
 - 配置chromeDriver及安装chrome浏览器
 
 # 使用方式
-在使用前，需要先安装依赖环境（chrome浏览器）
+在使用前，需要先安装依赖环境（chrome浏览器和LFS扩展）
 ```
 pip install flask scrapy selenium fontTools
 ```
+我们使用了GitHub的Large File Storage (LFS)扩展来提高处理大型文件的效率。
+LFS 尚未加入 Git 的核心二进制文件，所以在使用LFS前我们需要提前安装。
+
+可以使用以下方法安装LFS（这一部分参考了：https://www.oschina.net/translate/getting-started-with-git-lfs-tutorial）：
+* 二进制安装包：最新版本的 [binary packages](https://github.com/git-lfs/git-lfs/releases)， 支持 Windows，Mac，Linux 以及 FreeBSD。
+* Linux：Debian 和 RPM 的软件包可从 [PackageCloud](https://packagecloud.io/github/git-lfs/install) 获得。
+* macOS：可以使用 [Homebrew](https://github.com/Homebrew/brew) 执行“brew install git-lfs”来安装。
+* Windows：可以使用包管理器 [Chocolatey](https://chocolatey.org/) 执行“choco install git-lfs”来安装。
+
+等你的包管理器完成上述安装后，你还需要执行“lfs install”命令：
+```
+git lfs install
+```
+
 运行爬虫
 ```
 cd src/spider/maoyan
